@@ -17,47 +17,50 @@ function Home(props) {
   }
 
   return (
-    <div className="radioPage">
-      <h1>電台</h1>
-      <div>
-          <h3>搜尋</h3>
-          <input 
+<div className="radioPage">
+      <div class="row">
+        <h1 class="col-2">電台</h1>
+        <div class="col-7"></div>
+        <span class="col">
+        <h3 >搜尋</h3>
+        <input 
           className="search"
           type = "search" 
           placeholder = "Search" 
           onChange = {handleSearch}
-          />
+        /></span>
       </div>
-      <div>
-          <h3>你的電台</h3>
-          <button onClick={()=>{
-            props.setPage(1);
-          }}>+</button>
+      <div class="row">
+        <h3 class="col-2">你的電台</h3>
+        <button class="col-3" onClick={()=>{
+          props.setPage(1);
+        }}>+</button>
       </div>
-      <h3>好友電台</h3>
-      <div className="friendRadio">
-          {
+      <div className="friendRadio" class="row">
+        <h3>好友電台</h3>
+        {
           friendRadio.map(radio => 
-              <div className="radio inline">
+            <div className="radio inline">
               <div className="inline">{radio.title}</div>&emsp;
               <div className="inline">{radio.owner}</div>&emsp;
               <div className="inline">{radio.viewers}</div>
-              </div>
+            </div>
           )
-          }
+        }
       </div>
+      <div className="friendRadio" class="row">
       <h3>熱門電台</h3>
-      <div className="friendRadio">
-          {
+        {
           friendRadio.map(radio => 
-              <div className="radio inline">
+            <div className="radio inline">
               <div className="inline">{radio.title}</div>&emsp;
               <div className="inline">{radio.owner}</div>&emsp;
               <div className="inline">{radio.viewers}</div>
-              </div>
+            </div>
           )
-          }
+        }
       </div>
+      
     </div>
   )
 }
