@@ -1,0 +1,16 @@
+.radioPage {
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.friendRadio {
+    overflow-y: scroll;
+    white-space: nowrap;
+    .radio {
+        margin: 3vw;
+    }
+}
+.inline {
+    display: inline;
+}
