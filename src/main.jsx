@@ -5,8 +5,11 @@ import Home from './Home';
 import Profile from './Profile';
 import Playlist from './Playlist';
 import Radio from './Radio';
+import Control from './Control';
 
 import './index.css'
+import 'mdb-react-ui-kit/dist/css/mdb.dark.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,5 +21,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/radio" element={ <Radio/> }></Route>
       </Routes>
     </HashRouter>
+    <Control></Control>
   </React.StrictMode>
 )
