@@ -20,7 +20,7 @@ function App() {
           <div className="playlistSet" class="row">
           {
             playlistSet.map(playlist=> 
-              <div className="playlist inline col">
+              <div className="playlist inline col-2">
                 <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p>&emsp;
                 <p className="inline">{playlist.owners}</p>
@@ -35,7 +35,7 @@ function App() {
           <div className="playlistSet" class="row">
           {
             playlistSet.map(playlist=> 
-              <div className="playlist inline col">
+              <div className="playlist inline col-2">
                 <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p>&emsp;
                 <p className="inline">{playlist.owners}</p>
