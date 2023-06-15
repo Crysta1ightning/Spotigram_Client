@@ -44,7 +44,7 @@ function App() {
           {
             ShareplaylistSet.map(playlist=> 
               <div className="playlist inline col-2">
-                <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
+                <img type="button" src="images/song1.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p><br></br>
                 <p className="inline">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
