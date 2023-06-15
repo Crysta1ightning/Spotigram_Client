@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom/client'
 import Home from './Home';
 import Profile from './Profile';
 import Playlist from './Playlist';
-import Radio from './Radio';
 import Control from './Control';
+import Radio from './radio/Radio';
 
 import './index.css'
 import 'mdb-react-ui-kit/dist/css/mdb.dark.min.css';
