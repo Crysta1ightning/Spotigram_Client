@@ -18,7 +18,7 @@ import './index.css'
 import 'mdb-react-ui-kit/dist/css/mdb.dark.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-ReactDOM.createRoot(document.getElementById('body')).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <MDBRow>
       <MDBCol size="2">
