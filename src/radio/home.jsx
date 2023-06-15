@@ -33,7 +33,7 @@ function Home(props) {
         </div>
 
       </div>
-      <div class="row title"><p class="col-3">你的電台</p></div>
+      <div class="row title"><p class="col-2">你的電台</p></div>
       <div class="row">
         <div class="col-2">
           <img type="button" class="card-img-top offset-5" src="images/add_radio.png" onClick={()=>{
@@ -43,7 +43,7 @@ function Home(props) {
         
 
       </div>
-      <div class="row title"><p class="col-3">好友電台</p></div>
+      <div class="row title"><p class="col-2">好友電台</p></div>
       <div className="friendRadio" class="row">
         {
           friendRadio.map(radio => 
