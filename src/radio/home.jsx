@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../App.css'
 import './Radio.scss'
-import './Home.scss';
+import './home.scss';
 
 function Home(props) {
   const [friendRadio, setFriendRadio] = useState([

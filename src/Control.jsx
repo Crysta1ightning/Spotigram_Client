@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './Control.scss'
 
 import {
   MDBFooter,
@@ -16,8 +17,8 @@ function Control() {
   const [song, setSong] = useState({ length: 180, current: 0, image: "https://upload.wikimedia.org/wikipedia/it/thumb/f/f0/Screenshot_Videoclip_Never_Gonna_Give_You_Up.png/520px-Screenshot_Videoclip_Never_Gonna_Give_You_Up.png", name: "Name", artist: "Artist" })
 
   return (
-    <MDBFooter className='bg-dark text-center text-white'>
-      <MDBContainer className='p-4 pb-0'>
+    <MDBFooter className='bg-dark text-center text-white' class="control">
+      <MDBContainer className='p-3 pb-0'>
         <MDBRow>
           <MDBCol size="1">
             <img src={song.image} className='img-thumbnail'/>
