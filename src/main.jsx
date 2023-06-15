@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import Home from './Home';
 import Profile from './Profile';
 import Playlist from './Playlist';
-import Radio from './Radio';
+import Radio from './radio/Radio';
 
 import './index.css'
 
