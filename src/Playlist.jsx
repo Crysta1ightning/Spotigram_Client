@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div>
-      <h1 class="col-2 d-inline-flex">播放清單</h1>
+      <div class="row"><h1 class="col-2">播放清單</h1></div>
 
         <div> 
           <h1>個人播放清單</h1>
@@ -23,7 +23,7 @@ function App() {
               <div className="playlist inline col-2">
                 <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p>&emsp;
-                <p className="inline">{playlist.owners[0]}, {playlist.owners[1]}</p>
+                <p className="inline">by &emsp; {playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
             )
           }
@@ -38,7 +38,7 @@ function App() {
               <div className="playlist inline col-2">
                 <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p>&emsp;
-                <p className="inline">{playlist.owners[0]}, {playlist.owners[1]}</p>
+                <p className="inline">by &emsp; {playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
             )
           }
