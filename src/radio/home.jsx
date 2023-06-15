@@ -19,10 +19,9 @@ function Home(props) {
 
   return (
 <div className="radioPage">
-      <div class="row">
-        <h1 class="col-2">電台</h1>
-        <div class="col-7"></div>
-        <span class="col">
+      <div class="row justify-content-between " id="radioTop">
+        <h1 class="col-2 d-inline-flex">電台</h1>
+        <div class="col-3 justify-content-end">
         <input 
           className="search"
           type = "search" 
@@ -30,38 +29,28 @@ function Home(props) {
           onChange = {handleSearch}
         />
         {/* <button type="button" class="btn-search" alt="..."></button> */}
-        <img src="images/icon_search.png" type="button" alt="..."></img>
-        </span>
+        <img src="images/icon_search.png" class="" type="button" alt="..."></img>
+        </div>
 
       </div>
       <div class="row title"><p class="col-3">你的電台</p></div>
       <div class="row">
-        <div class="col-2"></div>
-        <button type="button" class="col btn-radio col-5 btn-sq-responsive" onClick={()=>{
-          props.setPage(1);
-        }}></button>
+        <div class="col-2">
+          <img type="button" class="card-img-top offset-5" src="images/add_radio.png" onClick={()=>{
+            props.setPage(1);
+          }}></img>
+        </div>
+        
 
       </div>
       <div class="row title"><p class="col-3">好友電台</p></div>
       <div className="friendRadio" class="row">
         {
           friendRadio.map(radio => 
-            // <div className="radio inline">
-            //   <div className="inline">{radio.title}</div>&emsp;
-            //   <div className="inline">{radio.owner}</div>&emsp;
-            //   <div className="inline">{radio.viewers}</div>
-            // </div>
-            // <div class="radio card col-50" style="width: 15rem;">
-            //     <img src="images/radio_cover.png" class="card-img-top" alt="..."></img>
-            //     <div class="card-body">
-            //         <p class="card-text ">{radio.title}</p>
-            //         <p class="card-text artist">{radio.owner}'s radio</p>
-            //         <p>{radio.viewers}</p>
-            //     </div>
-            // </div>
+
             <div className="radio inline col">
-              <img src="images/radio_cover.png" class="card-img-top" alt="..."></img>
-               <p className="card-text inline">{radio.title}</p>&emsp;
+              <img type="button" src="images/radio_cover.png" class="card-img-top" alt="..."></img>
+               <p className="inline">{radio.title}</p>&emsp;
                <p className="inline">{radio.owner}</p>&emsp;
                <p className="inline">{radio.viewers}</p>
             </div>
@@ -73,8 +62,8 @@ function Home(props) {
         {
           friendRadio.map(radio => 
             <div className="radio inline col">
-              <img src="images/radio_cover.png" class="card-img-top" alt="..."></img>
-               <p className="card-text inline">{radio.title}</p>&emsp;
+              <img type="button" src="images/radio_cover.png" class="card-img-top" alt="..."></img>
+               <p className="inline">{radio.title}</p>&emsp;
                <p className="inline">{radio.owner}</p>&emsp;
                <p className="inline">{radio.viewers}</p>
             </div>
