@@ -23,7 +23,7 @@ function App() {
               <div className="playlist inline col-2">
                 <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p>&emsp;
-                <p className="inline">{playlist.owners}</p>
+                <p className="inline">{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
             )
           }
@@ -38,7 +38,7 @@ function App() {
               <div className="playlist inline col-2">
                 <img type="button" src="images/song.png" class="card-img-top" alt="..."></img>
                 <p className="inline">{playlist.title}</p>&emsp;
-                <p className="inline">{playlist.owners}</p>
+                <p className="inline">{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
             )
           }
