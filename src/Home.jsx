@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Home.scss';
 import './App.css';
 
 function Home() {
-  const [song, setSong] = useState([
-    {id: 0, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
-    {id: 1, title: "A song", artist: "li3li3", cover:"images/song1.png"},
-    {id: 2, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
-    {id: 3, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
-    {id: 4, title: "A song", artist: "li3li3", cover:"images/song1.png"},
+  // const [song, setSong] = useState([
+  //   {id: 0, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
+  //   {id: 1, title: "A song", artist: "li3li3", cover:"images/song1.png"},
+  //   {id: 2, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
+  //   {id: 3, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
+  //   {id: 4, title: "A song", artist: "li3li3", cover:"images/song1.png"},
+  // ])
 
-  ])
+  const [song, setSong] = useState([]);
+
   const [recommend, setRecommend] = useState([
     {id: 0, title: "你想一想", artist: "li3li3", cover:"images/song1.png"},
     {id: 1, title: "B song", artist: "li3li3", cover:"images/song.png"},
@@ -23,6 +25,23 @@ function Home() {
     {id: 8, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
   ])
 
+  useEffect(() => {
+    fetchSongData();
+  }, [])
+
+  const fetchSongData = async () => {
+    let response = await fetch("http://localhost:3000/api/song");
+    let data = await response.json();
+
+    console.log(data);
+    let newsongs = [];
+    for (let i=0; i<data.length; i++) {
+      newsongs.push({id: data[i].song_id, title: data[i].songname, artist: data[i].artist, cover:"images/song.png"});
+    }
+    setSong(newsongs);
+    console.log(newsongs);
+  }
+  
   return (
     <div>
       <div className="row">
