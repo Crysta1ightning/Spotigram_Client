@@ -35,6 +35,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </Routes>
           </MDBCol>
         </HashRouter>
+      </MDBRow>
+      <MDBRow className="sticky-bottom">
         <Control></Control>
       </MDBRow>
     </MDBContainer>

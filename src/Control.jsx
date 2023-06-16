@@ -13,15 +13,21 @@ import {
 } from 'mdb-react-ui-kit';
 
 function Control() {
-  const [volume, setVolume] = useState(2.5)
-  const [song, setSong] = useState({ length: 180, current: 0, image: "https://upload.wikimedia.org/wikipedia/it/thumb/f/f0/Screenshot_Videoclip_Never_Gonna_Give_You_Up.png/520px-Screenshot_Videoclip_Never_Gonna_Give_You_Up.png", name: "Name", artist: "Artist" })
+  const [volume, setVolume] = useState("2.5")
+  const [song, setSong] = useState({ length: "180", image: "https://upload.wikimedia.org/wikipedia/it/thumb/f/f0/Screenshot_Videoclip_Never_Gonna_Give_You_Up.png/520px-Screenshot_Videoclip_Never_Gonna_Give_You_Up.png", name: "Name", artist: "Artist" })
+  const [current, setCurrent] = useState("0")
+
+  function formatTime(x) {
+    x = Number(x);
+    return (x / 60 | 0).toString() + ':' + (x % 60).toString().padStart(2, '0');
+  }
 
   return (
     <MDBFooter className='bg-dark text-center text-white' class="control">
       <MDBContainer className='p-3 pb-0'>
         <MDBRow>
           <MDBCol size="1">
-            <img src={song.image} className='img-thumbnail'/>
+            <img src={song.image} className='img-thumbnail' />
           </MDBCol>
           <MDBCol size="2" className="text-start">
             <h4>{song.name}</h4>
@@ -47,14 +53,18 @@ function Control() {
               </MDBBtn>
             </MDBRow>
             <MDBRow>
-              <MDBRange
-                defaultValue={0}
-                min='0'
-                max={song.length}
-                step='0.5'
-                value={song.current}
-                onChange={e => { song.current = e.target.value; setSong(song); }}
-              />
+              <MDBCol size="1">{formatTime(current)}</MDBCol>
+              <MDBCol>
+                <MDBRange
+                  defaultValue={0}
+                  min='0'
+                  max={song.length}
+                  step='1'
+                  value={current}
+                  onChange={e => setCurrent(e.target.value)}
+                />
+              </MDBCol>
+              <MDBCol size="1">{formatTime(song.length)}</MDBCol>
             </MDBRow>
           </MDBCol>
           <MDBCol size="2" className="text-end">
