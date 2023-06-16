@@ -9,6 +9,10 @@ function Home() {
     {id: 2, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
     {id: 3, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
     {id: 4, title: "A song", artist: "li3li3", cover:"images/song1.png"},
+    {id: 5, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
+    {id: 6, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
+    {id: 7, title: "A song", artist: "li3li3", cover:"images/song1.png"},
+    {id: 8, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
 
   ])
   const [recommend, setRecommend] = useState([
