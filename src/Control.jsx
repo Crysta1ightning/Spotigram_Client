@@ -23,7 +23,7 @@ function Control() {
   }
 
   return (
-    <MDBFooter className='bg-dark text-center text-white' class="control">
+    <MDBFooter className='text-center text-white fixed-bottom control'>
       <MDBContainer className='p-3 pb-0'>
         <MDBRow>
           <MDBCol size="1">
