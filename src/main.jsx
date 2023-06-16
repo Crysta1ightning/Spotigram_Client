@@ -20,21 +20,23 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <MDBRow>
-      <MDBCol size="2">
-        <Sidebar></Sidebar>
-      </MDBCol>
-      <MDBCol size="10">
+    <MDBContainer fluid>
+      <MDBRow>
         <HashRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/playlist" element={<Playlist />}></Route>
-            <Route path="/radio" element={<Radio />}></Route>
-          </Routes>
+          <MDBCol size="2" className="fixed-top">
+            <Sidebar></Sidebar>
+          </MDBCol>
+          <MDBCol size="10" className="offset-2">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/playlist" element={<Playlist />}></Route>
+              <Route path="/radio" element={<Radio />}></Route>
+            </Routes>
+          </MDBCol>
         </HashRouter>
-      </MDBCol>
-      <Control></Control>
-    </MDBRow>
+        <Control></Control>
+      </MDBRow>
+    </MDBContainer>
   </React.StrictMode>
 )
