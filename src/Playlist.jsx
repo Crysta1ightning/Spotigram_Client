@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+//import './App.css';
 import './Playlist.scss'
 
 function App() {
@@ -47,8 +47,8 @@ function App() {
     <div>
       <div class="title d-flex align-items-start"><h1 class="inline col-2">播放清單</h1></div>
 
-        <div> 
-          <p class="title col-3">個人播放清單</p>
+        <div className="row"> 
+          <p class="subtitle row">個人播放清單</p>
           <div className="playlistSet" class="row">
           {
             MyplaylistSet.map(playlist=> 
@@ -61,15 +61,15 @@ function App() {
           </div>
         </div>
 
-        <div>
-          <p class="title col-3">共享播放清單</p>
-          <div className="playlistSet" class="row">
+        <div className="row">
+          <p class="subtitle row">共享播放清單</p>
+          <div className="scrolling-wrapper">
           {
             ShareplaylistSet.map(playlist=> 
-              <div className="playlist inline col-2">
-                <img type="button" src="images/song1.png" class="card-img-top" alt="..."></img>
-                <p className="inline">{playlist.title}</p><br></br>
-                <p className="inline">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
+              <div className="card col-2">
+                <img type="button" src="images/song1.png" class="card-img-top"></img>
+                <p className="card-text playlist-title">{playlist.title}</p>
+                <p className="card-text playlist-owners">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
             )
           }

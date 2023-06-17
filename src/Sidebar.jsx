@@ -8,7 +8,7 @@ function Sidebar() {
 
   return (
     <div>
-      <h1 className="px-3">Spotigram</h1>
+      <h1 className="px-0.5">Spotigram</h1>
       <MDBListGroup className='bg-dark text-center text-white'>
         <MDBListGroupItem tag={NavLink} className='d-flex justify-content-between align-items-center' to="/" action noBorders>
           <MDBIcon fas icon='home' />Home
