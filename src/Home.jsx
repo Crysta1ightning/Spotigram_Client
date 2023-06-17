@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Home.scss';
-import './App.css';
+// import './App.css';
 
 function Home() {
   // const [song, setSong] = useState([
@@ -41,7 +41,7 @@ function Home() {
   ])
   useEffect(() => {
     fetchSongData();
-    // fetchStoryData();
+    fetchStoryData();
   }, [])
 
   const fetchSongData = async () => {
