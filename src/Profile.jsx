@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-// import './App.css'
+import './App.css'
+import './Profile.scss'
+
 
 function Profile() {
 
@@ -52,17 +54,20 @@ function Profile() {
           <hr className='mt-3'/>
           {
             timeline.map(song => 
-                <div class='container'>
-                  <div class='d-flex align-self-start'>
-                    <img src='./images/song.png' height='80'></img>
-                    <div class='container px-4'>
+                <div className='timeline-item'>
+                  <div className='d-flex align-self-start'>
+                    <img src='./images/timeline-line.png' width='50'></img>
+                    <div className='container mt-3'>
                       <h5>{song.timestamp}</h5>
-                      <h3>{song.songName}</h3>
-                      <h4>{song.songName}</h4>
+                      <div className='d-flex align-self-start mt-4'>
+                        <img src='./images/song.png' height='60'></img>
+                        <div className='container pl-5'>
+                          <h4>{song.songName}</h4>
+                          <h5>{song.artist}</h5>
+                        </div>
+                      </div>
                     </div>
-                    
                   </div>
-                  <hr class='mt-3'/>
                 </div>
               )
             }
