@@ -111,6 +111,14 @@ function Home() {
           )}
         </div>
       </div>
+
+      <div className='row'>
+          <p className='bind'>u can't see me</p>
+          <p className='bind'>u can't see me</p>
+          <p className='bind'>u can't see me</p>
+      </div>
+
+
     </div>
   )
 }

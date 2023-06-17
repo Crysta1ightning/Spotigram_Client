@@ -1,11 +1,17 @@
 .title{
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .subtitle{
     font-size: 2rem;
     padding-left: 1rem;
     margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.playlistSet{
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .scrolling-wrapper{
@@ -32,4 +38,8 @@
 .playlist-owners{
     color:white;
 
+}
+
+.bind{
+    visibility: hidden;
 }

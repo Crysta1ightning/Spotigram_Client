@@ -45,16 +45,16 @@ function App() {
 
   return (
     <div>
-      <div class="title d-flex align-items-start"><h1 class="inline col-2">播放清單</h1></div>
+      <div class="title d-flex align-items-start"><h1 class="inline">播放清單</h1></div>
 
         <div className="row"> 
-          <p class="subtitle row">個人播放清單</p>
-          <div className="playlistSet" class="row">
+          <p class="subtitle inline">個人播放清單</p>
+          <div className="scrolling-wrapper">
           {
             MyplaylistSet.map(playlist=> 
-              <div className="playlist inline col-2">
+              <div className="card col-2">
                 <img type="button" src={playlist.cover} className="card-img-top"></img>
-                <p className="inline">{playlist.title}</p>&emsp;
+                <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </div>
             )
           }
@@ -62,7 +62,7 @@ function App() {
         </div>
 
         <div className="row">
-          <p class="subtitle row">共享播放清單</p>
+          <p class="subtitle inline">共享播放清單</p>
           <div className="scrolling-wrapper">
           {
             ShareplaylistSet.map(playlist=> 
@@ -74,6 +74,12 @@ function App() {
             )
           }
           </div>
+        </div>
+
+        <div className='row'>
+          <p className='bind'>u can't see me</p>
+          <p className='bind'>u can't see me</p>
+          <p className='bind'>u can't see me</p>
         </div>
       
 
