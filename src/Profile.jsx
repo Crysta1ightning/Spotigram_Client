@@ -16,10 +16,12 @@ function Profile() {
     {timestamp: "06/06 22:50", songName: "勳歌的歌曲 5", artist: "li3"},
     {timestamp: "06/06 23:00", songName: "勳歌的歌曲 6", artist: "kk4944"},
   ]);
+  const [friend, setFriend] = useState([]);
   
 
   useEffect(() => {
     fetchUserData();
+    fetchFriendData();
     // fetchTimelineData();
   }, [])
 
@@ -36,6 +38,16 @@ function Profile() {
     console.log(user);
   }
 
+  const fetchFriendData = async () => {
+    let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
+    let data = await response.json();
+    for (let i=0; i<data.length; i++) {
+      friend.push({id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id)});
+    }
+    setFriend(data);
+    console.log(friend)
+  }
+
   return (
     <>
       <div className='container'>
@@ -43,6 +55,7 @@ function Profile() {
           <img src='./images/profile.png' className='rounded-circle' width='150'></img>
           <div>
             <h1 className='px-4'>{user.username}</h1>
+            <h5 className='px-4'>{friend.length} friends</h5>
           </div>
         </div>
       </div>
@@ -54,7 +67,7 @@ function Profile() {
           <hr className='mt-3'/>
           {
             timeline.map(song => 
-                <div className='timeline-item'>
+                <div className='container'>
                   <div className='d-flex align-self-start'>
                     <img src='./images/timeline-line.png' width='50'></img>
                     <div className='container mt-3'>
