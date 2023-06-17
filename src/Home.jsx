@@ -13,18 +13,18 @@ function Home() {
 
   const [song, setSong] = useState([]);
 
-  const [story, setStory] = useState([]);
-  // const [story, setStory] = useState([
-  //   {id: 0, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 1, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 2, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 3, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 4, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 5, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 6, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 7, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 8, username: "li3li3", pfp:"images/song.png"},
-  // ]);
+  // const [story, setStory] = useState([]);
+  const [story, setStory] = useState([
+    {id: 0, username: "li3li3", pfp:"images/song1.png"},
+    {id: 1, username: "li3li3", pfp:"images/song.png"},
+    {id: 2, username: "li3li3", pfp:"images/song1.png"},
+    {id: 3, username: "li3li3", pfp:"images/song.png"},
+    {id: 4, username: "li3li3", pfp:"images/song1.png"},
+    {id: 5, username: "li3li3", pfp:"images/song.png"},
+    {id: 6, username: "li3li3", pfp:"images/song.png"},
+    {id: 7, username: "li3li3", pfp:"images/song1.png"},
+    {id: 8, username: "li3li3", pfp:"images/song.png"},
+  ]);
 
 
 
@@ -57,18 +57,18 @@ function Home() {
     console.log(newsongs);
   }
 
-  const fetchStoryData = async () => {
-    let response = await fetch("http://localhost:3000/api/story");
-    let data = await response.json();
+  // const fetchStoryData = async () => {
+  //   let response = await fetch("http://localhost:3000/api/story");
+  //   let data = await response.json();
 
-    console.log(data);
-    let newstorys = [];
-    for (let i=0; i<data.length; i++) {
-      newstorys.push({id: data[i].story_id, username: data[i].username, pfp:"images/song.png"});
-    }
-    setStory(newstorys);
-    console.log(newstorys);
-  }
+  //   console.log(data);
+  //   let newstorys = [];
+  //   for (let i=0; i<data.length; i++) {
+  //     newstorys.push({id: data[i].story_id, username: data[i].username, pfp:"images/song.png"});
+  //   }
+  //   setStory(newstorys);
+  //   console.log(newstorys);
+  // }
 
 
 

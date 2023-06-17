@@ -22,6 +22,10 @@
         margin: 0.7rem;
         display: inline-block;
     }
+    .card:hover{
+        // transform: scale(1.1);
+        background-color: #ffffff1a;
+    }
 }
 
 .story-container{
@@ -41,4 +45,8 @@
         border-radius: 15rem;   
 
     }
+}
+
+.stories:hover{
+    transform: scale(1.1);
 }
