@@ -13,6 +13,21 @@ function Home() {
 
   const [song, setSong] = useState([]);
 
+  const [story, setStory] = useState([]);
+  // const [story, setStory] = useState([
+  //   {id: 0, username: "li3li3", pfp:"images/song1.png"},
+  //   {id: 1, username: "li3li3", pfp:"images/song.png"},
+  //   {id: 2, username: "li3li3", pfp:"images/song1.png"},
+  //   {id: 3, username: "li3li3", pfp:"images/song.png"},
+  //   {id: 4, username: "li3li3", pfp:"images/song1.png"},
+  //   {id: 5, username: "li3li3", pfp:"images/song.png"},
+  //   {id: 6, username: "li3li3", pfp:"images/song.png"},
+  //   {id: 7, username: "li3li3", pfp:"images/song1.png"},
+  //   {id: 8, username: "li3li3", pfp:"images/song.png"},
+  // ]);
+
+
+
   const [recommend, setRecommend] = useState([
     {id: 0, title: "你想一想", artist: "li3li3", cover:"images/song1.png"},
     {id: 1, title: "B song", artist: "li3li3", cover:"images/song.png"},
@@ -26,6 +41,7 @@ function Home() {
   ])
   useEffect(() => {
     fetchSongData();
+    // fetchStoryData();
   }, [])
 
   const fetchSongData = async () => {
@@ -40,12 +56,35 @@ function Home() {
     setSong(newsongs);
     console.log(newsongs);
   }
+
+  const fetchStoryData = async () => {
+    let response = await fetch("http://localhost:3000/api/story");
+    let data = await response.json();
+
+    console.log(data);
+    let newstorys = [];
+    for (let i=0; i<data.length; i++) {
+      newstorys.push({id: data[i].story_id, username: data[i].username, pfp:"images/song.png"});
+    }
+    setStory(newstorys);
+    console.log(newstorys);
+  }
+
+
+
   
   return (
     <div>
       <div className="row">
         <p className="h1">Story</p>
-
+        <div className="story-container">
+          {story.map(music => 
+            <div className="stories col-1 text-center">
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid"></img>
+                  <p className="">{music.username}</p>
+            </div>
+          )}
+        </div>
       </div>
       <div className="row">
         <p className="h1 row">早安!</p>

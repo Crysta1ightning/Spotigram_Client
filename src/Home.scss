@@ -23,3 +23,22 @@
         display: inline-block;
     }
 }
+
+.story-container{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    .stories{
+        background-image: url('image/song.jpg');
+        background-color: transparent;
+        padding: 0.7rem;
+        margin: 0.7rem;
+        display: inline-block;
+        color: #ffffff;
+        text-shadow: 0.2rem 0.3rem 4px #000000;
+    }
+    .story-pfp{
+        border-radius: 15rem;   
+
+    }
+}
