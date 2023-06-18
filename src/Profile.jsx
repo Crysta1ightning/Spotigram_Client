@@ -70,7 +70,7 @@ function Profile() {
                 <div className='container'>
                   <div className='d-flex align-self-start'>
                     <img src='./images/timeline-line.png' width='50'></img>
-                    <div className='container mt-3'>
+                    <div className='song-container mt-3 timeline-songs shadow rounded'>
                       <h5>{song.timestamp}</h5>
                       <div className='d-flex align-self-start mt-4'>
                         <img src='./images/song.png' height='60'></img>
