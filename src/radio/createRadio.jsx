@@ -9,14 +9,14 @@ function createRadio(props) {
   const [queueSongs, setQueuesongs] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
   const [nowPlaying, setNowPlaying] = useState(0);
   const songs = [
-    {name: "Maka", artist: "MAKAA", cover: "images/song.png"},
-    {name: "Baka", artist: "BAKAA", cover: "images/song1.png"},
-    {name: "Mikka", artist: "MIKKAA", cover: "images/song.png"},
-    {name: "Mooska", artist: "Mooska", cover: "images/song.png"},
-    {name: "Maka", artist: "MAKAA", cover: "images/song.png"},
-    {name: "Baka", artist: "BAKAA", cover: "images/song1.png"},
-    {name: "Mikka", artist: "MIKKAA", cover: "images/song.png"},
-    {name: "Mooska", artist: "Mooska", cover: "images/song.png"}
+    {name: "Maka", artist: "MAKAA", cover: "images/1.png"},
+    {name: "Baka", artist: "BAKAA", cover: "images/2.png"},
+    {name: "Mikka", artist: "MIKKAA", cover: "images/1.png"},
+    {name: "Mooska", artist: "Mooska", cover: "images/2.png"},
+    {name: "Maka", artist: "MAKAA", cover: "images/1.png"},
+    {name: "Baka", artist: "BAKAA", cover: "images/2.png"},
+    {name: "Mikka", artist: "MIKKAA", cover: "images/1.png"},
+    {name: "Mooska", artist: "Mooska", cover: "images/2.png"}
   ]
   const sendInvite = () => {
 
@@ -25,7 +25,7 @@ function createRadio(props) {
   return (
     <div className="createRadioPage">
         <div className='row pageTop'>
-          <h1 className='col-2'>你的電台</h1>
+          <h1 className='col-3'>你的電台</h1>
           <p className='col-2 roomID'>ID: {radioID}</p>
         </div>
 
@@ -77,7 +77,10 @@ function createRadio(props) {
               }
             })
           }
-          <button onClick={()=>{props.setPage(2)}}>+</button>
+          
+
+            <button  onClick={()=>{props.setPage(2)}}>+</button>
+
           </div>
         </div>
 

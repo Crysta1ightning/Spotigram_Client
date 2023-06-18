@@ -1,10 +1,11 @@
 .roomID{
-    margin-top: 1rem;
+    padding-top: 1rem;
 }
 
 .pageTop{
     margin-top: 2rem;
     margin-left: 0.5rem;
+    padding-top: 2rem;
 }
 
 .radioSetting{
@@ -14,7 +15,8 @@
 
 .nowPlaying{
     padding-left: 2rem;
-    padding-top: 1rem;
+    padding-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .nextPlaying{
@@ -23,6 +25,7 @@
 }
 
 .scrolling-wrapper{
+    margin-left: 1rem;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
@@ -58,6 +61,9 @@
 }
 
 .Song{
-    padding-left: 2.1rem;
+    margin-left: 2.5rem;
+    padding-top: 1.5rem;
 }
+
+
 
