@@ -80,7 +80,7 @@ function Home() {
         <div className="story-container">
           {story.map(music => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid"></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle"></img>
                   <p className="">{music.username}</p>
             </div>
           )}
