@@ -9,9 +9,6 @@ function Profile() {
   const [user, setUser] = useState([]);
   const [timeline, setTimeline] = useState([]);
   const [friend, setFriend] = useState([]);
-  const [song, setSong] = useState([]);
-  var songName = {};
-  var songArtist = {};
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,12 +26,20 @@ function Profile() {
     fetchUserData();
 
     const fetchFriendData = async () => {
-      let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
-      let data = await response.json();
+      let response0 = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
+      let friendData = await response0.json();
+      let response1 = await fetch("http://localhost:3000/api/user");
+      let userData = await response1.json();
       let userFriend = [];
-      console.log(userFriend);
-      for (let i = 0; i < data.length; i++) {
-        userFriend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
+
+      for (let i = 0; i < friendData.length; i++) {
+        let friendId = (friendData[i].user1_id == default_userid ? friendData[i].user2_id : friendData[i].user1_id);
+        for (let j = 0; j < userData.length; j++) {
+          if (userData[j].user_id == friendId) {
+            userFriend.push({id: friendId, name: userData[j].username});
+            break;
+          }
+        }
       }
       console.log(userFriend);
       setFriend(userFriend);
@@ -84,7 +89,7 @@ function Profile() {
     <div className='profile'>
       <div className='container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
-          <img src='./images/user1.png' className='rounded-circle' width='150'></img>
+          <img src={"./images/user"+default_userid+".jpg"} className='rounded-circle' width='150'></img>
           <div>
             <h1 className='px-4'>{user.username}</h1>
             <h5 className='px-4'>{friend.length} friends</h5>
@@ -120,7 +125,18 @@ function Profile() {
         <div className='col-8'>
           <h2 className='text-left'>Friends</h2>
           <hr className='mt-3' />
+          {
+            friend.map(user => 
+              <div className='container'>
+                <div className='d-flex'>
+                  <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
+                  <div className='friendName'>{user.name}</div>
+                </div>
+                
 
+              </div>
+            )
+          }
         </div>
       </div>
 
