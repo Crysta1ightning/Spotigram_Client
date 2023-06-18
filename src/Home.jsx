@@ -100,6 +100,10 @@ function Home() {
   var currentStory = 0;
 
   const toChangeStory = (storyIndex) => {
+    if (storyIndex < 0 || storyIndex > story.length) {
+      // TODO
+      return;
+    }
     currentStory = storyIndex;
     document.querySelector('.story-user').textContent = story[currentStory].username;
     document.querySelector('.story-time').textContent = "5 minutes ago"; // TODO
@@ -148,7 +152,7 @@ function Home() {
 
       <div className="modal fade" id="storyModal" tabindex="-1" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" width="1500px">
-          <div className="container story-block">
+          <div className="container story-block modal-content">
             <div className='d-flex align-items-center justify-content-start mt-3'>
               <img type="button" src="./images/user_pfp1.jpg" className="story-pfp shadow img-fluid rounded-circle"></img>
               <div className="container pt-3">
