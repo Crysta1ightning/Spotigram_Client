@@ -29,22 +29,10 @@ function Home() {
     {id: 8, title: "!@#$%^&*(", artist: "li3li3", cover:"images/song.png"},
   ])
   useEffect(() => {
-    fetchSongData();
+    // fetchSongData();
     fetchFriendsData();
   }, [])
 
-  const fetchSongData = async () => {
-    let response = await fetch("http://localhost:3000/api/song");
-    let data = await response.json();
-
-    console.log(data);
-    let newsongs = [];
-    for (let i=0; i<data.length; i++) {
-      newsongs.push({id: data[i].song_id, title: data[i].songname, artist: data[i].artist, cover:"images/song.png"});
-    }
-    setSong(newsongs);
-    console.log(newsongs);
-  }
 
   // Fetch each friend's id and username for this_user_id
   const fetchFriendsData = async () => {
@@ -78,18 +66,32 @@ function Home() {
     response = await fetch("http://localhost:3000/api/story");
     let storydata = await response.json();
 
-    console.log(storydata);
+    // console.log(storydata);
     
     let newstorys = [];
     for (let i=0; i<storydata.length; i++) {
       newFriends.forEach((user) => {
-        console.log(user);
-        if(storydata[i].user_id == user.user_id) newstorys.push({id: storydata[i].user_id, story: storydata[i].song_id, username: user.username, pfp: user.pfp});
+        // console.log(user);
+        if(storydata[i].user_id == user.user_id) newstorys.push({id: storydata[i].user_id, song_id: storydata[i].song_id, username: user.username, pfp: user.pfp});
       })
     }
-    
-    setStory(newstorys);
-    console.log(newstorys);
+
+    response = await fetch("http://localhost:3000/api/song");
+    let songdata = await response.json();
+
+    // console.log(data);
+    let newsongs = [];
+    let stories = [];
+    for (let i=0; i<songdata.length; i++) {
+      newsongs.push({id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover:"images/song.png"});
+      newstorys.forEach((user) => {
+        if(songdata[i].song_id == user.song_id) stories.push({id: user.user_id, title: songdata[i].songname, artist: songdata[i].artist, username: user.username, pfp: user.pfp})
+      })
+    }
+    setSong(newsongs);
+    console.log(newsongs);
+    setStory(stories);
+    console.log(stories);
   }
 
   var currentStory = 0;
@@ -104,9 +106,9 @@ function Home() {
       <div className="row">
         <p className="h1">Story</p>
         <div className="story-container">
-          {story.map((music, index) => 
+          {story.map(music => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {toChangeStory(index)}}></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {toChangeStory(music.title)}}></img>
                   <p className="">{music.username}</p>
             </div>
           )}
