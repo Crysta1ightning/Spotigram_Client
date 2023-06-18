@@ -149,6 +149,7 @@ function Profile() {
                   <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
                   <h4 className='friendName px-2'>{user.name}</h4>
                 </div>
+<<<<<<< HEAD
                 <div className='row'>
                 {
                   timeline.filter(song => song.user_id == user.id).map(song =>
@@ -157,6 +158,18 @@ function Profile() {
                     <img src={'./images/'+song.song_id+'.png'} width='80'></img>
                     <p>{song.song_name}</p>
                   </div>
+=======
+                <div className='d-flex mt-2'>
+
+                {
+                  timeline.filter(song => song.user_id == user.id).map(song =>
+                    <table className="friendTable">
+                      <tr><img src='./images/timeline-line-horizontal.png' width='130'></img></tr>
+                      <tr><img className="mt-1" src={'./images/'+song.song_id+'.png'} width='70'></img></tr>
+                      <tr><div className="mt-1">{song.song_name}</div></tr>
+
+                    </table>
+>>>>>>> 4cbe727d25b5148647f9ae9b4fa8407c468eaee7
                   )
                 }
                 </div>
