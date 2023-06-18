@@ -62,7 +62,7 @@ function Rightsidebar() {
                 <MDBTabsPane show={justifyActive === 'tab2'} className='text-center'>
                     <MDBBtn block className='btn text-white text-capitalize' color='tertiary' style={{ backgroundColor: '#454545' }} size='lg' href='/#/radio'>Host my Radio +</MDBBtn>
                     <p className="text-center">Friends' Radio</p>
-                    <MDBListGroup>
+                    <MDBListGroup className='t2'>
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
                             <img src='./images/3.jpg' className='img-fluid rounded' width={45} />
                         </MDBListGroupItem>
@@ -72,9 +72,9 @@ function Rightsidebar() {
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
                             <img src='./images/6.png' className='img-fluid rounded' width={45} />
                         </MDBListGroupItem>
-                    </MDBListGroup>
+                    </MDBListGroup >
                     <p className="text-center">Radio Rank List</p>
-                    <MDBListGroup>
+                    <MDBListGroup className='t2'>
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
                             <img src='./images/1.png' className='img-fluid rounded' width={45} />
                         </MDBListGroupItem>
