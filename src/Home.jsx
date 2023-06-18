@@ -83,9 +83,10 @@ function Home() {
     let newsongs = [];
     let stories = [];
     for (let i=0; i<songdata.length; i++) {
-      newsongs.push({id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover:"images/song.png"});
+      newsongs.push({id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: songdata[i].cover});
       newstorys.forEach((user) => {
-        if(songdata[i].song_id == user.song_id) stories.push({id: user.user_id, title: songdata[i].songname, artist: songdata[i].artist, username: user.username, pfp: user.pfp})
+        if(songdata[i].song_id == user.song_id) stories.push({id: user.user_id, title: songdata[i].songname, artist: songdata[i].artist, 
+          cover: songdata[i].cover, username: user.username, pfp: user.pfp})
       })
     }
     setSong(newsongs);
