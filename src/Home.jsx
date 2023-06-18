@@ -86,7 +86,7 @@ function Home() {
       newstorys.forEach((user) => {
         if (songdata[i].song_id == user.song_id) stories.push({
           id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
-          cover: songdata[i].cover, username: user.username, pfp: user.pfp
+          cover: newsongs[i].cover, username: user.username, pfp: user.pfp
         })
       })
     }
@@ -111,22 +111,26 @@ function Home() {
     document.querySelector('.story-time').textContent = "5 minutes ago"; // TODO
     document.querySelector('.story-cover').src = story[currentStory].cover;
     document.querySelector('.story-title').textContent = story[currentStory].title;
+    document.querySelector('.instory-pfp').src = story[currentStory].pfp;
   };
 
   const handleCoverErrored = (img, id) => {
-    console.log(img);
-    console.log(id);
     img.oneerror = null;
+    song.forEach((song) => {
+      if(song.id == id) song.cover = "./images/"+id+".jpg";
+    })
+    story.forEach((story) => {
+      if(story.id == id) story.cover = "./images/"+id+".jpg";
+    })
     if(id) img.src = "./images/"+id+".jpg";
-    console.log(img);
   };
 
   const handlePfpErrored = (img, id) => {
-    console.log(img);
-    console.log(id);
     img.oneerror = null;
+    story.forEach((story) => {
+      if(story.id == id) story.pfp = "./images/user"+id+".jpg";
+    })
     if(id) img.src = "./images/user"+id+".jpg";
-    console.log(img);
   };
 
   return (
@@ -136,7 +140,8 @@ function Home() {
         <div className="story-container">
           {story.map((music, index) =>
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} 
+              data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
               <p className="">{music.username}</p>
             </div>
           )}
@@ -145,7 +150,7 @@ function Home() {
       <div className="row">
         <p className="h1 row mt-4 ms-4">早安!</p>
         <div className="scrolling-wrapper ms-3">
-          {song.map((music, index) =>
+          {song.map(music =>
             <div className="card col-2">
               <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
               <p className="song">{music.title}</p>
@@ -172,7 +177,7 @@ function Home() {
         <div className="modal-dialog modal-dialog-centered" width="1500px">
           <div className="container story-block modal-content">
             <div className='d-flex align-items-center justify-content-start mt-3'>
-              <img type="button" src="./images/user_pfp1.jpg" className="story-pfp shadow img-fluid rounded-circle"></img>
+              <img type="button" src="" className="story-pfp instory-pfp shadow img-fluid rounded-circle"></img>
               <div className="container pt-3">
                 <p className="story-user"></p>
                 <p className="story-time"></p>
