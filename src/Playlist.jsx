@@ -19,9 +19,9 @@ function Playlist() {
   //])
 
   const [MyplaylistSet, setPlaylistSet] = useState([
-    { id: 0, title: "周杰倫", cover: "images/song1.png" },
-    { id: 1, title: "成發歌單", cover: "images/song1.png" },
-    { id: 2, title: "抖音", cover: "images/song1.png" }
+    { id: 0, title: "周杰倫", cover: "images/5.png" },
+    { id: 1, title: "成發歌單", cover: "images/6.png" },
+    { id: 2, title: "抖音", cover: "images/4.jpg" }
   ])
   useEffect(() => {
     fetchPlaylistData();
@@ -36,6 +36,7 @@ function Playlist() {
     for (let i = 0; i < data.length; i++) {
       newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: "images/5.png" });
     }
+    
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
   }
