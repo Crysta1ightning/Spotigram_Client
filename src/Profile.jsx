@@ -9,9 +9,6 @@ function Profile() {
   const [user, setUser] = useState([]);
   const [timeline, setTimeline] = useState([]);
   const [friend, setFriend] = useState([]);
-  const [song, setSong] = useState([]);
-  var songName = {};
-  var songArtist = {};
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,12 +26,20 @@ function Profile() {
     fetchUserData();
 
     const fetchFriendData = async () => {
-      let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
-      let data = await response.json();
+      let response0 = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
+      let friendData = await response0.json();
+      let response1 = await fetch("http://localhost:3000/api/user");
+      let userData = await response1.json();
       let userFriend = [];
-      console.log(userFriend);
-      for (let i = 0; i < data.length; i++) {
-        userFriend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
+
+      for (let i = 0; i < friendData.length; i++) {
+        let friendId = (friendData[i].user1_id == default_userid ? friendData[i].user2_id : friendData[i].user1_id);
+        for (let j = 0; j < userData.length; j++) {
+          if (userData[j].user_id == friendId) {
+            userFriend.push({id: friendId, name: userData[j].username});
+            break;
+          }
+        }
       }
       console.log(userFriend);
       setFriend(userFriend);
@@ -111,29 +116,45 @@ function Profile() {
         </div>
       </div>
       <hr className='mt-5' />
-      <div className='container mt-5'>
-        <div className='col'>
+      <div className='row mt-5'>
+        <div className='col-4'>
           <h2 className='text-left'>Timeline</h2>
-            <hr className='mt-3' />
-            {
-              timeline.filter(song => song.user_id == default_userid).map(song =>
-                <div className='container'>
-                  <div className='d-flex align-self-start'>
-                    <img src='./images/timeline-line.png' width='50'></img>
-                    <div className='song-container mt-3 timeline-songs shadow rounded'>
-                      <h5>13:15</h5>
-                      <div className='d-flex align-self-start mt-4'>
-                        <img src={song.cover} height='60'  onError={({currentTarget}) => {handleCoverErrored(currentTarget, song.id)}}></img>
-                        <div className='container pl-5'>
-                          <h4>{song.song_name}</h4>
-                          <h5>{song.song_artist}</h5>
-                        </div>
+          <hr className='mt-3' />
+          {
+            timeline.filter(song => song.user_id == default_userid).map(song =>
+              <div className='container'>
+                <div className='d-flex align-self-start'>
+                  <img src='./images/timeline-line.png' width='50'></img>
+                  <div className='song-container mt-3 timeline-songs shadow rounded'>
+                    <h5>13:15</h5>
+                    <div className='d-flex align-self-start mt-4'>
+                      <img src={song.cover} height='60'  onError={({currentTarget}) => {handleCoverErrored(currentTarget, song.id)}}></img>
+                      <div className='container pl-5'>
+                        <h4>{song.song_name}</h4>
+                        <h5>{song.song_artist}</h5>
                       </div>
                     </div>
                   </div>
                 </div>
-              )
-            }
+              </div>
+            )
+          }
+        </div>
+        <div className='col-8'>
+          <h2 className='text-left'>Friends</h2>
+          <hr className='mt-3' />
+          {
+            friend.map(user => 
+              <div className='container'>
+                <div className='d-flex'>
+                  <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
+                  <div className='friendName'>{user.name}</div>
+                </div>
+                
+
+              </div>
+            )
+          }
         </div>
       </div>
 
