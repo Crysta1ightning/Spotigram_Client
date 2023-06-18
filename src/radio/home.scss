@@ -1,25 +1,50 @@
 .title{
     font-size: 2rem;
-    padding-left: 1rem;
-}
-
-.btn-sq-responsive {
-    width: 293px !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    height: 194px !important;
-    font-size: 5rem;
-
+    padding-left: 1.5rem !important;
 }
 
 .btn-radio{
+    width: 194px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 194px !important;
+    object-fit: contain !important;
+    // display: flex;
+    // padding-top: 2rem !important;
     background-image: url('images/add_radio.png');
+}
+
+.btn-radio:hover{
+    transform: scale(0.9);
 }
 
 #radioTop{
     padding-top: 2rem;
 }
 
+.radioPage{
+    padding-left: 1rem;
+}
+
 .bind{
     visibility: hidden;
+}
+
+.scrolling-wrapper{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    // max-height: 25rem;
+    .radio{
+        // background-color: #1E1E21;
+        // width: 1rem;
+        // height: 1rem;
+        padding: 0.7rem;
+        margin: 0.7rem;
+        display: inline-block;
+    }
+    .radio:hover{
+        // transform: scale(1.1);
+        background-color: #ffffff1a;
+    }
 }
