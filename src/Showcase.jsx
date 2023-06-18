@@ -8,27 +8,46 @@ function Showcase() {
     const [friends, setFriends] = useState([]);
     const [loading, setLoading] = useState(true);
     const [users, setUsers] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        fetchSongsData();
+        fetchPlaylistsData();
         fetchUsersData();
         fetchFriendsData();
         setLoading(false);
     }, [])
 
     // Fetch each song's id, songname, artist
-    const fetchSongsData = async () => {
+    const fetchPlaylistsData = async () => {
         let response = await fetch("http://localhost:3000/api/song");
-        let data = await response.json();
+        let songdata = await response.json();
+        response = await fetch("http://localhost:3000/api/playlist_song");
+        let playlist_songdata = await response.json();
+        response = await fetch("http://localhost:3000/api/playlist_owner");
+        let playlist_ownerdata = await response.json();
+        response = await fetch("http://localhost:3000/api/playlist");
+        let playlists = await response.json();
+        console.log(playlists);
 
-        // console.log(data);
-        let newsongs = [];
-        for (let i=0; i<data.length; i++) {
-        newsongs.push({id: data[i].song_id, title: data[i].songname, artist: data[i].artist});
-        }
-        setSongs(newsongs);
+        let newsongs = []; // {[playlist1: {songname, artist}, song2], [playlist2: song3, song4]}
+        let newplaylists = []; // {id, playlistname, [playlist owner]}
+        playlists.forEach((playlist) => {
+            let id = playlist.playlist_id;
+            let this_songs_id = playlist_songdata.filter(ps => ps.playlist_id == id).map(ps => ps.song_id);
+            let this_owners = playlist_ownerdata.filter(po => po.playlist_id == id).map(po => po.user_id);
+            let this_songs = [];
+            songdata.forEach((s) => {
+                if (this_songs_id.includes(s.song_id)) this_songs.push({songname: s.songname, artist: s.artist});
+            })
+            newsongs.push(this_songs);
+            newplaylists.push({name: playlist.playlistname, po: this_owners});
+        })
+
         // console.log(newsongs);
+        // console.log(newplaylists)
+        setSongs(newsongs);
+        setPlaylists(newplaylists);
     }
 
     // Fetch each user's id, username
@@ -87,9 +106,9 @@ function Showcase() {
     }
     const createUser = async (username, password) => {
         username = randomText(5);
-        console.log(username);
+        // console.log(username);
         password = randomText(5);
-        console.log(password);
+        // console.log(password);
 
         let response = await(fetch("http://localhost:3000/api/user", {
             method: 'POST',
@@ -102,22 +121,11 @@ function Showcase() {
             },
         }))
         let data = await response.json();
-        console.log(data);
+        // console.log(data);
         // fetch again
         fetchUsersData();
     }
 
-    //   cosnt createUser = async (username, password) => {
-    //     let response = await(fetch("http://localhost:3000/api/user", {
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //             username: username,
-    //             encoded_pwd: password
-    //         })
-    //     }));
-    //     let data = await response.json();
-    //     console.log(data);
-    //   }
 
     if (loading) return (
         <div className="Showcase">
@@ -132,10 +140,19 @@ function Showcase() {
             <h1>Showcase</h1>
         </div>
         <div className="row">
-            <h2>Songs</h2>
+            <h2>Playlists</h2>
+            {playlists.map((playlist, i) => 
+                <div className="card col">
+                    <p className="song">{playlist.name}</p>
+                    <p className="artist">{playlist.po.map(po => <>{users[po-1].username}</>)}</p>
+                    {songs[i].map(song => 
+                        <p>{song.songname}&ensp;{song.artist}</p>
+                    )}
+                </div>
+            )}
             {songs.map(music => 
                 <div className="card col">
-                    <p className="song">{music.title}</p>
+                    <p className="song">{music.songname}</p>
                     <p className="artist">{music.artist}</p>
                 </div>
             )}
