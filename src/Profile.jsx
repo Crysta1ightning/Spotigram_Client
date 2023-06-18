@@ -88,7 +88,7 @@ function Profile() {
           <div>
             <h1 className='px-4'>{user.username}</h1>
             <h5 className='px-4'>{friend.length} friends</h5>
-            <button onClick={logout}>Logout</button>
+            <button className='logoutbtn' onClick={logout}>Logout</button>
           </div>
         </div>
       </div>
