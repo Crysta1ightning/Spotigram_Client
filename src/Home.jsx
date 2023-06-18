@@ -18,15 +18,15 @@ function Home() {
   const [thisUser, setThisUser] = useState("");
 
   const [recommend, setRecommend] = useState([
-    { id: 0, title: "你想一想", artist: "li3li3", cover: "images/song1.png" },
-    { id: 1, title: "B song", artist: "li3li3", cover: "images/song.png" },
-    { id: 2, title: "yo yo", artist: "li3li3", cover: "images/song1.png" },
-    { id: 3, title: "天是空的", artist: "li3li3", cover: "images/song.png" },
-    { id: 4, title: "A song", artist: "li3li3", cover: "images/song1.png" },
-    { id: 5, title: "!@#$%^&*(", artist: "li3li3", cover: "images/song.png" },
-    { id: 6, title: "天是空的", artist: "li3li3", cover: "images/song.png" },
-    { id: 7, title: "A song", artist: "li3li3", cover: "images/song1.png" },
-    { id: 8, title: "!@#$%^&*(", artist: "li3li3", cover: "images/song.png" },
+    { id: 0, title: "你想一想", artist: "li3li3", cover: "images/5.png" },
+    { id: 1, title: "B song", artist: "li3li3", cover: "images/6.png" },
+    { id: 2, title: "yo yo", artist: "li3li3", cover: "images/5.png" },
+    { id: 3, title: "天是空的", artist: "li3li3", cover: "images/5.png" },
+    { id: 4, title: "A song", artist: "li3li3", cover: "images/6.png" },
+    { id: 5, title: "!@#$%^&*(", artist: "li3li3", cover: "images/5.png" },
+    { id: 6, title: "天是空的", artist: "li3li3", cover: "images/6.png" },
+    { id: 7, title: "A song", artist: "li3li3", cover: "images/6.png" },
+    { id: 8, title: "!@#$%^&*(", artist: "li3li3", cover: "images/5.png" },
   ])
   useEffect(() => {
     // fetchSongData();
@@ -57,7 +57,9 @@ function Home() {
       // console.log(user);
       if (user.user_id == this_user_id) setThisUser(user.username);
       else if (friendsForThisUser.includes(user.user_id)) {
-        newFriends.push({ user_id: user.user_id, username: user.username, pfp: user.profile_pic })
+        let typePNG = "./images/user"+user.user_id+".png";
+        if(typePNG.complete) newFriends.push({ user_id: user.user_id, username: user.username, pfp: typePNG })
+        else newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".jpg" })
       }
     })
     // console.log(friendsForThisUser);
@@ -83,7 +85,10 @@ function Home() {
     let newsongs = [];
     let stories = [];
     for (let i = 0; i < songdata.length; i++) {
-      newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: songdata[i].cover });
+      let typePNG = "./images/"+songdata[i].song_id+".png";
+      
+      if(typePNG) newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: typePNG});
+      else newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".jpg"});
       newstorys.forEach((user) => {
         if (songdata[i].song_id == user.song_id) stories.push({
           id: user.user_id, title: songdata[i].songname, artist: songdata[i].artist,
@@ -132,7 +137,7 @@ function Home() {
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
             <div className="card col-2">
-              <img type="button" src={music.cover} className="card-img-top"></img>
+              <img type="button" src={music.cover} className="card-img-top" onError="consloe.log(test);"></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
             </div>
