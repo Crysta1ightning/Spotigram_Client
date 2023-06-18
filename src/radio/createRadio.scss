@@ -1,0 +1,63 @@
+.roomID{
+    margin-top: 1rem;
+}
+
+.pageTop{
+    margin-top: 2rem;
+    margin-left: 0.5rem;
+}
+
+.radioSetting{
+    padding-left: 2rem;
+    padding-top: 1rem;
+}
+
+.nowPlaying{
+    padding-left: 2rem;
+    padding-top: 1rem;
+}
+
+.nextPlaying{
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+}
+
+.scrolling-wrapper{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    // max-height: 25rem;
+    .card{
+        background-color: #1E1E21;
+        // width: 1rem;
+        // height: 1rem;
+        padding: 0.7rem;
+        margin: 0.7rem;
+        display: inline-block;
+    }
+}
+
+.song{
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 0rem;
+}
+
+.artist{
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.bind{
+    visibility: hidden;
+}
+
+.block{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.Song{
+    padding-left: 2.1rem;
+}
+
