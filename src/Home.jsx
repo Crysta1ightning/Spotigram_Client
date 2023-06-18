@@ -110,7 +110,7 @@ function Home() {
   return (
     <div>
       <div className="row">
-        <p className="h1">Story</p>
+        <p className="h1 mx-4 mt-4">Story</p>
         <div className="story-container">
           {story.map((music, index) =>
             <div className="stories col-1 text-center">
@@ -121,8 +121,8 @@ function Home() {
         </div>
       </div>
       <div className="row">
-        <p className="h1 row">早安!</p>
-        <div className="scrolling-wrapper">
+        <p className="h1 row mt-4 ms-4">早安!</p>
+        <div className="scrolling-wrapper ms-3">
           {song.map(music =>
             <div className="card col-2">
               <img type="button" src={music.cover} className="card-img-top"></img>
@@ -134,8 +134,8 @@ function Home() {
       </div>
 
       <div className="row">
-        <p className="h1 row">美好的明天!</p>
-        <div className="scrolling-wrapper">
+        <p className="h1 row mt-4 ms-4">美好的明天!</p>
+        <div className="scrolling-wrapper ms-3">
           {recommend.map(music =>
             <div className="card col-2" >
               <img type="button" src={music.cover} className="card-img-top"></img>
