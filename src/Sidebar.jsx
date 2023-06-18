@@ -23,9 +23,9 @@ function Sidebar() {
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/radio" action noBorders>
           <MDBIcon fas icon='broadcast-tower' />Radio
         </MDBListGroupItem>
-        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/showcase" action noBorders>
+        {/* <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/showcase" action noBorders>
           <MDBIcon fas icon='music' />Showcase
-        </MDBListGroupItem>
+        </MDBListGroupItem> */}
       </MDBListGroup>
     </div>
   )
