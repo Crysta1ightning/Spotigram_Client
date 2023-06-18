@@ -8,6 +8,7 @@ import Control from './Control';
 import Radio from './radio/Radio';
 import Sidebar from './Sidebar';
 import Showcase from './Showcase';
+import Rightsidebar from './rightSidebar';
 
 import {
   MDBContainer,
@@ -26,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <MDBCol size="2" className="fixed-top sidebar">
           <Sidebar></Sidebar>
         </MDBCol>
-        <MDBCol size="10" className="offset-2">
+        <MDBCol size="8" className="offset-2">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
@@ -34,6 +35,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/radio" element={<Radio />}></Route>
             <Route path="/showcase" element={<Showcase />}></Route>
           </Routes>
+        </MDBCol>
+        <MDBCol size="2" className="offset-10 fixed-top sidebar">
+          <Rightsidebar></Rightsidebar>
         </MDBCol>
       </HashRouter>
     </MDBRow>
