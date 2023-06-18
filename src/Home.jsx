@@ -99,7 +99,10 @@ function Home() {
 
   const toChangeStory = (storyIndex) => {
     currentStory = storyIndex;
-    document.querySelector('#storyid').textContent = "story index: " + currentStory;
+    document.querySelector('.story-user').textContent = story[storyIndex].username;
+    document.querySelector('.story-time').textContent = "5 minutes ago"; // TODO
+    document.querySelector('.story-cover').src = story[storyIndex].cover;
+    document.querySelector('.story-title').textContent = story[storyIndex].title;
   };
 
   return (
@@ -107,9 +110,9 @@ function Home() {
       <div className="row">
         <p className="h1">Story</p>
         <div className="story-container">
-          {story.map(music => 
+          {story.map((music, index) => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => {toChangeStory(music.title)}}></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => {toChangeStory(index)}}></img>
                   <p className="">{music.username}</p>
             </div>
           )}
@@ -147,13 +150,13 @@ function Home() {
             <div className='d-flex align-items-center justify-content-start mt-3'>
               <img type="button" src="./images/user_pfp1.jpg" className="story-pfp shadow img-fluid rounded-circle"></img>
               <div className="container pt-3">
-                <p className="story-user">Kelvin</p>
-                <p className="story-time">5 minutes ago</p>
+                <p className="story-user"></p>
+                <p className="story-time"></p>
               </div>
             </div>
             <div className="story-music">
-              <img type="button" src="./images/song1.png" className="story-cover"></img>
-              <p className="story-title">song name</p>
+              <img type="button" className="story-cover"></img>
+              <p className="story-title"></p>
             </div>
 
           </div>
