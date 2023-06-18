@@ -152,13 +152,13 @@ function Profile() {
                 <div className='mt-2'></div>
                 {
                   timeline.filter(song => song.user_id == user.id).map(song =>
-                  
-                    <div className='col'>
-                      <img src='./images/timeline-line-horizontal.png' width='100'></img>
-                      <img src={'./images/'+song.song_id+'.png'} width='100'></img>
-                      <div>{song.song_name}</div>
-
-                    </div>
+                  <div className='flex-container'>
+                  <div className='col'>
+                    <img src='./images/timeline-line-horizontal.png' width='100'></img><br></br>
+                    <div className='d-flex align-items-center'><img src={'./images/'+song.song_id+'.png'} width='80'></img></div>
+                    <p>{song.song_name}</p>
+                  </div>
+                  </div>  
                   )
                 }
                 <hr className='mt-5' />
