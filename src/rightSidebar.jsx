@@ -11,7 +11,9 @@ import {
     MDBTabsLink,
     MDBTabsContent,
     MDBTabsPane,
-    MDBBtn
+    MDBBtn,
+    MDBRow,
+    MDBCol
 } from 'mdb-react-ui-kit';
 
 function Rightsidebar() {
