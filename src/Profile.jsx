@@ -56,7 +56,7 @@ function Profile() {
       console.log(timelineData.length);
       console.log(songData.length);
       for (let i = 0; i < timelineData.length; i++) {
-       let songName, songArtist, songCover;
+       let songName, songArtist, song;
        for (let j = 0; j < songData.length; j++) {
         if (songData[j].song_id === timelineData[i].song_id) {
           songName = songData[j].songname;
@@ -65,8 +65,7 @@ function Profile() {
         }
        }
        console.log(songName);
-       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp,
-                          cover: songCover});
+       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_id: timelineData[i].song_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp});
       }
       console.log(timelineFetch);
       setTimeline(timelineFetch);
@@ -128,7 +127,7 @@ function Profile() {
                   <div className='song-container mt-3 timeline-songs shadow rounded'>
                     <h5>13:15</h5>
                     <div className='d-flex align-self-start mt-4'>
-                      <img src={song.cover} height='60'  onError={({currentTarget}) => {handleCoverErrored(currentTarget, song.id)}}></img>
+                      <img src={'./images/'+song.song_id+'.png'} height='60'></img>
                       <div className='container pl-5'>
                         <h4>{song.song_name}</h4>
                         <h5>{song.song_artist}</h5>
@@ -146,12 +145,23 @@ function Profile() {
           {
             friend.map(user => 
               <div className='container'>
-                <div className='d-flex'>
-                  <img className='friendPfp' src={user.pfp} onError={({currentTarget}) => {handlePfpErrored(currentTarget, user.id)}}></img>
-                  <div className='friendName'>{user.name}</div>
+                <div className='d-flex align-items-center'>
+                  <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
+                  <h4 className='friendName px-2'>{user.name}</h4>
                 </div>
-                
+                <div className='mt-2'></div>
+                {
+                  timeline.filter(song => song.user_id == user.id).map(song =>
+                  
+                    <div className='col'>
+                      <img src='./images/timeline-line-horizontal.png' width='100'></img>
+                      <img src={'./images/'+song.song_id+'.png'} width='100'></img>
+                      <div>{song.song_name}</div>
 
+                    </div>
+                  )
+                }
+                <hr className='mt-5' />
               </div>
             )
           }
