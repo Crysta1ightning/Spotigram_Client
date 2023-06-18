@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <MDBCol size="2" className="fixed-top sidebar">
           <Sidebar></Sidebar>
         </MDBCol>
-        <MDBCol size="8" className="offset-2 my-fixed-top">
+        <MDBCol size="8" className="offset-2">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
