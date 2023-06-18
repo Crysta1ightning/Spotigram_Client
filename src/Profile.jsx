@@ -74,7 +74,7 @@ function Profile() {
                     <div className='song-container mt-3 timeline-songs shadow rounded'>
                       <h5>{song.timestamp}</h5>
                       <div className='d-flex align-self-start mt-4'>
-                        <img src='./images/song.png' height='60'></img>
+                        <img src='./images/1.png' height='60'></img>
                         <div className='container pl-5'>
                           <h4>{song.songName}</h4>
                           <h5>{song.artist}</h5>

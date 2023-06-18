@@ -34,7 +34,7 @@ function Playlist() {
     console.log(data);
     let newplaylist = [];
     for (let i = 0; i < data.length; i++) {
-      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: "images/song.png" });
+      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: "images/1.png" });
     }
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
@@ -64,7 +64,7 @@ function Playlist() {
           {
             ShareplaylistSet.map(playlist =>
               <div className="card col-2" key={playlist.id}>
-                <img type="button" src="images/song1.png" className="card-img-top"></img>
+                <img type="button" src="images/1.png" className="card-img-top"></img>
                 <p className="card-text playlist-title">{playlist.title}</p>
                 <p className="card-text playlist-owners">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
