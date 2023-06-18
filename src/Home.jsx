@@ -33,7 +33,6 @@ function Home() {
     fetchFriendsData();
   }, [])
 
-
   // Fetch each friend's id and username for this_user_id
   const fetchFriendsData = async () => {
     let this_user_id = 1; // assume user_id = 1;
@@ -57,9 +56,7 @@ function Home() {
       // console.log(user);
       if (user.user_id == this_user_id) setThisUser(user.username);
       else if (friendsForThisUser.includes(user.user_id)) {
-        let typePNG = "./images/user"+user.user_id+".png";
-        if(typePNG.complete) newFriends.push({ user_id: user.user_id, username: user.username, pfp: typePNG })
-        else newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".jpg" })
+        newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".png" })
       }
     })
     // console.log(friendsForThisUser);
@@ -85,13 +82,10 @@ function Home() {
     let newsongs = [];
     let stories = [];
     for (let i = 0; i < songdata.length; i++) {
-      let typePNG = "./images/"+songdata[i].song_id+".png";
-      
-      if(typePNG) newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: typePNG});
-      else newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".jpg"});
+      newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".png"});
       newstorys.forEach((user) => {
         if (songdata[i].song_id == user.song_id) stories.push({
-          id: user.user_id, title: songdata[i].songname, artist: songdata[i].artist,
+          id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
           cover: songdata[i].cover, username: user.username, pfp: user.pfp
         })
       })
@@ -119,6 +113,22 @@ function Home() {
     document.querySelector('.story-title').textContent = story[currentStory].title;
   };
 
+  const handleCoverErrored = (img, id) => {
+    console.log(img);
+    console.log(id);
+    img.oneerror = null;
+    if(id) img.src = "./images/"+id+".jpg";
+    console.log(img);
+  };
+
+  const handlePfpErrored = (img, id) => {
+    console.log(img);
+    console.log(id);
+    img.oneerror = null;
+    if(id) img.src = "./images/user"+id+".jpg";
+    console.log(img);
+  };
+
   return (
     <div>
       <div className="row">
@@ -126,7 +136,7 @@ function Home() {
         <div className="story-container">
           {story.map((music, index) =>
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
               <p className="">{music.username}</p>
             </div>
           )}
@@ -135,9 +145,9 @@ function Home() {
       <div className="row">
         <p className="h1 row mt-4 ms-4">早安!</p>
         <div className="scrolling-wrapper ms-3">
-          {song.map(music =>
+          {song.map((music, index) =>
             <div className="card col-2">
-              <img type="button" src={music.cover} className="card-img-top" onError="consloe.log(test);"></img>
+              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
             </div>

@@ -21,7 +21,7 @@ function Home(props) {
   <div className="radioPage">
       <div className="row justify-content-between " id="radioTop">
         <h1 className="col-2 d-inline-flex">電台</h1>
-        <div className="justify-content-end">
+        <div className="col-3 justify-content-end">
         <input 
           className="search"
           type = "search" 

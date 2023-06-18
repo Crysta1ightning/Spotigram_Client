@@ -4,17 +4,24 @@
     padding-top: 1rem !important;
 }
 
-.horizontal-line {
-    background-color: #696969;
-    margin: 0 auto;
-}
-
 .tab {
     background-color: #212121 !important;
 }
 
 .active {
     background-color: #454545 !important;
+}
+
+.active.tab-pane {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    max-height: 87vh;
+    background-color: #212121 !important;
+}
+
+.text-center {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .bar:hover {
