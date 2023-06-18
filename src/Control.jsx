@@ -36,19 +36,19 @@ function Control() {
           <MDBCol size="1" />
           <MDBCol size="4">
             <MDBRow className="justify-content-center">
-              <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+              <MDBBtn outline color="light" floating className='m-1' role='button'>
                 <MDBIcon fas icon='random' />
               </MDBBtn>
-              <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+              <MDBBtn outline color="light" floating className='m-1' role='button'>
                 <MDBIcon fas icon='step-backward' />
               </MDBBtn>
-              <MDBBtn color="light" floating className='m-1' href='#!' role='button'>
+              <MDBBtn color="light" floating className='m-1' role='button'>
                 <MDBIcon fas icon='play' />
               </MDBBtn>
-              <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+              <MDBBtn outline color="light" floating className='m-1' role='button'>
                 <MDBIcon fas icon='step-forward' />
               </MDBBtn>
-              <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+              <MDBBtn outline color="light" floating className='m-1' role='button'>
                 <MDBIcon fas icon='repeat' />
               </MDBBtn>
             </MDBRow>
@@ -68,10 +68,10 @@ function Control() {
             </MDBRow>
           </MDBCol>
           <MDBCol size="2" className="text-end">
-            <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBBtn outline color="light" floating className='m-1' role='button'>
               <MDBIcon fas icon="list" />
             </MDBBtn>
-            <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBBtn outline color="light" floating className='m-1' role='button' onClick={() => setVolume("0")}>
               <MDBIcon fas icon={"volume-" + (volume == 0 ? "off" : volume <= 2.5 ? "down" : "up")} />
             </MDBBtn>
           </MDBCol>
