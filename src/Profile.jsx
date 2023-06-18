@@ -4,8 +4,8 @@ import './Profile.scss'
 
 
 function Profile() {
-
-  let default_userid = 1; // TODO: local storage 
+  localStorage.setItem('user_id', JSON.stringify(1));
+  let default_userid = JSON.parse(localStorage.getItem('user_id')); // TODO: local storage 
 
   const [user, setUser] = useState([]);
   const [timeline, setTimeline] = useState([
@@ -19,7 +19,7 @@ function Profile() {
   const [friend, setFriend] = useState([]);
 
 
-  useEffect(() => {
+  useEffect(async () => {
     fetchUserData();
     fetchFriendData();
     // fetchTimelineData();
@@ -28,14 +28,13 @@ function Profile() {
   const fetchUserData = async () => {
     let response = await fetch("http://localhost:3000/api/user");
     let data = await response.json();
-
+    
     for (let i = 0; i < data.length; i++) {
       if (data[i].user_id === default_userid) {
         setUser(data[i]);
         break;
       }
     }
-    console.log(user);
   }
 
   const fetchFriendData = async () => {
