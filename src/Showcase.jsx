@@ -24,8 +24,8 @@ function Showcase() {
 
         // console.log(data);
         let newsongs = [];
-        for (let i=0; i<data.length; i++) {
-        newsongs.push({id: data[i].song_id, title: data[i].songname, artist: data[i].artist});
+        for (let i = 0; i < data.length; i++) {
+            newsongs.push({ id: data[i].song_id, title: data[i].songname, artist: data[i].artist });
         }
         setSongs(newsongs);
         // console.log(newsongs);
@@ -38,8 +38,8 @@ function Showcase() {
 
         // console.log(data);
         let newusers = [];
-        for (let i=0; i<data.length; i++) {
-            newusers.push({id: data[i].user_id, username: data[i].username});
+        for (let i = 0; i < data.length; i++) {
+            newusers.push({ id: data[i].user_id, username: data[i].username });
         }
         setUsers(newusers);
         // console.log(newsongs);
@@ -68,7 +68,7 @@ function Showcase() {
             // console.log(user);
             if (user.user_id == this_user_id) setThisUser(user.username);
             else if (friendsForThisUser.includes(user.user_id)) {
-                newFriends.push({user_id: user.user_id, username: user.username})
+                newFriends.push({ user_id: user.user_id, username: user.username })
             }
         })
         setFriends(newFriends);
@@ -80,8 +80,8 @@ function Showcase() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let counter = 0;
         while (counter < len) {
-          result += characters.charAt(Math.floor(Math.random() * characters.length));
-          counter += 1;
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+            counter += 1;
         }
         return result;
     }
@@ -91,7 +91,7 @@ function Showcase() {
         password = randomText(5);
         console.log(password);
 
-        let response = await(fetch("http://localhost:3000/api/user", {
+        let response = await (fetch("http://localhost:3000/api/user", {
             method: 'POST',
             body: JSON.stringify({
                 username: username,
@@ -121,46 +121,46 @@ function Showcase() {
 
     if (loading) return (
         <div className="Showcase">
-        <div className="row">
-            <h1>Loading...</h1>
-        </div>
+            <div className="row">
+                <h1>Loading...</h1>
+            </div>
         </div>
     )
     return (
         <div className="Showcase">
-        <div className="row">
-            <h1>Showcase</h1>
-        </div>
-        <div className="row">
-            <h2>Songs</h2>
-            {songs.map(music => 
-                <div className="card col">
-                    <p className="song">{music.title}</p>
-                    <p className="artist">{music.artist}</p>
-                </div>
-            )}
-        </div>
-        <div className="row">
-            <h2>Friends for {thisUser}</h2>
-            {friends.map(friend => 
-                <div className="card col">
-                    <p className="song">{friend.username}</p>
-                    {/* <p className="artist">{friend.artist}</p> */}
-                </div>
-            )}
-        </div>
-        <div className="row">
-            <h2>Add a user</h2>
-            <button onClick={createUser}>Create random user</button>
-        </div>
-        <div className="row">
-            <h2>Users</h2> 
-            {users.map(user => 
-                <div className="card col">
-                    <p className="song">{user.username}</p>
-                </div>
-            )}
-        </div>
+            <div className="row">
+                <h1>Showcase</h1>
+            </div>
+            <div className="row">
+                <h2>Songs</h2>
+                {songs.map(music =>
+                    <div className="card col">
+                        <p className="song">{music.title}</p>
+                        <p className="artist">{music.artist}</p>
+                    </div>
+                )}
+            </div>
+            <div className="row">
+                <h2>Friends for {thisUser}</h2>
+                {friends.map(friend =>
+                    <div className="card col">
+                        <p className="song">{friend.username}</p>
+                        {/* <p className="artist">{friend.artist}</p> */}
+                    </div>
+                )}
+            </div>
+            <div className="row">
+                <h2>Add a user</h2>
+                <button onClick={createUser}>Create random user</button>
+            </div>
+            <div className="row">
+                <h2>Users</h2>
+                {users.map(user =>
+                    <div className="card col">
+                        <p className="song">{user.username}</p>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
