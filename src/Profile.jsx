@@ -9,15 +9,15 @@ function Profile() {
 
   const [user, setUser] = useState([]);
   const [timeline, setTimeline] = useState([
-    {timestamp: "06/06 22:00", songName: "勳歌的歌曲 1", artist: "li3"},
-    {timestamp: "06/06 22:10", songName: "勳歌的歌曲 2", artist: "kk4944"},
-    {timestamp: "06/06 22:30", songName: "勳歌的歌曲 3", artist: "li3"},
-    {timestamp: "06/06 22:45", songName: "勳歌的歌曲 4", artist: "kk4944"},
-    {timestamp: "06/06 22:50", songName: "勳歌的歌曲 5", artist: "li3"},
-    {timestamp: "06/06 23:00", songName: "勳歌的歌曲 6", artist: "kk4944"},
+    { timestamp: "06/06 22:00", songName: "勳歌的歌曲 1", artist: "li3" },
+    { timestamp: "06/06 22:10", songName: "勳歌的歌曲 2", artist: "kk4944" },
+    { timestamp: "06/06 22:30", songName: "勳歌的歌曲 3", artist: "li3" },
+    { timestamp: "06/06 22:45", songName: "勳歌的歌曲 4", artist: "kk4944" },
+    { timestamp: "06/06 22:50", songName: "勳歌的歌曲 5", artist: "li3" },
+    { timestamp: "06/06 23:00", songName: "勳歌的歌曲 6", artist: "kk4944" },
   ]);
   const [friend, setFriend] = useState([]);
-  
+
 
   useEffect(() => {
     fetchUserData();
@@ -29,7 +29,7 @@ function Profile() {
     let response = await fetch("http://localhost:3000/api/user");
     let data = await response.json();
 
-    for (let i=0; i<data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (data[i].user_id === default_userid) {
         setUser(data[i]);
         break;
@@ -41,15 +41,15 @@ function Profile() {
   const fetchFriendData = async () => {
     let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
     let data = await response.json();
-    for (let i=0; i<data.length; i++) {
-      friend.push({id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id)});
+    for (let i = 0; i < data.length; i++) {
+      friend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
     }
     setFriend(data);
     console.log(friend)
   }
 
   return (
-    <>
+    <div className='profile'>
       <div className='container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
           <img src='./images/profile.png' className='rounded-circle' width='150'></img>
@@ -59,14 +59,14 @@ function Profile() {
           </div>
         </div>
       </div>
-      <hr className='mt-5'/>
+      <hr className='mt-5' />
       <div className='container mt-5'>
         <div className='col'>
           <h2 className='text-left'>Timeline</h2>
           <div className='container'>
-          <hr className='mt-3'/>
-          {
-            timeline.map(song => 
+            <hr className='mt-3' />
+            {
+              timeline.map(song =>
                 <div className='container'>
                   <div className='d-flex align-self-start'>
                     <img src='./images/timeline-line.png' width='50'></img>
@@ -87,8 +87,7 @@ function Profile() {
           </div>
         </div>
       </div>
-
-    </>
+    </div>
   )
 }
 

@@ -12,7 +12,7 @@ function Sidebar() {
       <h1 className="px-0.5 ">Spotigram</h1>
       <MDBListGroup className='text-center'>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/" action noBorders>
-          <MDBIcon fas icon='home' className=''/>Home
+          <MDBIcon fas icon='home' />Home
         </MDBListGroupItem>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/profile" action noBorders>
           <MDBIcon fas icon='user-circle' />Profile
@@ -23,6 +23,9 @@ function Sidebar() {
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/radio" action noBorders>
           <MDBIcon fas icon='broadcast-tower' />Radio
         </MDBListGroupItem>
+        {/* <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/showcase" action noBorders>
+          <MDBIcon fas icon='music' />Showcase
+        </MDBListGroupItem> */}
       </MDBListGroup>
     </div>
   )
