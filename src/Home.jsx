@@ -92,17 +92,21 @@ function Home() {
     console.log(newstorys);
   }
 
+  var currentStory = 0;
 
+  const toChangeStory = (storyIndex) => {
+    currentStory = storyIndex;
+    document.querySelector('#storyid').textContent = "story index: " + currentStory;
+  };
 
-  
   return (
     <div>
       <div className="row">
         <p className="h1">Story</p>
         <div className="story-container">
-          {story.map(music => 
+          {story.map((music, index) => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {toChangeStory(index)}}></img>
                   <p className="">{music.username}</p>
             </div>
           )}
@@ -135,9 +139,10 @@ function Home() {
       </div>
 
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered" width="1500px">
           <div class="modal-content">
-            <h1>Story</h1>
+            <h1 id="storyid"></h1>
+            <></>
           </div>
         </div>
       </div>
