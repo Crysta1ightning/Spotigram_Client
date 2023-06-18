@@ -93,29 +93,34 @@ function Profile() {
         </div>
       </div>
       <hr className='mt-5' />
-      <div className='container mt-5'>
-        <div className='col'>
+      <div className='row mt-5'>
+        <div className='col-4'>
           <h2 className='text-left'>Timeline</h2>
-            <hr className='mt-3' />
-            {
-              timeline.filter(song => song.user_id == default_userid).map(song =>
-                <div className='container'>
-                  <div className='d-flex align-self-start'>
-                    <img src='./images/timeline-line.png' width='50'></img>
-                    <div className='song-container mt-3 timeline-songs shadow rounded'>
-                      <h5>13:15</h5>
-                      <div className='d-flex align-self-start mt-4'>
-                        <img src='./images/1.png' height='60'></img>
-                        <div className='container pl-5'>
-                          <h4>{song.song_name}</h4>
-                          <h5>{song.song_artist}</h5>
-                        </div>
+          <hr className='mt-3' />
+          {
+            timeline.filter(song => song.user_id == default_userid).map(song =>
+              <div className='container'>
+                <div className='d-flex align-self-start'>
+                  <img src='./images/timeline-line.png' width='50'></img>
+                  <div className='song-container mt-3 timeline-songs shadow rounded'>
+                    <h5>13:15</h5>
+                    <div className='d-flex align-self-start mt-4'>
+                      <img src='./images/1.png' height='60'></img>
+                      <div className='container pl-5'>
+                        <h4>{song.song_name}</h4>
+                        <h5>{song.song_artist}</h5>
                       </div>
                     </div>
                   </div>
                 </div>
-              )
-            }
+              </div>
+            )
+          }
+        </div>
+        <div className='col-8'>
+          <h2 className='text-left'>Friends</h2>
+          <hr className='mt-3' />
+
         </div>
       </div>
 
