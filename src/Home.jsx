@@ -102,7 +102,7 @@ function Home() {
         <div className="story-container">
           {story.map(music => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle"></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></img>
                   <p className="">{music.username}</p>
             </div>
           )}
@@ -134,11 +134,20 @@ function Home() {
         </div>
       </div>
 
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <h1>Story</h1>
+          </div>
+        </div>
+      </div>
+
       <div className='row'>
           <p className='bind'>u can't see me</p>
           <p className='bind'>u can't see me</p>
           <p className='bind'>u can't see me</p>
       </div>
+      
 
 
     </div>
