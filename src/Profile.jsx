@@ -56,12 +56,12 @@ function Profile() {
       console.log(timelineData.length);
       console.log(songData.length);
       for (let i = 0; i < timelineData.length; i++) {
-       let songName, songArtist, song;
+       let songName, songArtist, songId;
        for (let j = 0; j < songData.length; j++) {
         if (songData[j].song_id === timelineData[i].song_id) {
           songName = songData[j].songname;
           songArtist = songData[j].artist;
-          songCover = "./images/"+songData[i].song_id+".png";
+          songId = "./images/"+songData[i].song_id+".png";
         }
        }
        console.log(songName);
