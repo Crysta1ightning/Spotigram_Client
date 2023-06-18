@@ -2,6 +2,10 @@
     background-color: #ffffff1a;
 }
 
-// aria-current{
+.bar:focus{
+    background-color: #ffffff40 !important;
+}
+
+// [aria-current]:not([aria-current="false"]) {
 //     background-color: #ffffff1a;
-// }
+//   }
