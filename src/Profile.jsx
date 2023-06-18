@@ -49,7 +49,7 @@ function Profile() {
   }
 
   return (
-    <>
+    <div className='profile'>
       <div className='container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
           <img src='./images/profile.png' className='rounded-circle' width='150'></img>
@@ -87,8 +87,7 @@ function Profile() {
           </div>
         </div>
       </div>
-
-    </>
+    </div>
   )
 }
 
