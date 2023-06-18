@@ -54,20 +54,32 @@
     border-radius: 15px;
     height: 30rem;
 
-    #story-pfp {
+    .story-pfp {
         margin-left: 0.5rem;
-        width: 3rem;
-        height: 3rem;
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
-    #story-user {
+    .story-user {
         line-height: 0.4rem;
         font-size: 1.2rem;
     }
 
-    #story-time {
+    .story-time {
         line-height: 0.1rem;
         font-size: 0.8rem;
+    }
+
+    .story-music {
+        text-align: center;
+        .story-cover {
+            width: 12rem;
+            height: 12rem;
+            
+        }
+        .story-title {
+
+        }
     }
 }
 

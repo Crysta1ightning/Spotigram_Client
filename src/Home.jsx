@@ -145,14 +145,16 @@ function Home() {
         <div className="modal-dialog modal-dialog-centered" width="1500px">
           <div className="container story-block">
             <div className='d-flex align-items-center justify-content-start mt-3'>
-              <img type="button" id="story-pfp" src="./images/user_pfp1.jpg" className="story-pfp shadow img-fluid rounded-circle"></img>
+              <img type="button" src="./images/user_pfp1.jpg" className="story-pfp shadow img-fluid rounded-circle"></img>
               <div className="container pt-3">
-                <p id="story-user">Kelvin</p>
-                <p id="story-time">5 minutes ago</p>
+                <p className="story-user">Kelvin</p>
+                <p className="story-time">5 minutes ago</p>
               </div>
-              
             </div>
-
+            <div className="story-music">
+              <img type="button" src="./images/song1.png" className="story-cover"></img>
+              <p className="story-title">song name</p>
+            </div>
 
           </div>
         </div>
