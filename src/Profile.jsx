@@ -4,7 +4,6 @@ import './Profile.scss'
 
 
 function Profile() {
-  localStorage.setItem('user_id', JSON.stringify(1));
   let default_userid = JSON.parse(localStorage.getItem('user_id')); // TODO: local storage 
 
   const [user, setUser] = useState([]);
@@ -62,6 +61,11 @@ function Profile() {
     fetchTimelineData();
 
   }, [])
+  const logout = () => {
+    localStorage.clear();
+    location.reload();
+
+  }
 
   return (
     <div className='profile'>
@@ -71,6 +75,7 @@ function Profile() {
           <div>
             <h1 className='px-4'>{user.username}</h1>
             <h5 className='px-4'>{friend.length} friends</h5>
+            <button onClick={logout}>Logout</button>
           </div>
         </div>
       </div>

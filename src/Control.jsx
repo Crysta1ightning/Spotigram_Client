@@ -22,6 +22,7 @@ function Control() {
     return (x / 60 | 0).toString() + ':' + (x % 60).toString().padStart(2, '0');
   }
 
+  if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <MDBFooter className='text-center text-white fixed-bottom control'>
       <MDBContainer className='p-3 pb-0'>
