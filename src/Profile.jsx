@@ -7,16 +7,11 @@ function Profile() {
   let default_userid = JSON.parse(localStorage.getItem('user_id')); // TODO: local storage 
 
   const [user, setUser] = useState([]);
-  const [timeline, setTimeline] = useState([
-    { timestamp: "06/06 22:00", songName: "勳歌的歌曲 1", artist: "li3" },
-    { timestamp: "06/06 22:10", songName: "勳歌的歌曲 2", artist: "kk4944" },
-    { timestamp: "06/06 22:30", songName: "勳歌的歌曲 3", artist: "li3" },
-    { timestamp: "06/06 22:45", songName: "勳歌的歌曲 4", artist: "kk4944" },
-    { timestamp: "06/06 22:50", songName: "勳歌的歌曲 5", artist: "li3" },
-    { timestamp: "06/06 23:00", songName: "勳歌的歌曲 6", artist: "kk4944" },
-  ]);
+  const [timeline, setTimeline] = useState([]);
   const [friend, setFriend] = useState([]);
-
+  const [song, setSong] = useState([]);
+  var songName = {};
+  var songArtist = {};
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -48,24 +43,42 @@ function Profile() {
     fetchFriendData();
 
     const fetchTimelineData = async () => {
-      let response = await fetch("http://localhost:3000/api/timeline");
-      let data = await response.json();
-      let timelineData = [];
-      for (let i = 0; i < data.length; i++) {
-       timelineData.push({id: data[i].id, user_id: data[i].user_id, song_id: data[i].song_id, timestamp: data[i].timestamp});
+      let response0 = await fetch("http://localhost:3000/api/song");
+      let songData = await response0.json();
+      let response1 = await fetch("http://localhost:3000/api/timeline");
+      let timelineData = await response1.json();
+      let timelineFetch = []
+      console.log(timelineData.length);
+      console.log(songData.length);
+      for (let i = 0; i < timelineData.length; i++) {
+       let songName, songArtist;
+       for (let j = 0; j < songData.length; j++) {
+        if (songData[j].song_id === timelineData[i].song_id) {
+          songName = songData[j].songname;
+          songArtist = songData[j].artist;
+        }
+       }
+       console.log(songName);
+       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp});
       }
-      console.log(timelineData);
-      setTimeline(timelineData);
+      console.log(timelineFetch);
+      setTimeline(timelineFetch);
     }
 
     fetchTimelineData();
 
+    
+
+
   }, [])
+
   const logout = () => {
     localStorage.clear();
     location.reload();
 
   }
+
+  
 
   return (
     <div className='profile'>
@@ -83,20 +96,19 @@ function Profile() {
       <div className='container mt-5'>
         <div className='col'>
           <h2 className='text-left'>Timeline</h2>
-          <div className='container'>
             <hr className='mt-3' />
             {
-              timeline.map(song =>
+              timeline.filter(song => song.user_id == 1).map(song =>
                 <div className='container'>
                   <div className='d-flex align-self-start'>
                     <img src='./images/timeline-line.png' width='50'></img>
                     <div className='song-container mt-3 timeline-songs shadow rounded'>
-                      <h5>{song.timestamp}</h5>
+                      <h5>13:15</h5>
                       <div className='d-flex align-self-start mt-4'>
                         <img src='./images/1.png' height='60'></img>
                         <div className='container pl-5'>
-                          <h4>{song.songName}</h4>
-                          <h5>{song.artist}</h5>
+                          <h4>{song.song_name}</h4>
+                          <h5>{song.song_artist}</h5>
                         </div>
                       </div>
                     </div>
@@ -104,7 +116,6 @@ function Profile() {
                 </div>
               )
             }
-          </div>
         </div>
       </div>
     </div>
