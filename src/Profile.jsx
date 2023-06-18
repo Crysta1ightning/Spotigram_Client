@@ -98,7 +98,7 @@ function Profile() {
           <h2 className='text-left'>Timeline</h2>
             <hr className='mt-3' />
             {
-              timeline.filter(song => song.user_id == 1).map(song =>
+              timeline.filter(song => song.user_id == default_userid).map(song =>
                 <div className='container'>
                   <div className='d-flex align-self-start'>
                     <img src='./images/timeline-line.png' width='50'></img>
