@@ -24,7 +24,8 @@ function Rightsidebar() {
 
         setJustifyActive(value);
     };
-
+    
+    if (localStorage.getItem("user_id") == null) return (<></>);
     return (
         <div className='sidebar-container min-vh-100'>
             <MDBTabs pills className='mb-2 d-flex justify-content-center align-content-center'>

@@ -9,6 +9,7 @@ import Radio from './radio/Radio';
 import Sidebar from './Sidebar';
 import Showcase from './Showcase';
 import Rightsidebar from './rightSidebar';
+import Login from './Login'
 
 import {
   MDBContainer,
@@ -24,6 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <MDBContainer fluid>
     <MDBRow>
       <HashRouter>
+        <MDBCol size="0">
+          <Login></Login>
+        </MDBCol>
         <MDBCol size="2" className="fixed-top sidebar">
           <Sidebar></Sidebar>
         </MDBCol>
