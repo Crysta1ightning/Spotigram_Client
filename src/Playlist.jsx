@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 //import './App.css';
 import './Playlist.scss'
 
-function App() {
-  const [count, setCount] = useState(0);
+function Playlist() {
   const [ShareplaylistSet] = useState([
     { id: 0, title: "周杰倫", owners: ["li3", "Cody"] },
     { id: 1, title: "成發歌單", owners: ["li3", "Cody"] },
@@ -11,7 +10,6 @@ function App() {
     { id: 3, title: "周杰倫", owners: ["li3", "Cody"] },
     { id: 4, title: "成發歌單", owners: ["li3", "Cody"] },
     { id: 5, title: "抖音", owners: ["li3", "Cody"] }
-
   ])
   //const [MyplaylistSet] = useState([
   //  {id:0, title: "周杰倫", cover:"images/song1.png"},
@@ -24,7 +22,6 @@ function App() {
     { id: 0, title: "周杰倫", cover: "images/song1.png" },
     { id: 1, title: "成發歌單", cover: "images/song1.png" },
     { id: 2, title: "抖音", cover: "images/song1.png" }
-
   ])
   useEffect(() => {
     fetchPlaylistData();
@@ -45,14 +42,14 @@ function App() {
 
   return (
     <div>
-      <div class="title d-flex align-items-start"><h1 class="inline">播放清單</h1></div>
+      <div className="title d-flex align-items-start"><h1 className="inline">播放清單</h1></div>
 
       <div className="row">
-        <p class="subtitle inline">個人播放清單</p>
+        <p className="subtitle inline">個人播放清單</p>
         <div className="scrolling-wrapper">
           {
             MyplaylistSet.map(playlist =>
-              <div className="card col-2">
+              <div className="card col-2" key={playlist.id}>
                 <img type="button" src={playlist.cover} className="card-img-top"></img>
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </div>
@@ -62,12 +59,12 @@ function App() {
       </div>
 
       <div className="row">
-        <p class="subtitle inline">共享播放清單</p>
+        <p className="subtitle inline">共享播放清單</p>
         <div className="scrolling-wrapper">
           {
             ShareplaylistSet.map(playlist =>
-              <div className="card col-2">
-                <img type="button" src="images/song1.png" class="card-img-top"></img>
+              <div className="card col-2" key={playlist.id}>
+                <img type="button" src="images/song1.png" className="card-img-top"></img>
                 <p className="card-text playlist-title">{playlist.title}</p>
                 <p className="card-text playlist-owners">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>
@@ -82,11 +79,8 @@ function App() {
         <p className='bind'>u can't see me</p>
       </div>
 
-
-
-
     </div>
   )
 }
 
-export default App
+export default Playlist
