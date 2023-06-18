@@ -1,20 +1,21 @@
-.song{
+.song {
     color: #ffffff;
     font-size: 1.5rem;
     margin-bottom: 0rem;
 }
 
-.artist{
+.artist {
     color: #ffffff;
     font-size: 1rem;
 }
 
-.scrolling-wrapper{
+.scrolling-wrapper {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+
     // max-height: 25rem;
-    .card{
+    .card {
         background-color: #1E1E21;
         // width: 1rem;
         // height: 1rem;
@@ -22,17 +23,19 @@
         margin: 0.7rem;
         display: inline-block;
     }
-    .card:hover{
+
+    .card:hover {
         // transform: scale(1.1);
         background-color: #ffffff1a;
     }
 }
 
-.story-container{
+.story-container {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    .stories{
+
+    .stories {
         background-color: transparent;
         padding: 0.7rem;
         margin: 0.7rem;
@@ -40,12 +43,13 @@
         color: #ffffff;
         text-shadow: 0.2rem 0.3rem 4px #000000;
     }
-    .stories:hover{
+
+    .stories:hover {
         transform: scale(1.1);
     }
 }
 
-.bind{
+.bind {
     visibility: hidden;
 }
 
@@ -72,15 +76,16 @@
 
     .story-music {
         text-align: center;
+
         .story-cover {
             margin-top: 5rem;
             width: 12rem;
             height: 12rem;
         }
+
         .story-title {
             margin-top: 0.5rem;
             font-size: 1.5rem;
         }
     }
 }
-
