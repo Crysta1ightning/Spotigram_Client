@@ -1,11 +1,11 @@
-.bar:hover{
-    background-color: #ffffff1a;
+// .bar:hover{
+//     background-color: #ffffff1a !important;
+// }
+
+.bar{
+    background-color: #212121 !important;
+}
+.active{
+    background-color: #454545 !important;
 }
 
-.bar:focus{
-    background-color: #ffffff40 !important;
-}
-
-// [aria-current]:not([aria-current="false"]) {
-//     background-color: #ffffff1a;
-//   }

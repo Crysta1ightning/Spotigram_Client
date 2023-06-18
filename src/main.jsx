@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <MDBContainer fluid>
     <MDBRow>
       <HashRouter>
-        <MDBCol size="2" className="fixed-top">
+        <MDBCol size="2" className="fixed-top sidebar">
           <Sidebar></Sidebar>
         </MDBCol>
         <MDBCol size="10" className="offset-2">
@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </MDBCol>
       </HashRouter>
     </MDBRow>
-    <MDBRow className="sticky-bottom">
+    <MDBRow className="fixed-bottom">
       <Control></Control>
     </MDBRow>
   </MDBContainer>

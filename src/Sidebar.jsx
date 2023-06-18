@@ -8,9 +8,9 @@ import { MDBListGroup, MDBListGroupItem, MDBNavbarLink, MDBIcon } from 'mdb-reac
 function Sidebar() {
 
   return (
-    <div className="sidebar-container">
+    <div className="sidebar-container min-vh-100 ">
       <h1 className="px-0.5 ">Spotigram</h1>
-      <MDBListGroup className='bg-dark text-center'>
+      <MDBListGroup className='text-center '>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/" action noBorders>
           <MDBIcon fas icon='home' className=''/>Home
         </MDBListGroupItem>
