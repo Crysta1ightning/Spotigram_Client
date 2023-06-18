@@ -61,7 +61,7 @@ function Profile() {
         if (songData[j].song_id === timelineData[i].song_id) {
           songName = songData[j].songname;
           songArtist = songData[j].artist;
-          songId = "./images/"+songData[i].song_id+".png";
+          songId = "./images/"+songData[j].song_id+".png";
         }
        }
        console.log(songName);
