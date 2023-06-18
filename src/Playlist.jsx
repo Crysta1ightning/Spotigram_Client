@@ -47,8 +47,8 @@ function App() {
     <div>
       <div class="title d-flex align-items-start"><h1 class="inline">播放清單</h1></div>
 
-      <div className="row">
-        <p class="subtitle inline">個人播放清單</p>
+      <div className="personalList">
+        <p class="subtitle">個人播放清單</p>
         <div className="scrolling-wrapper">
           {
             MyplaylistSet.map(playlist =>
@@ -61,8 +61,8 @@ function App() {
         </div>
       </div>
 
-      <div className="row">
-        <p class="subtitle inline">共享播放清單</p>
+      <div className="shareList">
+        <p class="subtitle">共享播放清單</p>
         <div className="scrolling-wrapper">
           {
             ShareplaylistSet.map(playlist =>
