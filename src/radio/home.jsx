@@ -35,7 +35,7 @@ function Home(props) {
       <div className="row">
       <p className="row title">你的電台</p>
         <div className="row">
-          <button type="button" className="col-2 btn btn-radio img-fluid" src="images/add_radio.png" onClick={()=>{
+          <button type="button" className="col-2 btn btn-radio img-fluid m-4 " src="images/add_radio.png" onClick={()=>{
             props.setPage(1);
           }}></button>
           <div className="col">
