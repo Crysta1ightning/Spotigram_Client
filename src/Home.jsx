@@ -64,7 +64,7 @@ function Home() {
     console.log(data);
     let newstorys = [];
     for (let i=0; i<data.length; i++) {
-      newstorys.push({id: data[i].story_id, username: data[i].username, pfp:"images/song.png"});
+      newstorys.push({id: data[i].story_id, username: data[i].username, pfp:data[i].profile_pic});
     }
     setStory(newstorys);
     console.log(newstorys);
