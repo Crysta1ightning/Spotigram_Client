@@ -37,16 +37,30 @@ function Profile() {
     const fetchFriendData = async () => {
       let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
       let data = await response.json();
+      let userFriend = [];
+      console.log(userFriend);
       for (let i = 0; i < data.length; i++) {
-        friend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
+        userFriend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
       }
-      setFriend(data);
-      console.log(friend)
+      console.log(userFriend);
+      setFriend(userFriend);
     }
 
     fetchFriendData();
 
-    // fetchTimelineData();
+    const fetchTimelineData = async () => {
+      let response = await fetch("http://localhost:3000/api/timeline");
+      let data = await response.json();
+      let timelineData = [];
+      for (let i = 0; i < data.length; i++) {
+       timelineData.push({id: data[i].id, user_id: data[i].user_id, song_id: data[i].song_id, timestamp: data[i].timestamp});
+      }
+      console.log(timelineData);
+      setTimeline(timelineData);
+    }
+
+    fetchTimelineData();
+
   }, [])
 
   return (
