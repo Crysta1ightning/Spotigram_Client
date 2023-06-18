@@ -149,18 +149,17 @@ function Profile() {
                   <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
                   <h4 className='friendName px-2'>{user.name}</h4>
                 </div>
-                <div className='mt-2'></div>
+                <div className='row'>
                 {
                   timeline.filter(song => song.user_id == user.id).map(song =>
-                  <div className='flex-container'>
                   <div className='col'>
                     <img src='./images/timeline-line-horizontal.png' width='100'></img><br></br>
-                    <div className='d-flex align-items-center'><img src={'./images/'+song.song_id+'.png'} width='80'></img></div>
+                    <img src={'./images/'+song.song_id+'.png'} width='80'></img>
                     <p>{song.song_name}</p>
                   </div>
-                  </div>  
                   )
                 }
+                </div>
                 <hr className='mt-5' />
               </div>
             )
