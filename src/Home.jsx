@@ -108,7 +108,7 @@ function Home() {
         <div className="story-container">
           {story.map(music => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {toChangeStory(music.title)}}></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => {toChangeStory(music.songname)}}></img>
                   <p className="">{music.username}</p>
             </div>
           )}
@@ -140,11 +140,19 @@ function Home() {
         </div>
       </div>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" width="1500px">
-          <div class="modal-content">
-            <h1 id="storyid"></h1>
-            <></>
+      <div className="modal fade" id="storyModal" tabindex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" width="1500px">
+          <div className="container story-block">
+            <div className='d-flex align-items-center justify-content-start mt-3'>
+              <img type="button" id="story-pfp" src="./images/user_pfp1.jpg" className="story-pfp shadow img-fluid rounded-circle"></img>
+              <div className="container pt-3">
+                <p id="story-user">Kelvin</p>
+                <p id="story-time">5 minutes ago</p>
+              </div>
+              
+            </div>
+
+
           </div>
         </div>
       </div>
