@@ -19,33 +19,35 @@ function Profile() {
   const [friend, setFriend] = useState([]);
 
 
-  useEffect(async () => {
-    fetchUserData();
-    fetchFriendData();
-    // fetchTimelineData();
-  }, [])
+  useEffect(() => {
+    const fetchUserData = async () => {
+      let response = await fetch("http://localhost:3000/api/user");
+      let data = await response.json();
 
-  const fetchUserData = async () => {
-    let response = await fetch("http://localhost:3000/api/user");
-    let data = await response.json();
-    
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].user_id === default_userid) {
-        setUser(data[i]);
-        break;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].user_id === default_userid) {
+          setUser(data[i]);
+          break;
+        }
       }
     }
-  }
 
-  const fetchFriendData = async () => {
-    let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
-    let data = await response.json();
-    for (let i = 0; i < data.length; i++) {
-      friend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
+    fetchUserData();
+
+    const fetchFriendData = async () => {
+      let response = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
+      let data = await response.json();
+      for (let i = 0; i < data.length; i++) {
+        friend.push({ id: (data[i].user1_id == default_userid ? data[i].user2_id : data[i].user1_id) });
+      }
+      setFriend(data);
+      console.log(friend)
     }
-    setFriend(data);
-    console.log(friend)
-  }
+
+    fetchFriendData();
+
+    // fetchTimelineData();
+  }, [])
 
   return (
     <div className='profile'>
