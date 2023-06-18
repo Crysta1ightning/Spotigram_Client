@@ -101,10 +101,10 @@ function Home() {
 
   const toChangeStory = (storyIndex) => {
     currentStory = storyIndex;
-    document.querySelector('.story-user').textContent = story[storyIndex].username;
+    document.querySelector('.story-user').textContent = story[currentStory].username;
     document.querySelector('.story-time').textContent = "5 minutes ago"; // TODO
-    document.querySelector('.story-cover').src = story[storyIndex].cover;
-    document.querySelector('.story-title').textContent = story[storyIndex].title;
+    document.querySelector('.story-cover').src = story[currentStory].cover;
+    document.querySelector('.story-title').textContent = story[currentStory].title;
   };
 
   return (
@@ -157,7 +157,11 @@ function Home() {
               </div>
             </div>
             <div className="story-music">
-              <img type="button" className="story-cover"></img>
+              <div className='d-flex align-items-center justify-content-center'>
+                <button type="button" className="story-prev-btn" onClick={() => {toChangeStory(currentStory-1)}}></button>
+                <img type="button" className="story-cover"></img>
+                <div type="button" className="story-next-btn" onClick={() => {toChangeStory(currentStory+1)}}></div>
+              </div>
               <p className="story-title"></p>
             </div>
 

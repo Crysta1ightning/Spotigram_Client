@@ -76,9 +76,7 @@
 
     .story-music {
         text-align: center;
-
         .story-cover {
-            margin-top: 5rem;
             width: 12rem;
             height: 12rem;
         }
@@ -86,6 +84,16 @@
         .story-title {
             margin-top: 0.5rem;
             font-size: 1.5rem;
+        }
+        .story-prev-btn {
+            width: 12rem;
+            height: 20rem;
+            background-color: green;
+        }
+        .story-next-btn {
+            width: 12rem;
+            height: 20rem;
+            background-color: green;
         }
     }
 }
