@@ -36,7 +36,7 @@ function Profile() {
         let friendId = (friendData[i].user1_id == default_userid ? friendData[i].user2_id : friendData[i].user1_id);
         for (let j = 0; j < userData.length; j++) {
           if (userData[j].user_id == friendId) {
-            userFriend.push({id: friendId, name: userData[j].username});
+            userFriend.push({id: friendId, name: userData[j].username, pfp: "./images/user"+user.user_id+".png"});
             break;
           }
         }
@@ -93,13 +93,13 @@ function Profile() {
     if(id) img.src = "./images/"+id+".jpg";
   };
 
-  // const handlePfpErrored = (img, id) => {
-  //   img.oneerror = null;
-  //   story.forEach((story) => {
-  //     if(story.id == id) story.pfp = "./images/user"+id+".jpg";
-  //   })
-  //   if(id) img.src = "./images/user"+id+".jpg";
-  // };
+  const handlePfpErrored = (img, id) => {
+    img.oneerror = null;
+    friend.forEach((friend) => {
+      if(friend.id == id) friend.pfp = "./images/user"+id+".jpg";
+    })
+    if(id) img.src = "./images/user"+id+".jpg";
+  };
 
   
 
@@ -147,7 +147,7 @@ function Profile() {
             friend.map(user => 
               <div className='container'>
                 <div className='d-flex'>
-                  <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
+                  <img className='friendPfp' src={user.pfp} onError={({currentTarget}) => {handlePfpErrored(currentTarget, user.id)}}></img>
                   <div className='friendName'>{user.name}</div>
                 </div>
                 
