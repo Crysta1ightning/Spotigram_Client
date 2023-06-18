@@ -108,7 +108,7 @@ function Home() {
         <div className="story-container">
           {story.map(music => 
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => {toChangeStory(music.songname)}}></img>
+              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => {toChangeStory(music.title)}}></img>
                   <p className="">{music.username}</p>
             </div>
           )}
