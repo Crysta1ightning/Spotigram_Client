@@ -158,7 +158,7 @@ function Home() {
             </div>
             <div className="story-music">
               <div className='d-flex align-items-center justify-content-center'>
-                <button type="button" className="story-prev-btn" onClick={() => {toChangeStory(currentStory-1)}}></button>
+                <div type="button" className="story-prev-btn" onClick={() => {toChangeStory(currentStory-1)}}></div>
                 <img type="button" className="story-cover"></img>
                 <div type="button" className="story-next-btn" onClick={() => {toChangeStory(currentStory+1)}}></div>
               </div>
