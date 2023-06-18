@@ -71,7 +71,7 @@ function Profile() {
     <div className='profile'>
       <div className='container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
-          <img src='./images/profile.png' className='rounded-circle' width='150'></img>
+          <img src='./images/user1.png' className='rounded-circle' width='150'></img>
           <div>
             <h1 className='px-4'>{user.username}</h1>
             <h5 className='px-4'>{friend.length} friends</h5>
