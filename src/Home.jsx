@@ -14,19 +14,8 @@ function Home() {
   const [song, setSong] = useState([]);
 
   const [story, setStory] = useState([]);
-  // const [story, setStory] = useState([
-  //   {id: 0, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 1, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 2, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 3, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 4, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 5, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 6, username: "li3li3", pfp:"images/song.png"},
-  //   {id: 7, username: "li3li3", pfp:"images/song1.png"},
-  //   {id: 8, username: "li3li3", pfp:"images/song.png"},
-  // ]);
 
-
+  const [thisUser, setThisUser] = useState("");
 
   const [recommend, setRecommend] = useState([
     {id: 0, title: "你想一想", artist: "li3li3", cover:"images/song1.png"},
@@ -41,7 +30,7 @@ function Home() {
   ])
   useEffect(() => {
     fetchSongData();
-    fetchStoryData();
+    fetchFriendsData();
   }, [])
 
   const fetchSongData = async () => {
@@ -57,15 +46,48 @@ function Home() {
     console.log(newsongs);
   }
 
-  const fetchStoryData = async () => {
-    let response = await fetch("http://localhost:3000/api/story");
-    let data = await response.json();
+  // Fetch each friend's id and username for this_user_id
+  const fetchFriendsData = async () => {
+    let this_user_id = 1; // assume user_id = 1;
+    // this should be from localstorage, after sign in we should store this
+    // before calling the rest, maybe make sure the token is valid for this user
 
-    console.log(data);
+    let response = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id);
+    let friendsdata = await response.json();
+    // console.log(friendsdata);
+    let friendsForThisUser = [];
+    friendsdata.forEach((friend) => {
+        if (friend.user1_id != this_user_id) friendsForThisUser.push(friend.user1_id);
+        else friendsForThisUser.push(friend.user2_id);
+    })
+
+    response = await fetch("http://localhost:3000/api/user");
+    let userdata = await response.json();
+    // console.log(userdata);
+    let newFriends = []
+    userdata.forEach((user) => {
+        // console.log(user);
+        if (user.user_id == this_user_id) setThisUser(user.username);
+        else if (friendsForThisUser.includes(user.user_id)) {
+            newFriends.push({user_id: user.user_id, username: user.username, pfp:user.profile_pic})
+        }
+    })
+    // console.log(friendsForThisUser);
+    // console.log(newFriends);
+
+    response = await fetch("http://localhost:3000/api/story");
+    let storydata = await response.json();
+
+    console.log(storydata);
+    
     let newstorys = [];
-    for (let i=0; i<data.length; i++) {
-      newstorys.push({id: data[i].story_id, username: data[i].username, pfp:data[i].profile_pic});
+    for (let i=0; i<storydata.length; i++) {
+      newFriends.forEach((user) => {
+        console.log(user);
+        if(storydata[i].user_id == user.user_id) newstorys.push({id: storydata[i].user_id, story: storydata[i].song_id, username: user.username, pfp: user.pfp});
+      })
     }
+    
     setStory(newstorys);
     console.log(newstorys);
   }
