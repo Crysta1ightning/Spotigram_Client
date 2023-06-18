@@ -30,11 +30,11 @@ function Home() {
   ])
   useEffect(() => {
     // fetchSongData();
-    fetchFriendsData();
+    fetchHomeData();
   }, [])
 
   // Fetch each friend's id and username for this_user_id
-  const fetchFriendsData = async () => {
+  const fetchHomeData = async () => {
     let this_user_id = 1; // assume user_id = 1;
     // this should be from localstorage, after sign in we should store this
     // before calling the rest, maybe make sure the token is valid for this user
@@ -71,7 +71,8 @@ function Home() {
     for (let i = 0; i < storydata.length; i++) {
       newFriends.forEach((user) => {
         // console.log(user);
-        if (storydata[i].user_id == user.user_id) newstorys.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, username: user.username, pfp: user.pfp });
+        if (storydata[i].user_id == user.user_id) newstorys.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
+                                                                    username: user.username, pfp: user.pfp , time: user.ts});
       })
     }
 
@@ -86,7 +87,7 @@ function Home() {
       newstorys.forEach((user) => {
         if (songdata[i].song_id == user.song_id) stories.push({
           id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
-          cover: newsongs[i].cover, username: user.username, pfp: user.pfp
+          cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.ts
         })
       })
     }
@@ -108,7 +109,7 @@ function Home() {
     }
     currentStory = storyIndex;
     document.querySelector('.story-user').textContent = story[currentStory].username;
-    document.querySelector('.story-time').textContent = "5 minutes ago"; // TODO
+    document.querySelector('.story-time').textContent = story[currentStory].time; // TODO
     document.querySelector('.story-cover').src = story[currentStory].cover;
     document.querySelector('.story-title').textContent = story[currentStory].title;
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;

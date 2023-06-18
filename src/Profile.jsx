@@ -51,15 +51,17 @@ function Profile() {
       console.log(timelineData.length);
       console.log(songData.length);
       for (let i = 0; i < timelineData.length; i++) {
-       let songName, songArtist;
+       let songName, songArtist, songCover;
        for (let j = 0; j < songData.length; j++) {
         if (songData[j].song_id === timelineData[i].song_id) {
           songName = songData[j].songname;
           songArtist = songData[j].artist;
+          songCover = "./images/"+songData[i].song_id+".png";
         }
        }
        console.log(songName);
-       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp});
+       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp,
+                          cover: songCover});
       }
       console.log(timelineFetch);
       setTimeline(timelineFetch);
@@ -78,13 +80,29 @@ function Profile() {
 
   }
 
+  const handleCoverErrored = (img, id) => {
+    img.oneerror = null;
+    timeline.forEach((song) => {
+      if(song.id == id) song.cover = "./images/"+id+".jpg";
+    })
+    if(id) img.src = "./images/"+id+".jpg";
+  };
+
+  // const handlePfpErrored = (img, id) => {
+  //   img.oneerror = null;
+  //   story.forEach((story) => {
+  //     if(story.id == id) story.pfp = "./images/user"+id+".jpg";
+  //   })
+  //   if(id) img.src = "./images/user"+id+".jpg";
+  // };
+
   
 
   return (
     <div className='profile'>
       <div className='container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
-          <img src='./images/user1.png' className='rounded-circle' width='150'></img>
+          <img src='./images/user1.png' className='rounded-circle' width='150'></img> {/*todo*/}
           <div>
             <h1 className='px-4'>{user.username}</h1>
             <h5 className='px-4'>{friend.length} friends</h5>
@@ -105,7 +123,7 @@ function Profile() {
                     <div className='song-container mt-3 timeline-songs shadow rounded'>
                       <h5>13:15</h5>
                       <div className='d-flex align-self-start mt-4'>
-                        <img src='./images/1.png' height='60'></img>
+                        <img src={song.cover} height='60'  onError={({currentTarget}) => {handleCoverErrored(currentTarget, song.id)}}></img>
                         <div className='container pl-5'>
                           <h4>{song.song_name}</h4>
                           <h5>{song.song_artist}</h5>
