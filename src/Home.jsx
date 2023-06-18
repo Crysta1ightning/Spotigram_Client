@@ -100,8 +100,11 @@ function Home() {
   var currentStory = 0;
 
   const toChangeStory = (storyIndex) => {
-    if (storyIndex < 0 || storyIndex > story.length) {
+    if (storyIndex < 0 || storyIndex >= story.length) {
       // TODO
+      console.log(123);
+      var modal = bootstrap.Modal.getInstance(document.getElementById('storyModal'));
+      modal.hide();
       return;
     }
     currentStory = storyIndex;
