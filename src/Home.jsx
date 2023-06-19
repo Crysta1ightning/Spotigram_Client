@@ -35,7 +35,7 @@ function Home() {
 
   // Fetch each friend's id and username for this_user_id
   const fetchHomeData = async () => {
-    let this_user_id = 1; // assume user_id = 1;
+    let this_user_id = JSON.parse(localStorage.getItem('user_id')); 
     // this should be from localstorage, after sign in we should store this
     // before calling the rest, maybe make sure the token is valid for this user
 
@@ -51,14 +51,19 @@ function Home() {
     response = await fetch("http://localhost:3000/api/user");
     let userdata = await response.json();
     // console.log(userdata);
-    let newFriends = []
+    let newFriends = [{user_id: this_user_id, username: "", pfp: "./images/user"+this_user_id+".png"}]
     userdata.forEach((user) => {
       // console.log(user);
-      if (user.user_id == this_user_id) setThisUser(user.username);
+      if (user.user_id == this_user_id) {
+        setThisUser(user.username);
+        // Let user itself be friend
+        newFriends[0].username = user.username;
+      }
       else if (friendsForThisUser.includes(user.user_id)) {
         newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".png" })
       }
     })
+
     // console.log(friendsForThisUser);
     // console.log(newFriends);
 
@@ -67,14 +72,15 @@ function Home() {
 
     // console.log(storydata);
 
-    let newstorys = [];
-    for (let i = 0; i < storydata.length; i++) {
+    let newstories = [];
+    
       newFriends.forEach((user) => {
         // console.log(user);
-        if (storydata[i].user_id == user.user_id) newstorys.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
+        for (let i = 0; i < storydata.length; i++) {
+        if (storydata[i].user_id == user.user_id) newstories.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
                                                                     username: user.username, pfp: user.pfp , time: user.ts});
-      })
-    }
+      }
+    })
 
     response = await fetch("http://localhost:3000/api/song");
     let songdata = await response.json();
@@ -84,13 +90,20 @@ function Home() {
     let stories = [];
     for (let i = 0; i < songdata.length; i++) {
       newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".png"});
-      newstorys.forEach((user) => {
-        if (songdata[i].song_id == user.song_id) stories.push({
-          id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
-          cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.ts
-        })
-      })
     }
+
+    newstories.forEach((user) => {
+      for (let i = 0; i < songdata.length; i++) {
+        if (songdata[i].song_id == user.song_id) {
+          stories.push({
+            id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
+            cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.ts
+          })
+          break;
+        }
+      }
+    })
+
     setSong(newsongs);
     console.log(newsongs);
     setStory(stories);
@@ -134,6 +147,21 @@ function Home() {
     if(id) img.src = "./images/user"+id+".jpg";
   };
 
+  const share = async (song_id) => {
+    let this_user_id = JSON.parse(localStorage.getItem('user_id'));
+    let response = await (fetch("http://localhost:3000/api/story", {
+      method: 'POST',
+      body: JSON.stringify({
+          user_id: this_user_id,
+          song_id: song_id
+      }),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      },
+    }))
+    fetchHomeData();
+  }
+
   return (
     <div>
       <div className="row story-row">
@@ -158,6 +186,7 @@ function Home() {
               <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
+              <button className="share" onClick={()=>{share(music.id)}}>Share</button>
             </div>
           )}
         </div>
