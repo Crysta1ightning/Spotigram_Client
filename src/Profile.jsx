@@ -6,7 +6,6 @@ import './Profile.scss'
 
 function Profile() {
   let default_userid = JSON.parse(localStorage.getItem('user_id')); // TODO: local storage 
-
   const [user, setUser] = useState([]);
   const [timeline, setTimeline] = useState([]);
   const [friend, setFriend] = useState([]);
