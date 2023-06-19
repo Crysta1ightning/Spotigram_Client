@@ -104,6 +104,8 @@ function Control() {
     audio.volume = e/5;
   }
 
+   
+
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <MDBFooter className='text-white fixed-bottom control'>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 
+
 import './Home.scss';
 // import './App.css';
 
@@ -189,7 +190,7 @@ function Home() {
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
             <div className="card col-xl-2" key={music.song_id}>
-              <img type="button" src={music.cover} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
+              <img type="button" src={music.cover} className="card-img-top" onClick={setSong} onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
               <button className="btn share" onClick={() => { share(music.id) }}>Share</button>

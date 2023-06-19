@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './Playlist_songs.scss'
 
 function Playlistsong() {
-    const [cur_playlistID] = useState(2);
+    const [cur_playlistID] = useState(1);
     const [playlist_name, setPlaylistName] = useState([]); 
     const [playlistSong, setPlaylistSong] = useState([]);
       useEffect(() => {
