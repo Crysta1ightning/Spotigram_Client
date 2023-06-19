@@ -10,7 +10,6 @@ import Sidebar from './Sidebar';
 import Showcase from './Showcase';
 import Rightsidebar from './rightSidebar';
 import Login from './Login'
-import PlaylistView from './PlaylistView.jsx'
 import Playlistsong from "./Playlist_songs.jsx"
 
 import {
@@ -36,10 +35,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/" element={<Home />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/playlist" element={<Playlist />}></Route>
-            {/* <Route path="/playlistView" element={<PlaylistView />}></Route> */}
             <Route path="/radio" element={<Radio />}></Route>
             <Route path="/showcase" element={<Showcase />}></Route>
-            {/* <Route path="/playlistsong" element={<Playlistsong/>}></Route> */}
             <Route path="/playlistsong" element={<Playlistsong />}></Route> 
           </Routes>
         </MDBCol>
