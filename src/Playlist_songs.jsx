@@ -10,6 +10,9 @@ function Playlistsong() {
       useEffect(() => {
 
         const fetchPlaylistSongData = async () => {
+
+          
+
           const data = await fetch("http://localhost:3000/api/playlist_song").then(r => r.json());
           
           const data1 = await fetch("http://localhost:3000/api/song").then(r => r.json());
@@ -19,6 +22,7 @@ function Playlistsong() {
           const playlistowner = await fetch("http://localhost:3000/api/playlist_owner").then(r => r.json());
 
           const users = await fetch("http://localhost:3000/api/user").then(r => r.json());
+          
           
           
           //console.log(data);
@@ -47,35 +51,80 @@ function Playlistsong() {
               newplaylistOwner.push({owner: playlistowner[i].user_id, pfp: './images/user'+playlistowner[i].user_id+'.png'});
             }
           }
+
+          
   
           setPlaylistName(newplaylistname);
           setPlaylistSong(newplaylistsong);
           setPlaylistOwner(newplaylistOwner);
+
+
+
+          let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
+
+          if (cur_playlistID == currentRadio) {
+            document.querySelector('.radio-indicator').style.visibility = "visible";
+            document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
+            document.querySelector('.start-radio-btn').classList.remove('btn-primary');
+            document.querySelector('.start-radio-btn').classList.add('btn-secondary');
+          } else {
+            document.querySelector('.radio-indicator').style.visibility = "hidden";
+            document.querySelector('.start-radio-btn').innerHTML = "Start Radio";
+            document.querySelector('.start-radio-btn').classList.remove('btn-secondary');
+            document.querySelector('.start-radio-btn').classList.add('btn-primary');
+          }
       }
 
         fetchPlaylistSongData();
       }, [])
     
 
-    
-
+  const toToggleRadio = (playlistID) => {
+    // localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
+    // console.log(playlistID);
+    let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
+    if (playlistID == currentRadio) {
+      localStorage.setItem('cur-radio', JSON.stringify(0));
+      currentRadio = 0;
+    } else {
+      localStorage.setItem('cur-radio', JSON.stringify(playlistID));
+      currentRadio = playlistID;
+    }
+    if (cur_playlistID == currentRadio) {
+      document.querySelector('.radio-indicator').style.visibility = "visible";
+      document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
+      document.querySelector('.start-radio-btn').classList.remove('btn-primary');
+      document.querySelector('.start-radio-btn').classList.add('btn-secondary');
+    } else {
+      document.querySelector('.radio-indicator').style.visibility = "hidden";
+      document.querySelector('.start-radio-btn').innerHTML = "Start Radio";
+      document.querySelector('.start-radio-btn').classList.remove('btn-secondary');
+      document.querySelector('.start-radio-btn').classList.add('btn-primary');
+    }
+  }
+  
   
   return (
     <div>
-      <div className="title d-flex align-items-start"><h1 className="inline">{playlistName[0]?.name}</h1></div>
-      
-      <div>
-        <div className='d-flex px-4 mt-2 align-items-center '>
-          <button type="button" class='btn btn-primary'>Start Radio</button>
-          <div className='ps-3'>Created by:</div>
-          {
-            playlistOwner.map((user, index) =>
-              <div>
-                <img src={user.pfp} className='user-pfp shadow img-fluid rounded-circle'></img>
-              </div>
-            )
-          }
+      <div className="d-flex align-items-end">
+        <div className='container'>
+          <div className="title d-flex align-items-start"><h1 className="inline">{playlistName[0]?.name}</h1></div>
+          
+          <div>
+            <div className='d-flex px-4 mt-2 align-items-center '>
+              <button type="button" className='start-radio-btn btn btn-primary' onClick={() => { toToggleRadio(cur_playlistID) }}>Start Radio</button>
+              <div className='ps-3'>Created by:</div>
+              {
+                playlistOwner.map((user, index) =>
+                  <div>
+                    <img src={user.pfp} className='user-pfp shadow img-fluid rounded-circle'></img>
+                  </div>
+                )
+              }
+            </div>
+          </div>
         </div>
+        <img className='radio-indicator' src='./images/radio-playing.gif' height='120rem'></img>
       </div>
       <hr className='mt-3' />
       <div>

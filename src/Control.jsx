@@ -124,10 +124,10 @@ function Control(props) {
       <MDBContainer className='p-3 pb-0'>
         <MDBRow>
           <MDBCol size="1">
-            <img src={song.image} className='img-thumbnail' />
+            <img src={song.image} className='img-thumbnail mb-3' />
           </MDBCol>
           <MDBCol size="2" className="text-start">
-            <h4>{song.name}</h4>
+            <h4 className='mt-3'>{song.name}</h4>
             <p>{song.artist}</p>
           </MDBCol>
           <MDBCol size="1" />
@@ -193,6 +193,7 @@ function Control(props) {
             />
           </MDBCol>
         </MDBRow>
+        
       </MDBContainer>
     </MDBFooter>
   )

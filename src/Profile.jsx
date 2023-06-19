@@ -115,7 +115,7 @@ function Profile() {
                       <img src={song.cover} height='60' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
                       <div className='container pl-5'>
                         <h4>{song.song_name}</h4>
-                        <h5>{song.song_artist}</h5>
+                        <div className='song-artist'>{song.song_artist}</div>
                       </div>
                     </div>
                   </div>
@@ -140,8 +140,8 @@ function Profile() {
                   timeline.filter(song => song.user_id == user.id).map(song =>
                     <table className="friendTable">
                       <tr><img src='./images/timeline-line-horizontal.png' width='130'></img></tr>
-                      <tr><img className="mt-1" src={song.cover} width='70' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img></tr>
-                      <tr><div className="mt-1">{song.song_name}</div></tr>
+                      <tr><div className='timeline-songs'><img className="mt-1" src={song.cover} width='70' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
+                      <div className="mt-1">{song.song_name}</div></div></tr>
 
                     </table>
                   )
