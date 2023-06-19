@@ -74,7 +74,7 @@ function Login() {
             <MDBModalDialog>
                 <MDBModalContent>
                     <MDBModalHeader>
-                        <MDBModalTitle>Login In or Sign Up</MDBModalTitle>
+                        <MDBModalTitle>Log In or Sign Up</MDBModalTitle>
                     </MDBModalHeader>
                     <MDBTabs pills justify className='mb-3'>
                         <MDBTabsItem>
