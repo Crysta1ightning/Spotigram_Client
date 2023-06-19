@@ -79,12 +79,12 @@ function Login() {
                     <MDBTabs pills justify className='mb-3'>
                         <MDBTabsItem>
                             <MDBTabsLink onClick={() => handleTabClick('login')} active={tab === 'login'}>
-                                <MDBIcon fa icon='sign-in' className='me-2' /> Log In
+                                <MDBIcon icon='sign-in' className='me-2' /> Log In
                             </MDBTabsLink>
                         </MDBTabsItem>
                         <MDBTabsItem>
                             <MDBTabsLink onClick={() => handleTabClick('signup')} active={tab === 'signup'}>
-                                <MDBIcon fa icon='user-plus' className='me-2' /> Sign Up
+                                <MDBIcon icon='user-plus' className='me-2' /> Sign Up
                             </MDBTabsLink>
                         </MDBTabsItem>
                     </MDBTabs>
