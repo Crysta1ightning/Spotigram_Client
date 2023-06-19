@@ -19,9 +19,9 @@ import {
 const handlePfpErrored = (img, id) => {
     img.oneerror = null;
     // story.forEach((story) => {
-    //   if(story.id == id) story.pfp = "./images/user"+id+".jpg";
+    //   if(story.id == id) story.pfp = "./images/user"+id+".png";
     // })
-    if(id) img.src = "./images/user"+id+".jpg";
+    if(id) img.src = "./images/user"+id+".png";
   };
 
 function Rightsidebar() {
@@ -55,16 +55,16 @@ function Rightsidebar() {
                 <MDBTabsPane show={justifyActive === 'tab1'}>
                     <MDBListGroup className='text-center'>
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.jpg' className='img-fluid rounded-circle' width={45} />friend1
+                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend1
                         </MDBListGroupItem>
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.jpg' className='img-fluid rounded-circle' width={45} />friend2
+                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend2
                         </MDBListGroupItem>
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.jpg' className='img-fluid rounded-circle' width={45} />friend3
+                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend3
                         </MDBListGroupItem>
                         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.jpg' className='img-fluid rounded-circle' width={45} />friend4
+                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend4
                         </MDBListGroupItem>
                     </MDBListGroup></MDBTabsPane>
                 <MDBTabsPane show={justifyActive === 'tab2'} className='text-center'>
