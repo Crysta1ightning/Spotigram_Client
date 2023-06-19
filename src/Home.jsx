@@ -177,7 +177,7 @@ function Home() {
           {story.map((music, index) =>
             <div className="stories col-xl-1 col-4 text-center">
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
-                <img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" id={"story-user"+music.id} data-bs-toggle="button"
+                <img type="button" src={music.pfp} className={"img-container mb-2 story-pfp shadow img-fluid rounded-circle"+(JSON.parse(localStorage.getItem('story-user'+music.id))?" visited" : "")} id={"story-user"+music.id} data-bs-toggle="button"
                 onError={({currentTarget}) => {currentTarget.src = "./images/user0.jpg"}} onClick={() => { toChangeStory(index) }}></img>
               </span>
               <p className="overflow-hidden">{music.username}</p>
