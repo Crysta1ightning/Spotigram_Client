@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/playlistView" element={<PlaylistView />}></Route>
             <Route path="/radio" element={<Radio />}></Route>
             <Route path="/showcase" element={<Showcase />}></Route>
-            <Route path="/playlistsong" element={<Playlistsong/>}></Route>
+            {/* <Route path="/playlistsong" element={<Playlistsong/>}></Route> */}
           </Routes>
         </MDBCol>
         <MDBCol size="2" className="offset-10 fixed-top sidebar">
