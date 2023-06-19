@@ -80,10 +80,13 @@ function Playlistsong() {
       <div>
         {
           playlistSong.map((song, index) =>
-            <div className='row'>
-              <div className='col-2 song'>{index+1}</div>
-              <div className='col-4 song'>{song.title}</div>
-              <div className='col-4 song'>{song.artist}</div>
+            <div className='d-flex mt-3'>
+              <div className='col-1 song-index px-3'>{index+1}</div>
+              <img className='song-cover' src={song.cover}></img>
+              <div className='col'>
+                <div className='col-4 song-title px-3'>{song.title}</div>
+                <div className='col-4 song-artist px-3'>{song.artist}</div>
+              </div>
             </div>
           )
         }
