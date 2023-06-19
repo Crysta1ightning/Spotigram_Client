@@ -73,10 +73,10 @@ function Playlist() {
       <div className="title d-flex align-items-start"><h1 className="inline">播放清單</h1></div>
 
       <div className="personalList">
-        <div className="scrolling-wrapper">
+        <div className="row mx-4">
           {
             MyplaylistSet.map(playlist =>
-              <a className="card col-2" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
+              <a className="card col-2 mt-4 mx-4" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
                 <img  src={playlist.cover} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
                 {/* <div className=" card-img-top" >
                   <div className="row row-cols-2">
