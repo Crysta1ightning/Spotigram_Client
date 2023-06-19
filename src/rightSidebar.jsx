@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 
 import './rightSidebar.scss';
@@ -37,45 +37,42 @@ function Rightsidebar() {
 
     let default_userid = JSON.parse(localStorage.getItem('user_id')); // TODO: local storage 
 
-    const [user, setUser] = useState([]);
-    const [friend, setFriend] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [friends, setFriends] = useState([]);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            let response = await fetch("http://localhost:3000/api/user");
-            let data = await response.json();
+        const fetchUsersData = async () => {
+            const data = await fetch("http://localhost:3000/api/user").then(r => r.json());
 
             for (let i = 0; i < data.length; i++) {
                 if (data[i].user_id === default_userid) {
-                    setUser(data[i]);
+                    setUsers(data[i]);
                     break;
                 }
             }
         }
 
-        fetchUserData();
+        fetchUsersData();
 
-        const fetchFriendData = async () => {
-            let response0 = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid);
-            let friendData = await response0.json();
-            let response1 = await fetch("http://localhost:3000/api/user");
-            let userData = await response1.json();
-            let userFriend = [];
+        const fetchFriendsData = async () => {
+            const friendsData = await fetch("http://localhost:3000/api/friend?user_id=" + default_userid).then(r => r.json());
+            const usersData = await fetch("http://localhost:3000/api/user").then(r => r.json());
+            let userFriends = [];
 
-            for (let i = 0; i < friendData.length; i++) {
-                let friendId = (friendData[i].user1_id == default_userid ? friendData[i].user2_id : friendData[i].user1_id);
-                for (let j = 0; j < userData.length; j++) {
-                    if (userData[j].user_id == friendId) {
-                        userFriend.push({ id: friendId, name: userData[j].username, pfp: "./images/user" + friendId + ".png" });
+            for (let i = 0; i < friendsData.length; i++) {
+                const friendId = (friendsData[i].user1_id == default_userid ? friendsData[i].user2_id : friendsData[i].user1_id);
+                for (let j = 0; j < usersData.length; j++) {
+                    if (usersData[j].user_id == friendId) {
+                        userFriends.push({ id: friendId, name: usersData[j].username, pfp: "./images/user" + friendId + ".png" });
                         break;
                     }
                 }
             }
-            console.log(userFriend);
-            setFriend(userFriend);
+            console.log(userFriends);
+            setFriends(userFriends);
         }
 
-        fetchFriendData();
+        fetchFriendsData();
     }, [])
 
     if (localStorage.getItem("user_id") == null) return (<></>);
@@ -97,18 +94,13 @@ function Rightsidebar() {
             <MDBTabsContent>
                 <MDBTabsPane show={justifyActive === 'tab1'}>
                     <MDBListGroup className='text-center'>
-                        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend1
-                        </MDBListGroupItem>
-                        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend2
-                        </MDBListGroupItem>
-                        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend3
-                        </MDBListGroupItem>
-                        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-                            <img src='./images/user1.png' className='img-fluid rounded-circle' width={45} />friend4
-                        </MDBListGroupItem>
+                        {
+                            friends.map(friend =>
+                                <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders key={friend.user_id}>
+                                    <img src={friend.pfp} className='img-fluid rounded-circle' width={45} />{friend.name}
+                                </MDBListGroupItem>
+                            )
+                        }
                     </MDBListGroup></MDBTabsPane>
                 <MDBTabsPane show={justifyActive === 'tab2'} className='text-center'>
                     <MDBBtn block className='btn text-white text-capitalize' color='tertiary' style={{ backgroundColor: '#454545' }} size='lg' href='/#/radio'>Host my Radio +</MDBBtn>
