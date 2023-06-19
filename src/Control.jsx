@@ -14,7 +14,7 @@ import {
 
 function Control(props) {
   const [volume, setVolume] = useState("2.5")
-  const [song, setSong] = useState({image: "", name: "", artist: ""})
+  const [song, setSong] = useState({ image: "", name: "", artist: "" })
   const [duration, setDuration] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [audio, setAudio] = useState();
@@ -38,7 +38,7 @@ function Control(props) {
     const data = await fetch("http://localhost:3000/api/song").then(r => r.json());
     console.log(data);
     setSongData(data);
-    setSong({image: "../images/"+curSong+".png", name: data[curSong-1].songname, artist: data[curSong-1].artist});
+    setSong({ image: "../images/" + curSong + ".png", name: data[curSong - 1].songname, artist: data[curSong - 1].artist });
   }
   useEffect(() => {
     fetchSongData();
@@ -48,10 +48,10 @@ function Control(props) {
     x = Number(x);
     return (x / 60 | 0).toString() + ':' + (x % 60).toString().padStart(2, '0');
   }
-  
+
   const playMusic = () => {
     setPlaying(true);
-    let currentInterval = setInterval(( () => {
+    let currentInterval = setInterval((() => {
       if (audio) {
         setCurrentTime(Math.round(audio.currentTime));
         console.log(audio.currentTime);
@@ -69,21 +69,21 @@ function Control(props) {
 
 
   useEffect(() => {
-    setAudio(new Audio("../audios/song"+curSong+".mp3")); 
+    setAudio(new Audio("../audios/song" + curSong + ".mp3"));
     console.log("set audio");
   }, [curSong])
-  
+
   const findDuration = async () => {
     if (isNaN(audio.duration)) {
       audio.currentTime = 100000;
       await new Promise(resolve => setTimeout(resolve, 200));
       if (songData) {
-        setSong({image: "../images/"+curSong+".png", name: songData[curSong-1].songname, artist: songData[curSong-1].artist});
-      } 
+        setSong({ image: "../images/" + curSong + ".png", name: songData[curSong - 1].songname, artist: songData[curSong - 1].artist });
+      }
       setDuration(audio.duration);
       console.log(song);
-      audio.currentTime = 0;    
-    } 
+      audio.currentTime = 0;
+    }
   }
 
   useEffect(() => {
@@ -103,32 +103,35 @@ function Control(props) {
     setCurrentTime(0);
     pauseMusic();
     await new Promise(resolve => setTimeout(resolve, 200));
-    setCurSong(1+(curSong)%4);
+    setCurSong(1 + (curSong) % 4);
   }
   const lastSong = async () => {
     pauseMusic();
     setCurrentTime(0);
     await new Promise(resolve => setTimeout(resolve, 200));
-    setCurSong(1+(curSong+6)%4);
+    setCurSong(1 + (curSong + 6) % 4);
   }
   const moveVolume = (e) => {
     setVolume(e);
-    audio.volume = e/5;
+    audio.volume = e / 5;
   }
-
-   
 
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <MDBFooter className='text-white fixed-bottom control'>
       <MDBContainer className='p-3 pb-0'>
         <MDBRow>
-          <MDBCol size="1">
-            <img src={song.image} className='img-thumbnail mb-3' />
-          </MDBCol>
-          <MDBCol size="2" className="text-start">
-            <h4 className='mt-3'>{song.name}</h4>
-            <p>{song.artist}</p>
+          <MDBCol size="3">
+            <MDBRow>
+              <MDBCol size="4">
+                <img src={song.image} className='img-thumbnail mb-3' />
+              </MDBCol>
+              <MDBCol size="8" className="text-start">
+                <h4 className='mt-3'>{song.name}</h4>
+                <p>{song.artist}</p>
+              </MDBCol>
+            </MDBRow>
+            <MDBRow>{props.playlist}</MDBRow>
           </MDBCol>
           <MDBCol size="1" />
           <MDBCol size="4">
@@ -140,18 +143,18 @@ function Control(props) {
                 <MDBIcon fas icon='step-backward' />
               </MDBBtn>
               {
-                !playing && 
+                !playing &&
                 <MDBBtn color="light" floating className='m-1' role='button' onClick={playMusic}>
                   <MDBIcon fas icon='play' />
                 </MDBBtn>
               }
               {
-                playing && 
+                playing &&
                 <MDBBtn color="light" floating className='m-1' role='button' onClick={pauseMusic}>
                   <MDBIcon fas icon='pause' />
                 </MDBBtn>
               }
-              
+
               <MDBBtn outline color="light" floating className='m-1' role='button' onClick={nextSong}>
                 <MDBIcon fas icon='step-forward' />
               </MDBBtn>
@@ -174,7 +177,7 @@ function Control(props) {
               <MDBCol size="1">{formatTime(Math.round(duration))}</MDBCol>
             </MDBRow>
           </MDBCol>
-          <MDBCol size="2" className="text-end">
+          <MDBCol size="1" className="text-end">
             {/* <MDBBtn outline color="light" floating className='m-1' role='button'>
               <MDBIcon fas icon="list" />
             </MDBBtn> */}
@@ -193,7 +196,7 @@ function Control(props) {
             />
           </MDBCol>
         </MDBRow>
-        
+
       </MDBContainer>
     </MDBFooter>
   )

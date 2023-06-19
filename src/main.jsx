@@ -28,8 +28,13 @@ Object.defineProperty(global, 'song_id', {
   writable: true
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <MDBContainer fluid>
+function App() {
+  const [playlist, setPlaylist] = useState("");
+
+  const handlePlaylist = x => setPlaylist(x);
+
+  return (
+    <MDBContainer fluid>
     <Login></Login>
     <MDBRow>
       <HashRouter>
@@ -43,7 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/playlist" element={<Playlist />}></Route>
             <Route path="/radio" element={<Radio />}></Route>
             <Route path="/showcase" element={<Showcase />}></Route>
-            <Route path="/playlistsong" element={<Playlistsong />}></Route> 
+            <Route path="/playlistsong" element={<Playlistsong playlist={playlist} handlePlaylist={handlePlaylist} />}></Route> 
           </Routes>
         </MDBCol>
         {/* <MDBCol size="2" className="offset-10 fixed-top sidebar">
@@ -52,7 +57,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </HashRouter>
     </MDBRow>
     <MDBRow className="fixed-bottom">
-      <Control global={global}></Control>
+      <Control global={global} playlist={playlist} ></Control>
     </MDBRow>
   </MDBContainer>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <App />
 )
