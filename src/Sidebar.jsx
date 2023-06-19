@@ -6,7 +6,7 @@ import './Sidebar.scss'
 import { MDBListGroup, MDBListGroupItem, MDBNavbarLink, MDBIcon } from 'mdb-react-ui-kit';
 
 function Sidebar() {
-  if (localStorage.getItem("user_id") == null) return (<></>)
+  // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <div className="sidebar-container min-vh-100 ">
       <h1 className="px-0.5 ">Spotigram</h1>
