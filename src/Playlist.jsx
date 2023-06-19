@@ -52,6 +52,17 @@ function Playlist() {
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
   }
+//   <div className="card" key={playlist.id} type="button">
+//   <a href={"/#/playlistsong?pl=" + playlist.id} className="card-img-top">
+//     <div className="row row-cols-2 justify-content-center " >
+//       <img  src={playlist.cover} className="col img-fluid playlistcover topleft g-0" ></img>
+//       <img  src={playlist.cover} className="col img-fluid playlistcover topright g-0" ></img>
+//       <img  src={playlist.cover} className="col img-fluid playlistcover g-0"></img>
+//       <img  src={playlist.cover} className="col img-fluid playlistcover g-0"></img>
+//     </div>
+//   </a>
+//   <p className="card-text playlist-title">{playlist.title}</p>&emsp;
+// </div>
 
   return (
     <div>
@@ -64,6 +75,7 @@ function Playlist() {
               <div className="card col-2" key={playlist.id}>
                 <a href={"/#/playlistsong?pl=" + playlist.id}><img type="button" src={playlist.cover} className="card-img-top"></img></a>
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
+
               </div>
             )
           }
