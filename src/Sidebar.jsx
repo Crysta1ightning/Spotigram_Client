@@ -43,7 +43,7 @@ function Sidebar() {
           <MDBIcon fas icon='music' />Showcase
         </MDBListGroupItem> */}
       </MDBListGroup>
-
+        <br />
       <p className="text-center mt-5">Friends' Radio</p>
       <MDBListGroup className='friend-block'>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
