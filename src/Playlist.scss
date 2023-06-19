@@ -27,12 +27,16 @@
 }
 
 .card {
-    background-color: #1E1E21;
+    background-color: #1E1E21 !important;
     // width: 1rem;
     // height: 1rem;
     padding: 0.7rem;
     margin: 0.7rem;
     display: inline-block;
+}
+
+.card:hover{
+    background-color: #ffffff1a;
 }
 
 .playlist-title {
