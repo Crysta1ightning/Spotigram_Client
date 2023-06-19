@@ -9,6 +9,10 @@
     font-size: 1rem;
 }
 
+.story-row{
+    background-color: #2C2C2F;
+}
+
 .scrolling-wrapper {
     overflow-x: scroll;
     overflow-y: hidden;
@@ -47,7 +51,7 @@
             // background-color: --moz-linear-gradient(45deg, blue 100%, white 100%) !important;
             background: 
             radial-gradient(rgba(0,0,0,0.15) 60%, transparent 0),
-            radial-gradient(white 65%, transparent 0),
+            radial-gradient(#2C2C2F 65%, transparent 0),
             linear-gradient(to top right, orange, deeppink);
             padding: 0.45rem;
         }

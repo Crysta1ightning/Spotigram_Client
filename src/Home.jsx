@@ -136,11 +136,11 @@ function Home() {
 
   return (
     <div>
-      <div className="row">
+      <div className="row story-row">
         <p className="h1 mx-4 mt-4">Story</p>
         <div className="story-container">
           {story.map((music, index) =>
-            <div className="stories col-1 text-center">
+            <div className="stories col-xl-1 col-4 text-center">
               <div><img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} 
               data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
               <p className="overflow-hidden">{music.username}</p></div>
