@@ -12,7 +12,7 @@ import {
   MDBRange
 } from 'mdb-react-ui-kit';
 
-function Control() {
+function Control(props) {
   const [volume, setVolume] = useState("2.5")
   const [song, setSong] = useState({image: "", name: "", artist: ""})
   const [duration, setDuration] = useState(0);
@@ -22,6 +22,17 @@ function Control() {
   const [curInter, setCurInter] = useState();
   const [curSong, setCurSong] = useState(2);
   const [songData, setSongData] = useState();
+
+  const getCurSong = async () => {
+    setCurrentTime(0);
+    pauseMusic();
+    await new Promise(resolve => setTimeout(resolve, 200));
+    setCurSong(props.global.song_id);
+    console.log("GET " + props.global.song_id);
+  }
+  useEffect(() => {
+    getCurSong();
+  }, [props.global.song_id])
 
   const fetchSongData = async () => {
     const data = await fetch("http://localhost:3000/api/song").then(r => r.json());
@@ -59,6 +70,7 @@ function Control() {
 
   useEffect(() => {
     setAudio(new Audio("../audios/song"+curSong+".mp3")); 
+    console.log("set audio");
   }, [curSong])
   
   const findDuration = async () => {

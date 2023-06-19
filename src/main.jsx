@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { HashRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from 'react-dom/client'
 import Home from './Home';
@@ -22,6 +22,12 @@ import './index.css'
 import 'mdb-react-ui-kit/dist/css/mdb.dark.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
+const global = {};
+Object.defineProperty(global, 'sond_id', {
+  value: 1,
+  writable: true
+});
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <MDBContainer fluid>
     <Login></Login>
@@ -32,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </MDBCol>
         <MDBCol size="8" className="offset-2">
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Home global={global}/>}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/playlist" element={<Playlist />}></Route>
             <Route path="/radio" element={<Radio />}></Route>
@@ -46,7 +52,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </HashRouter>
     </MDBRow>
     <MDBRow className="fixed-bottom">
-      <Control></Control>
+      <Control global={global}></Control>
     </MDBRow>
   </MDBContainer>
 )

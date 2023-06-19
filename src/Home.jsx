@@ -6,7 +6,7 @@ import {getAverageRGB} from './storybackcolor.jsx';
 import './Home.scss';
 // import './App.css';
 
-function Home() {
+function Home(props) {
   // const [song, setSong] = useState([
   //   {id: 0, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
   //   {id: 1, title: "A song", artist: "li3li3", cover:"images/song1.png"},
@@ -196,8 +196,11 @@ function Home() {
         <p className="h1 row mt-4 ms-4">早安!</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
-            <div className="card col-xl-2" key={music.song_id}>
-              <img type="button" src={music.cover} className="card-img-top" onClick={setSong} onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
+            <div className="card col-xl-2" key={music.id}>
+              <img type="button" src={music.cover} className="card-img-top" onClick={()=>{
+                props.global.song_id = music.id;
+                console.log("SET "+music.id)
+              }} onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
               <button className="btn share" onClick={() => { share(music.id) }}>Share</button>
