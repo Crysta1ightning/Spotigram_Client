@@ -76,8 +76,8 @@ function Playlist() {
           {
             MyplaylistSet.map(playlist =>
               <a className="card col-2" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
-                {/* <img  src={playlist.cover} className="card-img-top"></img> */}
-                <div className=" card-img-top" >
+                <img  src={playlist.cover} className="card-img-top"></img>
+                {/* <div className=" card-img-top" >
                   <div className="row row-cols-2">
                     <img  src={playlist.cover[0]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
                     <img  src={playlist.cover[1]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
@@ -85,7 +85,7 @@ function Playlist() {
                     <img  src={playlist.cover[3]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
 
                   </div>
-                </div>
+                </div> */}
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </a>
             )
