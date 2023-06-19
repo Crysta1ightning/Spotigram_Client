@@ -84,7 +84,7 @@ function Profile() {
 
   }
 
-    //onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}
+    //onError={({currentTarget}) => {currentTarget.src = "./images/0.png"}
 
   return (
     <div className='profile'>
@@ -112,7 +112,7 @@ function Profile() {
                   <div className='song-container mt-3 timeline-songs shadow rounded'>
                     <h5>{moment(song.timestamp*1000).format('HH:mm')}</h5>
                     <div className='d-flex align-self-start mt-4'>
-                      <img src={song.cover} height='60' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
+                      <img src={song.cover} height='60' onError={({currentTarget}) => {currentTarget.src = "./images/0.png"}}></img>
                       <div className='container pl-5'>
                         <h4>{song.song_name}</h4>
                         <div className='song-artist'>{song.song_artist}</div>
@@ -140,7 +140,7 @@ function Profile() {
                   timeline.filter(song => song.user_id == user.id).map(song =>
                     <table className="friendTable">
                       <tr><img src='./images/timeline-line-horizontal.png' width='130'></img></tr>
-                      <tr><div className='timeline-songs'><img className="mt-1" src={song.cover} width='70' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
+                      <tr><div className='timeline-songs'><img className="mt-1" src={song.cover} width='70' onError={({currentTarget}) => {currentTarget.src = "./images/0.png"}}></img>
                       <div className="mt-1">{song.song_name}</div></div></tr>
 
                     </table>

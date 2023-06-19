@@ -215,7 +215,7 @@ function Home(props) {
             <div className="stories col-xl-1 col-4 text-center" key={index}>
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
                 <img type="button" src={music.pfp} className={"img-container mb-2 story-pfp shadow img-fluid rounded-circle" + (JSON.parse(localStorage.getItem('story-user' + music.id)) ? " visited" : "")} id={"story-user" + music.id} data-bs-toggle="button"
-                  onError={({ currentTarget }) => { currentTarget.src = "./images/user0.jpg" }} onClick={() => { toChangeStory(index) }}></img>
+                  onError={({ currentTarget }) => { currentTarget.src = "./images/user0.png" }} onClick={() => { toChangeStory(index) }}></img>
               </span>
               <p className="overflow-hidden">{music.username}</p>
             </div>
@@ -230,7 +230,7 @@ function Home(props) {
               <img type="button" src={music.cover} className="card-img-top" onClick={()=>{
                 props.global.song_id = music.id;
                 console.log("SET "+music.id)
-              }} onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
+              }} onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
               <button className="btn share" onClick={() => { share(music.id) }}>Share</button>

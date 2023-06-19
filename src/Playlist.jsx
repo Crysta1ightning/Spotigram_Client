@@ -38,15 +38,16 @@ function Playlist() {
     let response1 = await fetch("http://localhost:3000/api/playlist_song");
     let data1 = await response1.json();
 
-    console.log(data);
+    // console.log(data);
     let newplaylist = [];
     for (let i = 0; i < data.length; i++) {
-      for(let j=0; j< data1.length; j++){
+      let covers = [];
+      for(let j=0; j<4; j++){
         if(data1[j].playlist_id == data[i].playlist_id){
-          newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: './images/'+data1[j].song_id+'.png' });
-          break;
+          covers.push('./images/'+data1[j].song_id+'.png');
         }
       }     
+      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: covers});
     }
   
     setPlaylistSet(newplaylist);
@@ -75,9 +76,17 @@ function Playlist() {
           {
             MyplaylistSet.map(playlist =>
               <a className="card col-2" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
-                <img  src={playlist.cover} className="card-img-top"></img>
-                <p className="card-text playlist-title">{playlist.title}</p>&emsp;
+                {/* <img  src={playlist.cover} className="card-img-top"></img> */}
+                <div className=" card-img-top" >
+                  <div className="row row-cols-2">
+                    <img  src={playlist.cover[0]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+                    <img  src={playlist.cover[1]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+                    <img  src={playlist.cover[2]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+                    <img  src={playlist.cover[3]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
 
+                  </div>
+                </div>
+                <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </a>
             )
           }
