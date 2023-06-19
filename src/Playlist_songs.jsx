@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './Playlist_songs.scss'
 
 function Playlistsong() {
-    const [cur_playlistID] = useState(2);
+    const [cur_playlistID] = useState(location.href.split('?')[1].split('=')[1]);
     const [playlist_name, setPlaylistName] = useState([]); 
     const [playlistSong, setPlaylistSong] = useState([]);
       useEffect(() => {
@@ -14,7 +14,7 @@ function Playlistsong() {
           const data1 = await fetch("http://localhost:3000/api/song").then(r => r.json());
           
           const playlistdata = await fetch("http://localhost:3000/api/playlist").then(r => r.json());
-  
+          
           
           //console.log(data);
           //console.log(data1);
@@ -28,7 +28,7 @@ function Playlistsong() {
                   }
               }
           }
-  
+          console.log(cur_playlistID);
           let newplaylistname = [];
           for (let i = 0; i < playlistdata.length; i++) {
             if(playlistdata[i].playlist_id == cur_playlistID){
@@ -52,18 +52,19 @@ function Playlistsong() {
   
   return (
     <div>
-        <div className="title d-flex align-items-start"><h1 className="inline">{playlist_name[0]?.name}</h1></div>
-
-        <div>
-          {
-            playlistSong.map(song =>
-              <div className='row'>
-                <div className='col song'>{song.title}</div>
-                <div className='col song'>{song.artist}</div>
-              </div>
-            )
-          }
-        </div>
+      <div className="title d-flex align-items-start"><h1 className="inline">{playlist_name[0]?.name}</h1></div>
+      <hr className='mt-3' />
+      <div>
+        {
+          playlistSong.map((song, index) =>
+            <div className='row'>
+              <div className='col-2 song'>{index+1}</div>
+              <div className='col-4 song'>{song.title}</div>
+              <div className='col-4 song'>{song.artist}</div>
+            </div>
+          )
+        }
+      </div>
 
 
 

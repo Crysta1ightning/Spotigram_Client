@@ -51,7 +51,7 @@ function Playlist() {
           {
             MyplaylistSet.map(playlist =>
               <div className="card col-2" key={playlist.id}>
-                <a href="/#/playlistsong"><img type="button" src={playlist.cover} className="card-img-top"></img></a>
+                <a href={"/#/playlistsong?pl=" + playlist.id}><img type="button" src={playlist.cover} className="card-img-top"></img></a>
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </div>
             )
