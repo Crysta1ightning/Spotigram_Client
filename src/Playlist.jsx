@@ -58,7 +58,6 @@ function Playlist() {
       <div className="title d-flex align-items-start"><h1 className="inline">播放清單</h1></div>
 
       <div className="personalList">
-        <p class="subtitle">個人播放清單</p>
         <div className="scrolling-wrapper">
           {
             MyplaylistSet.map(playlist =>
@@ -74,6 +73,10 @@ function Playlist() {
 
 
       <div className='row'>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
