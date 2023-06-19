@@ -65,11 +65,11 @@ function createRadio(props) {
           <h3>接著撥放</h3>
           <div className='scrolling-wrapper'>
           {
-            queueSongs.map(function(songID, i) { 
+            queueSongs.map(function(songID) { 
               if (songID > nowPlaying) {
                 return (
                 <div className='card col-2'>
-                  <img type="button" src={songs[queueSongs[nowPlaying]].cover} className='card-img-top'></img>
+                  <img type="button" src={songs[queueSongs[songID]].cover} className='card-img-top'></img>
                   <p className='card-text song'>{songs[queueSongs[songID]].name}</p>
                   <p className='card-text artist'>{songs[queueSongs[songID]].artist}</p>
                 </div>    
