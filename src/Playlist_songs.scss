@@ -29,4 +29,10 @@
 
 .start-radio-btn {
     width: 10rem;
+    color: rgb(255, 255, 255, 1) !important;
+    background-color: rgb(255, 255, 255, 0.15) !important;
+}
+
+.start-radio-btn:hover{
+    transform: scale(0.95);
 }

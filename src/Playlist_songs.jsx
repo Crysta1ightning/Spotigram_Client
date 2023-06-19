@@ -113,7 +113,7 @@ function Playlistsong(props) {
 
           <div>
             <div className='d-flex px-4 mt-2 align-items-center '>
-              <button type="button" className='start-radio-btn btn btn-primary' onClick={() => { toToggleRadio(cur_playlistID) }}>Start Radio</button>
+              <button type="button" className='start-radio-btn btn ' onClick={() => { toToggleRadio(cur_playlistID) }}>Start a Radio</button>
               <div className='ps-3'>Created by:</div>
               {
                 playlistOwner.map((user, index) =>
