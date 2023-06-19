@@ -22,6 +22,8 @@ function createRadio(props) {
 
   }
 
+  
+
   return (
     <div className="createRadioPage">
         <div className='row pageTop'>
@@ -30,14 +32,6 @@ function createRadio(props) {
         </div>
 
         <div className='row radioSetting'>
-          <div className='col-3'>
-            <h3>電台名稱</h3>
-            <input 
-              className="search"
-              type = "search" 
-              placeholder = {radioName} 
-            />
-          </div>
           <div className='col-3'>
             <p>12人在房間</p>
             <button onClick={()=>{sendInvite()}}>邀請好友聆聽</button>
@@ -65,11 +59,11 @@ function createRadio(props) {
           <h3>接著撥放</h3>
           <div className='scrolling-wrapper'>
           {
-            queueSongs.map(function(songID, i) { 
+            queueSongs.map(function(songID) { 
               if (songID > nowPlaying) {
                 return (
                 <div className='card col-2'>
-                  <img type="button" src={songs[queueSongs[nowPlaying]].cover} className='card-img-top'></img>
+                  <img type="button" src={songs[queueSongs[songID]].cover} className='card-img-top'></img>
                   <p className='card-text song'>{songs[queueSongs[songID]].name}</p>
                   <p className='card-text artist'>{songs[queueSongs[songID]].artist}</p>
                 </div>    

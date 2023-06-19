@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import moment from 'moment';
+
 import './Home.scss';
 // import './App.css';
 
@@ -35,11 +37,19 @@ function Home() {
 
   // Fetch each friend's id and username for this_user_id
   const fetchHomeData = async () => {
-    let this_user_id = 1; // assume user_id = 1;
+    let this_user_id = JSON.parse(localStorage.getItem('user_id')); 
     // this should be from localstorage, after sign in we should store this
     // before calling the rest, maybe make sure the token is valid for this user
 
-    let response = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id);
+    // Refresh Story
+    let response = await (fetch("http://localhost:3000/api/story", {
+      method: 'DELETE',
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      },
+    }))
+
+    response = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id);
     let friendsdata = await response.json();
     // console.log(friendsdata);
     let friendsForThisUser = [];
@@ -51,14 +61,19 @@ function Home() {
     response = await fetch("http://localhost:3000/api/user");
     let userdata = await response.json();
     // console.log(userdata);
-    let newFriends = []
+    let newFriends = [{user_id: this_user_id, username: "", pfp: "./images/user"+this_user_id+".png"}]
     userdata.forEach((user) => {
       // console.log(user);
-      if (user.user_id == this_user_id) setThisUser(user.username);
+      if (user.user_id == this_user_id) {
+        setThisUser(user.username);
+        // Let user itself be friend
+        newFriends[0].username = user.username;
+      }
       else if (friendsForThisUser.includes(user.user_id)) {
         newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".png" })
       }
     })
+
     // console.log(friendsForThisUser);
     // console.log(newFriends);
 
@@ -67,14 +82,15 @@ function Home() {
 
     // console.log(storydata);
 
-    let newstorys = [];
-    for (let i = 0; i < storydata.length; i++) {
+    let newstories = [];
+    
       newFriends.forEach((user) => {
         // console.log(user);
-        if (storydata[i].user_id == user.user_id) newstorys.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
-                                                                    username: user.username, pfp: user.pfp , time: user.ts});
-      })
-    }
+        for (let i = 0; i < storydata.length; i++) {
+        if (storydata[i].user_id == user.user_id) newstories.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
+                                                                    username: user.username, pfp: user.pfp , time: storydata[i].ts});
+      }
+    })
 
     response = await fetch("http://localhost:3000/api/song");
     let songdata = await response.json();
@@ -84,13 +100,20 @@ function Home() {
     let stories = [];
     for (let i = 0; i < songdata.length; i++) {
       newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".png"});
-      newstorys.forEach((user) => {
-        if (songdata[i].song_id == user.song_id) stories.push({
-          id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
-          cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.ts
-        })
-      })
     }
+
+    newstories.forEach((user) => {
+      for (let i = 0; i < songdata.length; i++) {
+        if (songdata[i].song_id == user.song_id) {
+          stories.push({
+            id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
+            cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.time
+          })
+          break;
+        }
+      }
+    })
+
     setSong(newsongs);
     console.log(newsongs);
     setStory(stories);
@@ -109,41 +132,39 @@ function Home() {
     }
     currentStory = storyIndex;
     document.querySelector('.story-user').textContent = story[currentStory].username;
-    document.querySelector('.story-time').textContent = story[currentStory].time; // TODO
+    document.querySelector('.story-time').textContent = moment(story[currentStory].time*1000).calendar(); // TODO
     document.querySelector('.story-cover').src = story[currentStory].cover;
     document.querySelector('.story-title').textContent = story[currentStory].title;
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;
   };
 
-  const handleCoverErrored = (img, id) => {
-    img.oneerror = null;
-    song.forEach((song) => {
-      if(song.id == id) song.cover = "./images/"+id+".jpg";
-    })
-    story.forEach((story) => {
-      if(story.id == id) story.cover = "./images/"+id+".jpg";
-    })
-    if(id) img.src = "./images/"+id+".jpg";
-  };
-
-  const handlePfpErrored = (img, id) => {
-    img.oneerror = null;
-    story.forEach((story) => {
-      if(story.id == id) story.pfp = "./images/user"+id+".jpg";
-    })
-    if(id) img.src = "./images/user"+id+".jpg";
-  };
+  const share = async (song_id) => {
+    let this_user_id = JSON.parse(localStorage.getItem('user_id'));
+    let response = await (fetch("http://localhost:3000/api/story", {
+      method: 'POST',
+      body: JSON.stringify({
+          user_id: this_user_id,
+          song_id: song_id
+      }),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      },
+    }))
+    fetchHomeData();
+  }
 
   return (
     <div>
-      <div className="row">
+      <div className="row story-row">
         <p className="h1 mx-4 mt-4">Story</p>
         <div className="story-container">
           {story.map((music, index) =>
-            <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} 
-              data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
-              <p className="">{music.username}</p>
+            <div className="stories col-xl-1 col-4 text-center">
+              <span data-bs-toggle="modal" data-bs-target="#storyModal">
+                <img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" data-bs-toggle="button"
+                onError={({currentTarget}) => {currentTarget.src = "./images/user0.jpg"}} onClick={() => { toChangeStory(index) }}></img>
+              </span>
+              <p className="overflow-hidden">{music.username}</p>
             </div>
           )}
         </div>
@@ -152,10 +173,11 @@ function Home() {
         <p className="h1 row mt-4 ms-4">早安!</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
-            <div className="card col-2">
-              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
+            <div className="card col-xl-2">
+              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
+              <button className="share" onClick={()=>{share(music.id)}}>Share</button>
             </div>
           )}
         </div>
@@ -165,8 +187,8 @@ function Home() {
         <p className="h1 row mt-4 ms-4">美好的明天!</p>
         <div className="scrolling-wrapper ms-3">
           {recommend.map(music =>
-            <div className="card col-2" >
-              <img type="button" src={music.cover} className="card-img-top"></img>
+            <div className="card col-x1-2" >
+              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
               <p className="card-text song">{music.title}</p>
               <p className="card-text artist">{music.artist}</p>
             </div>

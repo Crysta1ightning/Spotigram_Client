@@ -16,6 +16,14 @@ import {
     MDBCol
 } from 'mdb-react-ui-kit';
 
+const handlePfpErrored = (img, id) => {
+    img.oneerror = null;
+    // story.forEach((story) => {
+    //   if(story.id == id) story.pfp = "./images/user"+id+".jpg";
+    // })
+    if(id) img.src = "./images/user"+id+".jpg";
+  };
+
 function Rightsidebar() {
     const [justifyActive, setJustifyActive] = useState('tab1');
 

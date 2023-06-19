@@ -6,11 +6,11 @@ import CreateRadio from './createRadio';
 
 function Radio() {
   const [page, setPage] = useState(0);
-  if (page == 0) {
+  if (page == 1) {
     return (
       <Home setPage={setPage}/>
     )
-  } else if (page == 1) {
+  } else if (page == 0) {
     return (
       <CreateRadio setPage={setPage}/>
     )
