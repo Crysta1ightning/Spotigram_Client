@@ -138,25 +138,6 @@ function Home() {
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;
   };
 
-  const handleCoverErrored = (img, id) => {
-    img.oneerror = null;
-    song.forEach((song) => {
-      if(song.id == id) song.cover = "./images/"+id+".jpg";
-    })
-    story.forEach((story) => {
-      if(story.id == id) story.cover = "./images/"+id+".jpg";
-    })
-    if(id) img.src = "./images/"+id+".jpg";
-  };
-
-  const handlePfpErrored = (img, id) => {
-    img.oneerror = null;
-    story.forEach((story) => {
-      if(story.id == id) story.pfp = "./images/user"+id+".jpg";
-    })
-    if(id) img.src = "./images/user"+id+".jpg";
-  };
-
   const share = async (song_id) => {
     let this_user_id = JSON.parse(localStorage.getItem('user_id'));
     let response = await (fetch("http://localhost:3000/api/story", {
@@ -181,7 +162,7 @@ function Home() {
             <div className="stories col-xl-1 col-4 text-center">
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
                 <img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" data-bs-toggle="button"
-                onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} onClick={() => { toChangeStory(index) }}></img>
+                onError={({currentTarget}) => {currentTarget.src = "./images/user0.jpg"}} onClick={() => { toChangeStory(index) }}></img>
               </span>
               <p className="overflow-hidden">{music.username}</p>
             </div>
@@ -193,7 +174,7 @@ function Home() {
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
             <div className="card col-xl-2">
-              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
+              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
               <button className="share" onClick={()=>{share(music.id)}}>Share</button>
@@ -207,7 +188,7 @@ function Home() {
         <div className="scrolling-wrapper ms-3">
           {recommend.map(music =>
             <div className="card col-x1-2" >
-              <img type="button" src={music.cover} className="card-img-top"></img>
+              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
               <p className="card-text song">{music.title}</p>
               <p className="card-text artist">{music.artist}</p>
             </div>

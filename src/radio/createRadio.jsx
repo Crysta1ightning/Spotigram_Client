@@ -33,14 +33,6 @@ function createRadio(props) {
 
         <div className='row radioSetting'>
           <div className='col-3'>
-            <h3>電台名稱</h3>
-            <input 
-              className="search"
-              type = "search" 
-              placeholder = {radioName} 
-            />
-          </div>
-          <div className='col-3'>
             <p>12人在房間</p>
             <button onClick={()=>{sendInvite()}}>邀請好友聆聽</button>
           </div>
