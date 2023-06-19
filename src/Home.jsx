@@ -193,7 +193,7 @@ function Home() {
               <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
-              <button className="share" onClick={()=>{share(music.id)}}>Share</button>
+              <button className="btn share" onClick={()=>{share(music.id)}}>Share</button>
             </div>
           )}
         </div>
