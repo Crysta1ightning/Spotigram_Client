@@ -59,22 +59,12 @@ function Playlist() {
         </div>
       </div>
 
-      <div className="shareList">
-        <p class="subtitle">共享播放清單</p>
-        <div className="scrolling-wrapper">
-          {
-            ShareplaylistSet.map(playlist =>
-              <div className="card col-2" key={playlist.id}>
-                <a href="/#/playlistsong"><img type="button" src="images/5.png" className="card-img-top"></img></a>
-                <p className="card-text playlist-title">{playlist.title}</p>
-                <p className="card-text playlist-owners">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
-              </div>
-            )
-          }
-        </div>
-      </div>
+
 
       <div className='row'>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
