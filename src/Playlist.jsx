@@ -51,7 +51,7 @@ function Playlist() {
           {
             MyplaylistSet.map(playlist =>
               <div className="card col-2" key={playlist.id}>
-                <img type="button" src={playlist.cover} className="card-img-top"></img>
+                <a href="/#/playlistsong"><img type="button" src={playlist.cover} className="card-img-top"></img></a>
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </div>
             )
@@ -65,7 +65,7 @@ function Playlist() {
           {
             ShareplaylistSet.map(playlist =>
               <div className="card col-2" key={playlist.id}>
-                <img type="button" src="images/5.png" className="card-img-top"></img>
+                <a href="/#/playlistsong"><img type="button" src="images/5.png" className="card-img-top"></img></a>
                 <p className="card-text playlist-title">{playlist.title}</p>
                 <p className="card-text playlist-owners">with&emsp;{playlist.owners[0]}, {playlist.owners[1]}</p>
               </div>

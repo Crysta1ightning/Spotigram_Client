@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 import Showcase from './Showcase';
 import Rightsidebar from './rightSidebar';
 import Login from './Login'
+import Playlistsong from './playlist_songs';
 
 import {
   MDBContainer,
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/playlist" element={<Playlist />}></Route>
             <Route path="/radio" element={<Radio />}></Route>
             <Route path="/showcase" element={<Showcase />}></Route>
+            <Route path="/playlistsong" element={<Playlistsong/>}></Route>
           </Routes>
         </MDBCol>
         <MDBCol size="2" className="offset-10 fixed-top sidebar">
