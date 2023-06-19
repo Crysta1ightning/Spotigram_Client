@@ -32,9 +32,17 @@ function Home() {
     { id: 7, title: "A song", artist: "li3li3", cover: "images/6.png" },
     { id: 8, title: "!@#$%^&*(", artist: "li3li3", cover: "images/5.png" },
   ])
+
+  const [MyplaylistSet, setPlaylistSet] = useState([
+    { id: 0, title: "周杰倫", cover: "images/5.png" },
+    { id: 1, title: "成發歌單", cover: "images/6.png" },
+    { id: 2, title: "抖音", cover: "images/4.jpg" }
+  ])
+
   useEffect(() => {
     // fetchSongData();
     fetchHomeData();
+    fetchPlaylistData();
   }, [])
 
   const updateStoryIndicator = async () => {
@@ -46,6 +54,20 @@ function Home() {
       if (storyStatus) element.classList.add('visited');
       else element.classList.remove('visited');
     }
+  }
+
+  const fetchPlaylistData = async () => {
+    let response = await fetch("http://localhost:3000/api/playlist");
+    let data = await response.json();
+
+    console.log(data);
+    let newplaylist = [];
+    for (let i = 0; i < data.length; i++) {
+      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: "images/5.png" });
+    }
+    
+    setPlaylistSet(newplaylist);
+    console.log(newplaylist);
   }
 
   // Fetch each friend's id and username for this_user_id
@@ -193,7 +215,7 @@ function Home() {
         </div>
       </div>
       <div className="row">
-        <p className="h1 row mt-4 ms-4">早安!</p>
+        <p className="h1 row mt-4 ms-4">推薦歌曲</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
             <div className="card col-xl-2" key={music.song_id}>
@@ -207,13 +229,12 @@ function Home() {
       </div>
 
       <div className="row">
-        <p className="h1 row mt-4 ms-4">美好的明天!</p>
+        <p className="h1 row mt-4 ms-4">播放清單</p>
         <div className="scrolling-wrapper ms-3">
-          {recommend.map(music =>
-            <div className="card col-x1-2" key={music.song_id}>
-              <img type="button" src={music.cover} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
-              <p className="card-text song">{music.title}</p>
-              <p className="card-text artist">{music.artist}</p>
+          {MyplaylistSet.map(playlist =>
+            <div className="card col-x1-2" key={playlist.id}>
+              <a href={"/#/playlistsong?pl=" + playlist.id}><img type="button" src={playlist.cover} className="card-img-top"></img></a>            
+              <p className="card-text playlist-title">{playlist.title}</p>&emsp;
             </div>
           )}
         </div>
