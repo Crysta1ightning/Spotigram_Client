@@ -94,7 +94,7 @@ function Profile() {
           <img src={'./images/user'+default_userid+'.png'} className='rounded-circle mainpfp' ></img> {/*todo*/}
           <div>
             <h1 className='px-4'>{user.username}</h1>
-            <h5 className='px-4'>{friend.length} friends</h5>
+            {/* <h5 className='px-4'>{friend.length} friends</h5> */}
             <button className='logoutbtn' onClick={logout}>Logout</button>
           </div>
         </div>
@@ -105,7 +105,7 @@ function Profile() {
           <h2 className='text-left'>Timeline</h2>
           <hr className='mt-3' />
           {
-            timeline.filter(song => song.user_id == default_userid).map(song =>
+            timeline.filter(song => song.user_id == default_userid).slice(0, 5).map(song =>
               <div className='container'>
                 <div className='d-flex align-self-start'>
                   <img src='./images/timeline-line.png' width='50'></img>
@@ -137,7 +137,7 @@ function Profile() {
                 <div className='d-flex mt-2'>
 
                 {
-                  timeline.filter(song => song.user_id == user.id).map(song =>
+                  timeline.filter(song => song.user_id == user.id).slice(0, 5).map(song =>
                     <table className="friendTable">
                       <tr><img src='./images/timeline-line-horizontal.png' width='130'></img></tr>
                       <tr><div className='timeline-songs'><img className="mt-1" src={song.cover} width='70' onError={({currentTarget}) => {currentTarget.src = "./images/0.png"}}></img>

@@ -3,9 +3,25 @@ import { NavLink } from "react-router-dom";
 // import './App.css'
 import './Sidebar.scss'
 
-import { MDBListGroup, MDBListGroupItem, MDBNavbarLink, MDBIcon } from 'mdb-react-ui-kit';
+import {
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBNavbarLink,
+  MDBIcon,
+  MDBTabs,
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBTabsContent,
+  MDBTabsPane,
+  MDBBtn,
+  MDBRow,
+  MDBCol
+} from 'mdb-react-ui-kit';
 
 function Sidebar() {
+
+
+
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <div className="sidebar-container min-vh-100 ">
@@ -26,6 +42,30 @@ function Sidebar() {
         {/* <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/showcase" action noBorders>
           <MDBIcon fas icon='music' />Showcase
         </MDBListGroupItem> */}
+      </MDBListGroup>
+      <p className="text-center">Friends' Radio</p>
+      <MDBListGroup className='t2'>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/3.png' className='img-fluid rounded' width={45} />
+        </MDBListGroupItem>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/4.png' className='img-fluid rounded' width={45} />
+        </MDBListGroupItem>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/6.png' className='img-fluid rounded' width={45} />
+        </MDBListGroupItem>
+      </MDBListGroup>
+      <p className="text-center">Radio Rank List</p>
+      <MDBListGroup className='t2'>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/1.png' className='img-fluid rounded' width={45} />
+        </MDBListGroupItem>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/2.png' className='img-fluid rounded' width={45} />
+        </MDBListGroupItem>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/5.png' className='img-fluid rounded' width={45} />
+        </MDBListGroupItem>
       </MDBListGroup>
     </div>
   )

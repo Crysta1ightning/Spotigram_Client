@@ -182,7 +182,7 @@ function Control(props) {
               <MDBIcon fas icon={"volume-" + (volume == 0 ? "off" : volume <= 2.5 ? "down" : "up")} />
             </MDBBtn>
           </MDBCol>
-          <MDBCol size="1">
+          <MDBCol size="1" className='volume'>
             <MDBRange
               defaultValue={2.5}
               min='0'
