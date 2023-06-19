@@ -36,7 +36,7 @@ function Profile() {
         let friendId = (friendData[i].user1_id == default_userid ? friendData[i].user2_id : friendData[i].user1_id);
         for (let j = 0; j < userData.length; j++) {
           if (userData[j].user_id == friendId) {
-            userFriend.push({id: friendId, name: userData[j].username, pfp: "./images/user"+user.user_id+".png"});
+            userFriend.push({id: friendId, name: userData[j].username, pfp: "./images/user"+friendId+".png"});
             break;
           }
         }
@@ -56,16 +56,16 @@ function Profile() {
       console.log(timelineData.length);
       console.log(songData.length);
       for (let i = 0; i < timelineData.length; i++) {
-       let songName, songArtist, songId;
+       let songName, songArtist;
        for (let j = 0; j < songData.length; j++) {
         if (songData[j].song_id === timelineData[i].song_id) {
           songName = songData[j].songname;
           songArtist = songData[j].artist;
-          songId = "./images/"+songData[j].song_id+".png";
         }
        }
        console.log(songName);
-       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_id: timelineData[i].song_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp});
+       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_id: timelineData[i].song_id, song_name: songName, 
+                            song_artist: songArtist, timestamp: timelineData[i].timestamp, cover: "./images/"+timelineData[i].song_id+".png"});
       }
       console.log(timelineFetch);
       setTimeline(timelineFetch);
@@ -84,29 +84,14 @@ function Profile() {
 
   }
 
-  const handleCoverErrored = (img, id) => {
-    img.oneerror = null;
-    timeline.forEach((song) => {
-      if(song.id == id) song.cover = "./images/"+id+".jpg";
-    })
-    if(id) img.src = "./images/"+id+".jpg";
-  };
-
-  const handlePfpErrored = (img, id) => {
-    img.oneerror = null;
-    friend.forEach((friend) => {
-      if(friend.id == id) friend.pfp = "./images/user"+id+".jpg";
-    })
-    if(id) img.src = "./images/user"+id+".jpg";
-  };
-
-  
+    //onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}
 
   return (
     <div className='profile'>
+      
       <div className='container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
-          <img src={'./images/user'+default_userid+'.jpg'} className='rounded-circle' width='150'></img> {/*todo*/}
+          <img src={'./images/user'+default_userid+'.png'} className='rounded-circle' width='150'></img> {/*todo*/}
           <div>
             <h1 className='px-4'>{user.username}</h1>
             <h5 className='px-4'>{friend.length} friends</h5>
@@ -127,7 +112,7 @@ function Profile() {
                   <div className='song-container mt-3 timeline-songs shadow rounded'>
                     <h5>13:15</h5>
                     <div className='d-flex align-self-start mt-4'>
-                      <img src={'./images/'+song.song_id+'.png'} height='60'></img>
+                      <img src={song.cover} height='60' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
                       <div className='container pl-5'>
                         <h4>{song.song_name}</h4>
                         <h5>{song.song_artist}</h5>
@@ -146,7 +131,7 @@ function Profile() {
             friend.map(user => 
               <div className='container'>
                 <div className='d-flex align-items-center'>
-                  <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
+                <img className='friendPfp' src={user.pfp}></img>
                   <h4 className='friendName px-2'>{user.name}</h4>
                 </div>
                 <div className='d-flex mt-2'>
@@ -155,7 +140,7 @@ function Profile() {
                   timeline.filter(song => song.user_id == user.id).map(song =>
                     <table className="friendTable">
                       <tr><img src='./images/timeline-line-horizontal.png' width='130'></img></tr>
-                      <tr><img className="mt-1" src={'./images/'+song.song_id+'.png'} width='70'></img></tr>
+                      <tr><img className="mt-1" src={song.cover} width='70' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img></tr>
                       <tr><div className="mt-1">{song.song_name}</div></tr>
 
                     </table>
