@@ -75,7 +75,7 @@ function Rightsidebar() {
         fetchFriendsData();
     }, [])
 
-    if (localStorage.getItem("user_id") == null) return (<></>);
+    // if (localStorage.getItem("user_id") == null) return (<></>);
     return (
         <div className='sidebar-container min-vh-100'>
             <MDBTabs pills justify className='mb-2 d-flex'>
