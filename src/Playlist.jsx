@@ -44,11 +44,13 @@ function Playlist() {
       let covers = [];
       for(let j=0; j< data1.length; j++){
         if(data1[j].playlist_id == data[i].playlist_id){
-          // covers.push(('./images/'+data1[j].song_id+'.png'));
-          newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: './images/'+data1[j].song_id+'.png'});
-          break;
+          covers.push(('./images/'+data1[j].song_id+'.png'));
         }
       }     
+
+      for(let x = covers.length; x < 4; x++) covers.push(('./images/0.png'))
+      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: covers});
+    
     }
   
     setPlaylistSet(newplaylist);
@@ -76,17 +78,17 @@ function Playlist() {
         <div className="row mx-4">
           {
             MyplaylistSet.map(playlist =>
-              <a className="card col-2 mt-4 mx-4" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
-                <img  src={playlist.cover} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
-                {/* <div className=" card-img-top" >
-                  <div className="row row-cols-2">
+              <a className="card col-lg-2 col-7 col-md-5 mt-4 mx-4" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
+                {/* <img  src={playlist.cover[0]} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img> */}
+                <div className="" >
+                  <div className="row row-cols-2 g-0 card-img-top">
                     <img  src={playlist.cover[0]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
                     <img  src={playlist.cover[1]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
                     <img  src={playlist.cover[2]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
                     <img  src={playlist.cover[3]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
 
                   </div>
-                </div> */}
+                </div>
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
               </a>
             )
