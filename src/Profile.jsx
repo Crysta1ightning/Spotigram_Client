@@ -61,7 +61,7 @@ function Profile() {
         if (songData[j].song_id === timelineData[i].song_id) {
           songName = songData[j].songname;
           songArtist = songData[j].artist;
-          songId = "./images/"+songData[i].song_id+".png";
+          songId = "./images/"+songData[j].song_id+".png";
         }
        }
        console.log(songName);
@@ -149,18 +149,19 @@ function Profile() {
                   <img className='friendPfp' src={"./images/user"+user.id+".jpg"}></img>
                   <h4 className='friendName px-2'>{user.name}</h4>
                 </div>
-                <div className='mt-2'></div>
+                <div className='d-flex mt-2'>
+
                 {
                   timeline.filter(song => song.user_id == user.id).map(song =>
-                  
-                    <div className='col'>
-                      <img src='./images/timeline-line-horizontal.png' width='100'></img>
-                      <img src={'./images/'+song.song_id+'.png'} width='100'></img>
-                      <div>{song.song_name}</div>
+                    <table className="friendTable">
+                      <tr><img src='./images/timeline-line-horizontal.png' width='130'></img></tr>
+                      <tr><img className="mt-1" src={'./images/'+song.song_id+'.png'} width='70'></img></tr>
+                      <tr><div className="mt-1">{song.song_name}</div></tr>
 
-                    </div>
+                    </table>
                   )
                 }
+                </div>
                 <hr className='mt-5' />
               </div>
             )
