@@ -1,8 +1,7 @@
-.login {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    background-color: rgba($color: #000000, $alpha: 0.9);
-    display: flex;
+.nav-link {
+    background-color: #212121 !important;
+}
+
+.active {
+    background-color: #454545 !important;
 }
