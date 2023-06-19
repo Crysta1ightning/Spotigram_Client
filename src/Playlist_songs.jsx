@@ -41,6 +41,17 @@ function Playlistsong() {
   return (
     <div>
         <h>播放清單</h>
+        <div>
+        {
+            playlistSong.map(song =>
+              <div className="card col-2" key={playlist.id}>
+                <a href="/#/playlistsong"><img type="button" src="images/5.png" className="card-img-top"></img></a>
+                <p className="title">{playlist.title}</p>
+                <p className="artists">{playlist.owners[1]}</p>
+              </div>
+            )
+        }
+        </div>
 
     </div>
     
