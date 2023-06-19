@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import './Playlist_songs.scss'
 
 function Playlistsong() {
-    const [cur_playlistID] = useState(1);
+    const [cur_playlistID] = useState(2);
+    const [playlist_name, setPlaylistName] = useState(); 
     const [song, setSong] = useState([]);
     const [playlistSong, setPlaylistSong] = useState([
         { id: 0, title: "周杰倫", cover: "images/5.png" },
@@ -12,15 +13,33 @@ function Playlistsong() {
       ])
       useEffect(() => {
         fetchPlaylistSongData();
+        fetchPlaylistName();
       }, [])
+    
+      const fetchPlaylistName = async () => {
+        const data = await fetch("http://localhost:3000/api/playlist").then(r => r.json());
+
+        console.log(data);
+        let newplaylistname = [];
+        for (let i = 0; i < data.length; i++) {
+          if(data[i].playlist_id == cur_playlistID){
+            newplaylistname.push({name: data[i].playlistname});
+          }
+            
+        }
+
+        setPlaylistName(newplaylistname);
+        console.log(newplaylistname);
+      } 
     
       const fetchPlaylistSongData = async () => {
         const data = await fetch("http://localhost:3000/api/playlist_song").then(r => r.json());
         
         const data1 = await fetch("http://localhost:3000/api/song").then(r => r.json());
         
-        //console.log(data);
-        //console.log(data1);
+        
+        console.log(data);
+        console.log(data1);
         let newplaylistsong = [];
         for (let i = 0; i < data.length; i++) {
             if (data[i].playlist_id == cur_playlistID) {
@@ -38,18 +57,9 @@ function Playlistsong() {
   
   return (
     <div>
-        <h>播放清單</h>
-        <div>
-        {
-            playlistSong.map(playlist =>
-              <div className="card col-2" key={playlist.id}>
-                <a href="/#/playlistsong"><img type="button" src="images/5.png" className="card-img-top" /></a>
-                <p className="title">{playlist.title}</p>
-                {/* <p className="artists">{playlist.owners[1]}</p> */}
-              </div>
-            )
-        }
-        </div>
+        <h></h>
+        
+        
     </div>
   )
 }
