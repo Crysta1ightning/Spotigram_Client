@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import moment from 'moment';
+import {getAverageRGB} from './storybackcolor.jsx';
 
 
 import './Home.scss';
@@ -133,7 +134,7 @@ function Home() {
   }
 
   var currentStory = 0;
-
+  
   const toChangeStory = (storyIndex) => {
     if (storyIndex < 0 || storyIndex >= story.length) {
       // TODO
@@ -150,6 +151,13 @@ function Home() {
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;
     localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
     updateStoryIndicator();
+    let rgb = getAverageRGB(document.getElementById('cover'));
+    document.querySelector('.story-block').style.backgroundColor = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+')';
+
+    // console.log(background);
+    // console.log(rgb);
+
+
   };
 
   const share = async (song_id) => {
@@ -225,7 +233,8 @@ function Home() {
             <div className="story-music">
               <div className='d-flex align-items-center justify-content-center'>
                 <div type="button" className="story-prev-btn" onClick={() => { toChangeStory(currentStory - 1) }}></div>
-                <img type="button" className="story-cover"></img>
+                <img id="cover" type="button" className="story-cover"></img>
+                <canvas id="canvas" className="story-cover d-none"></canvas>
                 <div type="button" className="story-next-btn" onClick={() => { toChangeStory(currentStory + 1) }}></div>
               </div>
               <p className="story-title"></p>
