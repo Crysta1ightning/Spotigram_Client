@@ -16,7 +16,8 @@ import {
     MDBTabsContent,
     MDBTabsPane,
     MDBInput,
-    MDBBtn
+    MDBBtn,
+    MDBIcon
 } from 'mdb-react-ui-kit';
 
 function Login() {
@@ -78,12 +79,12 @@ function Login() {
                     <MDBTabs pills justify className='mb-3'>
                         <MDBTabsItem>
                             <MDBTabsLink onClick={() => handleTabClick('login')} active={tab === 'login'}>
-                                Log In
+                                <MDBIcon fa icon='sign-in' className='me-2' /> Log In
                             </MDBTabsLink>
                         </MDBTabsItem>
                         <MDBTabsItem>
                             <MDBTabsLink onClick={() => handleTabClick('signup')} active={tab === 'signup'}>
-                                Sign Up
+                                <MDBIcon fa icon='user-plus' className='me-2' /> Sign Up
                             </MDBTabsLink>
                         </MDBTabsItem>
                     </MDBTabs>
@@ -91,22 +92,24 @@ function Login() {
                         <MDBTabsPane show={tab === 'login'}>
                             <form onSubmit={handleLogin}>
                                 <MDBModalBody>
+                                    {error && renderErrorMessage()}
                                     <MDBInput className='mb-4' type='text' id='username' label='Username' required />
                                     <MDBInput className='mb-4' type='password' id='password' label='Password' required />
                                 </MDBModalBody>
                                 <MDBModalFooter>
-                                    <MDBBtn type='submit' className='mb-4' block>Log In</MDBBtn>
+                                    <MDBBtn type='submit' className='mb-4' block>Log me In!!</MDBBtn>
                                 </MDBModalFooter>
                             </form>
                         </MDBTabsPane>
                         <MDBTabsPane show={tab === 'signup'}>
                             <form onSubmit={handleRegister}>
                                 <MDBModalBody>
+                                    {error && renderErrorMessage()}
                                     <MDBInput className='mb-4' type='text' id='username' label='Username' required />
                                     <MDBInput className='mb-4' type='password' id='password' label='Password' required />
                                 </MDBModalBody>
                                 <MDBModalFooter>
-                                    <MDBBtn type='submit' className='mb-4' block>Sign Up</MDBBtn>
+                                    <MDBBtn type='submit' className='mb-4' block>Sign me Up!!</MDBBtn>
                                 </MDBModalFooter>
                             </form>
                         </MDBTabsPane>
