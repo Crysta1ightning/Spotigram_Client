@@ -141,9 +141,9 @@ function Home() {
         <div className="story-container">
           {story.map((music, index) =>
             <div className="stories col-1 text-center">
-              <img type="button" src={music.pfp} className="story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} 
+              <div><img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} 
               data-bs-toggle="modal" data-bs-target="#storyModal" onClick={() => { toChangeStory(index) }}></img>
-              <p className="">{music.username}</p>
+              <p className="overflow-hidden">{music.username}</p></div>
             </div>
           )}
         </div>
@@ -152,7 +152,7 @@ function Home() {
         <p className="h1 row mt-4 ms-4">早安!</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
-            <div className="card col-2">
+            <div className="card col-xl-2">
               <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
@@ -165,7 +165,7 @@ function Home() {
         <p className="h1 row mt-4 ms-4">美好的明天!</p>
         <div className="scrolling-wrapper ms-3">
           {recommend.map(music =>
-            <div className="card col-2" >
+            <div className="card col-x1-2" >
               <img type="button" src={music.cover} className="card-img-top"></img>
               <p className="card-text song">{music.title}</p>
               <p className="card-text artist">{music.artist}</p>

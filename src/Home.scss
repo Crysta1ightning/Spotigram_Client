@@ -14,7 +14,6 @@
     overflow-y: hidden;
     white-space: nowrap;
 
-    // max-height: 25rem;
     .card {
         background-color: #1E1E21;
         // width: 1rem;
@@ -37,24 +36,41 @@
 
     .stories {
         background-color: transparent;
-        padding: 0.7rem;
+        // background-color: --moz-linear-gradient(45deg, blue 100%, white 100%) !important;
+        padding: 0.5rem;
         margin: 0.7rem;
         display: inline-block;
         color: #ffffff;
         text-shadow: 0.2rem 0.3rem 4px #000000;
+
+        .img-container{
+            // background-color: --moz-linear-gradient(45deg, blue 100%, white 100%) !important;
+            background: 
+            radial-gradient(rgba(0,0,0,0.15) 60%, transparent 0),
+            radial-gradient(white 65%, transparent 0),
+            linear-gradient(to top right, orange, deeppink);
+            padding: 0.45rem;
+        }
+
+        :after{
+            background: white, white, white;
+        }
+        
     }
+    
 
     .stories:hover {
         transform: scale(1.1);
     }
 }
 
+
 .bind {
     visibility: hidden;
 }
 
 .story-block {
-    background-color: #1E1E21;
+    // background-color: #1E1E21 !important;
     border-radius: 15px;
     height: 30rem;
 
