@@ -37,7 +37,7 @@ function Home() {
 
   // Fetch each friend's id and username for this_user_id
   const fetchHomeData = async () => {
-    let this_user_id = 1; // assume user_id = 1;
+    let this_user_id = JSON.parse(localStorage.getItem('user_id')); 
     // this should be from localstorage, after sign in we should store this
     // before calling the rest, maybe make sure the token is valid for this user
 
@@ -61,14 +61,19 @@ function Home() {
     response = await fetch("http://localhost:3000/api/user");
     let userdata = await response.json();
     // console.log(userdata);
-    let newFriends = []
+    let newFriends = [{user_id: this_user_id, username: "", pfp: "./images/user"+this_user_id+".png"}]
     userdata.forEach((user) => {
       // console.log(user);
-      if (user.user_id == this_user_id) setThisUser(user.username);
+      if (user.user_id == this_user_id) {
+        setThisUser(user.username);
+        // Let user itself be friend
+        newFriends[0].username = user.username;
+      }
       else if (friendsForThisUser.includes(user.user_id)) {
         newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".png" })
       }
     })
+
     // console.log(friendsForThisUser);
     // console.log(newFriends);
 
@@ -77,8 +82,8 @@ function Home() {
 
     // console.log(storydata);
 
-    let newstorys = [];
-    for (let i = 0; i < storydata.length; i++) {
+    let newstories = [];
+    
       newFriends.forEach((user) => {
         // console.log(user);
         for (let i = 0; i < storydata.length; i++) {
@@ -152,6 +157,21 @@ function Home() {
     if(id) img.src = "./images/user"+id+".jpg";
   };
 
+  const share = async (song_id) => {
+    let this_user_id = JSON.parse(localStorage.getItem('user_id'));
+    let response = await (fetch("http://localhost:3000/api/story", {
+      method: 'POST',
+      body: JSON.stringify({
+          user_id: this_user_id,
+          song_id: song_id
+      }),
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      },
+    }))
+    fetchHomeData();
+  }
+
   return (
     <div>
       <div className="row story-row">
@@ -160,7 +180,7 @@ function Home() {
           {story.map((music, index) =>
             <div className="stories col-xl-1 col-4 text-center">
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
-                <img id="userstory" type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" data-bs-toggle="button"
+                <img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" data-bs-toggle="button"
                 onError={({currentTarget}) => {handlePfpErrored(currentTarget, music.id)}} onClick={() => { toChangeStory(index) }}></img>
               </span>
               <p className="overflow-hidden">{music.username}</p>
@@ -176,6 +196,7 @@ function Home() {
               <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {handleCoverErrored(currentTarget, music.id)}}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
+              <button className="share" onClick={()=>{share(music.id)}}>Share</button>
             </div>
           )}
         </div>
