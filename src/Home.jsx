@@ -152,8 +152,7 @@ function Home() {
     localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
     updateStoryIndicator();
     let rgb = getAverageRGB(document.getElementById('cover'));
-    document.querySelector('.story-block').style.backgroundColor = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+')';
-
+    document.querySelector('.story-block').style.background = 'radial-gradient(rgba('+rgb.r+','+rgb.g+','+rgb.b+', 1) -1%,rgba(0,0,0,1) 200%)'
     // console.log(background);
     // console.log(rgb);
 
