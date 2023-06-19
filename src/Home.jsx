@@ -152,7 +152,7 @@ function Home() {
     localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
     updateStoryIndicator();
     let rgb = getAverageRGB(document.getElementById('cover'));
-    document.querySelector('.story-block').style.background = 'radial-gradient(rgba('+rgb.r+','+rgb.g+','+rgb.b+', 1) -1%,rgba(0,0,0,1) 200%)'
+    document.querySelector('.story-block').style.background = 'radial-gradient(rgba('+rgb.r+','+rgb.g+','+rgb.b+', 1) 35%,rgba(0,0,0,1) 200%)'
     // console.log(background);
     // console.log(rgb);
 
@@ -232,7 +232,7 @@ function Home() {
             <div className="story-music">
               <div className='d-flex align-items-center justify-content-center'>
                 <div type="button" className="story-prev-btn" onClick={() => { toChangeStory(currentStory - 1) }}></div>
-                <img id="cover" type="button" className="story-cover"></img>
+                <img id="cover" type="button" className="story-cover shadow"></img>
                 <canvas id="canvas" className="story-cover d-none"></canvas>
                 <div type="button" className="story-next-btn" onClick={() => { toChangeStory(currentStory + 1) }}></div>
               </div>
