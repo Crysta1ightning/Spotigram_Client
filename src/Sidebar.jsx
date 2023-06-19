@@ -43,30 +43,24 @@ function Sidebar() {
           <MDBIcon fas icon='music' />Showcase
         </MDBListGroupItem> */}
       </MDBListGroup>
-      <p className="text-center">Friends' Radio</p>
-      <MDBListGroup className='t2'>
+
+      <p className="text-center mt-5">Friends' Radio</p>
+      <MDBListGroup className='friend-block'>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-          <img src='./images/3.png' className='img-fluid rounded' width={45} />
+          <img src='./images/user0.png' className='img-fluid rounded-circle' width={45} />
         </MDBListGroupItem>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-          <img src='./images/4.png' className='img-fluid rounded' width={45} />
+          <img src='./images/user4.png' className='img-fluid rounded-circle' width={45} />
         </MDBListGroupItem>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-          <img src='./images/6.png' className='img-fluid rounded' width={45} />
+          <img src='./images/user2.png' className='img-fluid rounded-circle' width={45} />
         </MDBListGroupItem>
+        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <img src='./images/user3.png' className='img-fluid rounded-circle' width={45} />
+        </MDBListGroupItem>
+        
       </MDBListGroup>
-      <p className="text-center">Radio Rank List</p>
-      <MDBListGroup className='t2'>
-        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-          <img src='./images/1.png' className='img-fluid rounded' width={45} />
-        </MDBListGroupItem>
-        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-          <img src='./images/2.png' className='img-fluid rounded' width={45} />
-        </MDBListGroupItem>
-        <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-          <img src='./images/5.png' className='img-fluid rounded' width={45} />
-        </MDBListGroupItem>
-      </MDBListGroup>
+
     </div>
   )
 }
