@@ -24,8 +24,7 @@ function Control() {
   const [songData, setSongData] = useState();
 
   const fetchSongData = async () => {
-    const response = await fetch("http://localhost:3000/api/song");
-    const data = await response.json();
+    const data = await fetch("http://localhost:3000/api/song").then(r => r.json());
     console.log(data);
     setSongData(data);
     setSong({image: "../images/"+curSong+".png", name: data[curSong-1].songname, artist: data[curSong-1].artist});
@@ -105,7 +104,7 @@ function Control() {
     audio.volume = e/5;
   }
 
-  if (localStorage.getItem("user_id") == null) return (<></>)
+  // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <MDBFooter className='text-white fixed-bottom control'>
       <MDBContainer className='p-3 pb-0'>
