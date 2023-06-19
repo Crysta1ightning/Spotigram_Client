@@ -23,7 +23,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.dark.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const global = {};
-Object.defineProperty(global, 'sond_id', {
+Object.defineProperty(global, 'song_id', {
   value: 1,
   writable: true
 });
