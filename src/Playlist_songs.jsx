@@ -62,8 +62,17 @@ function Playlistsong() {
 
           let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
 
-          if (cur_playlistID == currentRadio) document.querySelector('.radio-indicator').style.visibility = "visible";
-          else document.querySelector('.radio-indicator').style.visibility = "hidden";
+          if (cur_playlistID == currentRadio) {
+            document.querySelector('.radio-indicator').style.visibility = "visible";
+            document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
+            document.querySelector('.start-radio-btn').classList.remove('btn-primary');
+            document.querySelector('.start-radio-btn').classList.add('btn-secondary');
+          } else {
+            document.querySelector('.radio-indicator').style.visibility = "hidden";
+            document.querySelector('.start-radio-btn').innerHTML = "Start Radio";
+            document.querySelector('.start-radio-btn').classList.remove('btn-secondary');
+            document.querySelector('.start-radio-btn').classList.add('btn-primary');
+          }
       }
 
         fetchPlaylistSongData();
@@ -81,8 +90,17 @@ function Playlistsong() {
       localStorage.setItem('cur-radio', JSON.stringify(playlistID));
       currentRadio = playlistID;
     }
-    if (cur_playlistID == currentRadio) document.querySelector('.radio-indicator').style.visibility = "visible";
-    else document.querySelector('.radio-indicator').style.visibility = "hidden";
+    if (cur_playlistID == currentRadio) {
+      document.querySelector('.radio-indicator').style.visibility = "visible";
+      document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
+      document.querySelector('.start-radio-btn').classList.remove('btn-primary');
+      document.querySelector('.start-radio-btn').classList.add('btn-secondary');
+    } else {
+      document.querySelector('.radio-indicator').style.visibility = "hidden";
+      document.querySelector('.start-radio-btn').innerHTML = "Start Radio";
+      document.querySelector('.start-radio-btn').classList.remove('btn-secondary');
+      document.querySelector('.start-radio-btn').classList.add('btn-primary');
+    }
   }
   
   
