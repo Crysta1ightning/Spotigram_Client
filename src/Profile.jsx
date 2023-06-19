@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import moment from 'moment';
 import './App.css'
 import './Profile.scss'
 
@@ -65,7 +66,7 @@ function Profile() {
         }
        }
        console.log(songName);
-       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_id: timelineData[i].song_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].timestamp});
+       timelineFetch.push({id: timelineData[i].timeline_id, user_id: timelineData[i].user_id, song_id: timelineData[i].song_id, song_name: songName, song_artist: songArtist, timestamp: timelineData[i].ts});
       }
       console.log(timelineFetch);
       setTimeline(timelineFetch);
@@ -125,7 +126,7 @@ function Profile() {
                 <div className='d-flex align-self-start'>
                   <img src='./images/timeline-line.png' width='50'></img>
                   <div className='song-container mt-3 timeline-songs shadow rounded'>
-                    <h5>13:15</h5>
+                    <h5>{moment(song.timestamp*1000).format('HH:mm')}</h5>
                     <div className='d-flex align-self-start mt-4'>
                       <img src={'./images/'+song.song_id+'.png'} height='60'></img>
                       <div className='container pl-5'>
