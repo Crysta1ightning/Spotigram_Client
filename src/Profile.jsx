@@ -115,7 +115,7 @@ function Profile() {
                       <img src={song.cover} height='60' onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
                       <div className='container pl-5'>
                         <h4>{song.song_name}</h4>
-                        <h5>{song.song_artist}</h5>
+                        <div className='song-artist'>{song.song_artist}</div>
                       </div>
                     </div>
                   </div>
