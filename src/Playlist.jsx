@@ -23,20 +23,32 @@ function Playlist() {
     { id: 1, title: "成發歌單", cover: "images/6.png" },
     { id: 2, title: "抖音", cover: "images/4.jpg" }
   ])
+
+
   useEffect(() => {
     fetchPlaylistData();
   }, [])
+ 
+
 
   const fetchPlaylistData = async () => {
     let response = await fetch("http://localhost:3000/api/playlist");
     let data = await response.json();
 
+    let response1 = await fetch("http://localhost:3000/api/playlist_song");
+    let data1 = await response1.json();
+
     console.log(data);
     let newplaylist = [];
     for (let i = 0; i < data.length; i++) {
-      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: "images/5.png" });
+      for(let j=0; j< data1.length; j++){
+        if(data1[j].playlist_id == data[i].playlist_id){
+          newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: './images/'+data1[j].song_id+'.png' });
+          break;
+        }
+      }     
     }
-    
+  
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
   }

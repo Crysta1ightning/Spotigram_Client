@@ -60,12 +60,20 @@ function Home(props) {
     let response = await fetch("http://localhost:3000/api/playlist");
     let data = await response.json();
 
+    let response1 = await fetch("http://localhost:3000/api/playlist_song");
+    let data1 = await response1.json();
+
     console.log(data);
     let newplaylist = [];
     for (let i = 0; i < data.length; i++) {
-      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: "images/5.png" });
+      for(let j=0; j< data1.length; j++){
+        if(data1[j].playlist_id == data[i].playlist_id){
+          newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: './images/'+data1[j].song_id+'.png' });
+          break;
+        }
+      }     
     }
-    
+  
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
   }
@@ -233,9 +241,9 @@ function Home(props) {
 
       <div className="row">
         <p className="h1 row mt-4 ms-4">播放清單</p>
-        <div className="scrolling-wrapper ms-3">
+        <div className="scrolling-wrapper">
           {MyplaylistSet.map(playlist =>
-            <div className="card col-x1-2" key={playlist.id}>
+            <div className="card col-2" key={playlist.id}>
               <a href={"/#/playlistsong?pl=" + playlist.id}><img type="button" src={playlist.cover} className="card-img-top"></img></a>            
               <p className="card-text playlist-title">{playlist.title}</p>&emsp;
             </div>
