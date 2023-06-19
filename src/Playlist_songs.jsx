@@ -65,8 +65,9 @@ function Playlistsong() {
       <div className="title d-flex align-items-start"><h1 className="inline">{playlistName[0]?.name}</h1></div>
       
       <div>
-        <div className='d-flex px-4 mt-2 '>
-          <div className='pr-3'>Created by:  </div>
+        <div className='d-flex px-4 mt-2 align-items-center '>
+          <button type="button" class='btn btn-primary'>Start Radio</button>
+          <div className='ps-3'>Created by:</div>
           {
             playlistOwner.map((user, index) =>
               <div>
