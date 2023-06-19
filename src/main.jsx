@@ -23,11 +23,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <MDBContainer fluid>
+    <Login></Login>
     <MDBRow>
       <HashRouter>
-        <MDBCol size="0">
-          <Login></Login>
-        </MDBCol>
         <MDBCol size="2" className="fixed-top sidebar">
           <Sidebar></Sidebar>
         </MDBCol>
