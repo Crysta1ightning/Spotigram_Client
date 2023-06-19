@@ -85,8 +85,8 @@ function Playlistsong() {
               <div className='col-1 song-index px-3'>{index+1}</div>
               <img className='song-cover' src={song.cover}></img>
               <div className='col'>
-                <div className='col-4 song-title px-3'>{song.title}</div>
-                <div className='col-4 song-artist px-3'>{song.artist}</div>
+                <div className='col-4 song-title px-4'>{song.title}</div>
+                <div className='col-4 song-artist px-4'>{song.artist}</div>
               </div>
             </div>
           )
@@ -94,6 +94,11 @@ function Playlistsong() {
       </div>
 
       <div className='row'>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
+        <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
