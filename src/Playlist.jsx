@@ -52,6 +52,8 @@ function Playlist() {
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
   }
+
+// grid cover
 //   <div className="card" key={playlist.id} type="button">
 //   <a href={"/#/playlistsong?pl=" + playlist.id} className="card-img-top">
 //     <div className="row row-cols-2 justify-content-center " >
@@ -72,11 +74,11 @@ function Playlist() {
         <div className="scrolling-wrapper">
           {
             MyplaylistSet.map(playlist =>
-              <div className="card col-2" key={playlist.id}>
-                <a href={"/#/playlistsong?pl=" + playlist.id}><img type="button" src={playlist.cover} className="card-img-top"></img></a>
+              <a className="card col-2" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
+                <img  src={playlist.cover} className="card-img-top"></img>
                 <p className="card-text playlist-title">{playlist.title}</p>&emsp;
 
-              </div>
+              </a>
             )
           }
         </div>
