@@ -63,20 +63,25 @@ function Home(props) {
     let response1 = await fetch("http://localhost:3000/api/playlist_song");
     let data1 = await response1.json();
 
-    console.log(data);
+    // console.log(data);
     let newplaylist = [];
     for (let i = 0; i < data.length; i++) {
+      let covers = [];
       for(let j=0; j< data1.length; j++){
         if(data1[j].playlist_id == data[i].playlist_id){
-          newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: './images/'+data1[j].song_id+'.png' });
-          break;
+          covers.push(('./images/'+data1[j].song_id+'.png'));
         }
       }     
+
+      for(let x = covers.length; x < 4; x++) covers.push(('./images/0.png'))
+      newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: covers});
+    
     }
   
     setPlaylistSet(newplaylist);
     console.log(newplaylist);
   }
+
 
   // Fetch each friend's id and username for this_user_id
   const fetchHomeData = async () => {
@@ -242,12 +247,21 @@ function Home(props) {
       <div className="row">
         <p className="h1 row mt-4 ms-4">播放清單</p>
         <div className="scrolling-wrapper">
-          {MyplaylistSet.map(playlist =>
-            <div className="card col-2" key={playlist.id}>
-              <a href={"/#/playlistsong?pl=" + playlist.id}><img type="button" src={playlist.cover} className="card-img-top"></img></a>            
-              <p className="card-text playlist-title">{playlist.title}</p>&emsp;
-            </div>
-          )}
+          {MyplaylistSet.slice(0,5).map(playlist =>
+              <a className="card col-lg-2 col-7 col-md-5 mt-4 mx-4" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
+                {/* <img  src={playlist.cover[0]} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img> */}
+                <div className="" >
+                  <div className="row row-cols-2 g-0 card-img-top">
+                    <img  src={playlist.cover[0]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+                    <img  src={playlist.cover[1]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+                    <img  src={playlist.cover[2]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+                    <img  src={playlist.cover[3]} className="col playlistcover " onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img>
+
+                  </div>
+                </div>
+                <p className="card-text playlist-title">{playlist.title}</p>&emsp;
+              </a>
+            )}
         </div>
       </div>
 
