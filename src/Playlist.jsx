@@ -46,6 +46,7 @@ function Playlist() {
         if(data1[j].playlist_id == data[i].playlist_id){
           // covers.push(('./images/'+data1[j].song_id+'.png'));
           newplaylist.push({ id: data[i].playlist_id, title: data[i].playlistname, cover: './images/'+data1[j].song_id+'.png'});
+          break;
         }
       }     
     }
