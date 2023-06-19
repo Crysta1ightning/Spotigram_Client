@@ -10,7 +10,8 @@ import Sidebar from './Sidebar';
 import Showcase from './Showcase';
 import Rightsidebar from './rightSidebar';
 import Login from './Login'
-// import PlaylistView from './PlaylistView.jsx'
+import PlaylistView from './PlaylistView.jsx'
+import Playlistsong from "./Playlist_songs.jsx"
 
 import {
   MDBContainer,

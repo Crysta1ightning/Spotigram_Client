@@ -101,7 +101,8 @@ function Rightsidebar() {
                                 </MDBListGroupItem>
                             )
                         }
-                    </MDBListGroup></MDBTabsPane>
+                    </MDBListGroup>
+                </MDBTabsPane>
                 <MDBTabsPane show={justifyActive === 'tab2'} className='text-center'>
                     <MDBBtn block className='btn text-white text-capitalize' color='tertiary' style={{ backgroundColor: '#454545' }} size='lg' href='/#/radio'>Host my Radio +</MDBBtn>
                     <p className="text-center">Friends' Radio</p>
@@ -130,7 +131,6 @@ function Rightsidebar() {
                     </MDBListGroup>
                 </MDBTabsPane>
             </MDBTabsContent>
-
         </div>
     )
 }

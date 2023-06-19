@@ -35,6 +35,17 @@ function Home() {
     fetchHomeData();
   }, [])
 
+  const updateStoryIndicator = async () => {
+    for (let i = 0; i < story.length; i++) {
+      let storyStatus = JSON.parse(localStorage.getItem('story-user'+story[i].id));
+      console.log(story[i].id);
+      console.log(storyStatus);
+      var element = document.getElementById("story-user"+story[i].id)
+      if (storyStatus) element.classList.add('visited');
+      else element.classList.remove('visited');
+    }
+  }
+   
   // Fetch each friend's id and username for this_user_id
   const fetchHomeData = async () => {
     let this_user_id = JSON.parse(localStorage.getItem('user_id')); 
@@ -118,6 +129,7 @@ function Home() {
     console.log(newsongs);
     setStory(stories);
     console.log(stories);
+    updateStoryIndicator();
   }
 
   var currentStory = 0;
@@ -136,6 +148,8 @@ function Home() {
     document.querySelector('.story-cover').src = story[currentStory].cover;
     document.querySelector('.story-title').textContent = story[currentStory].title;
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;
+    localStorage.setItem('story-user'+story[storyIndex].id, JSON.stringify(1));
+    updateStoryIndicator();
   };
 
   const share = async (song_id) => {
@@ -150,7 +164,9 @@ function Home() {
           'Content-type': 'application/json; charset=UTF-8',
       },
     }))
+    localStorage.setItem('story-user'+this_user_id, JSON.stringify(0));
     fetchHomeData();
+    updateStoryIndicator();
   }
 
   return (
@@ -161,7 +177,7 @@ function Home() {
           {story.map((music, index) =>
             <div className="stories col-xl-1 col-4 text-center">
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
-                <img type="button" src={music.pfp} className="img-container mb-2 story-pfp shadow img-fluid rounded-circle" data-bs-toggle="button"
+                <img type="button" src={music.pfp} className={"img-container mb-2 story-pfp shadow img-fluid rounded-circle"+(JSON.parse(localStorage.getItem('story-user'+music.id))?" visited" : "")} id={"story-user"+music.id} data-bs-toggle="button"
                 onError={({currentTarget}) => {currentTarget.src = "./images/user0.jpg"}} onClick={() => { toChangeStory(index) }}></img>
               </span>
               <p className="overflow-hidden">{music.username}</p>
