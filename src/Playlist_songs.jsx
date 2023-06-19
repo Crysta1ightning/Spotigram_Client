@@ -19,7 +19,7 @@ function Playlistsong() {
       const fetchPlaylistName = async () => {
         const data = await fetch("http://localhost:3000/api/playlist").then(r => r.json());
 
-        console.log(data);
+        //console.log(data);
         let newplaylistname = [];
         for (let i = 0; i < data.length; i++) {
           if(data[i].playlist_id == cur_playlistID){
@@ -38,8 +38,8 @@ function Playlistsong() {
         const data1 = await fetch("http://localhost:3000/api/song").then(r => r.json());
         
         
-        console.log(data);
-        console.log(data1);
+        //console.log(data);
+        //console.log(data1);
         let newplaylistsong = [];
         for (let i = 0; i < data.length; i++) {
             if (data[i].playlist_id == cur_playlistID) {
@@ -57,8 +57,11 @@ function Playlistsong() {
   
   return (
     <div>
-        <h></h>
-        
+        <div>{playlist_name[0].name}</div>
+        <div>{playlistSong[0].title}</div>
+        <div>{playlistSong[1].title}</div>
+
+
         
     </div>
   )
