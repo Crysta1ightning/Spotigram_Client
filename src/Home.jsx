@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import moment from 'moment';
+
 import './Home.scss';
 // import './App.css';
 
@@ -39,7 +41,15 @@ function Home() {
     // this should be from localstorage, after sign in we should store this
     // before calling the rest, maybe make sure the token is valid for this user
 
-    let response = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id);
+    // Refresh Story
+    let response = await (fetch("http://localhost:3000/api/story", {
+      method: 'DELETE',
+      headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+      },
+    }))
+
+    response = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id);
     let friendsdata = await response.json();
     // console.log(friendsdata);
     let friendsForThisUser = [];
@@ -71,10 +81,11 @@ function Home() {
     for (let i = 0; i < storydata.length; i++) {
       newFriends.forEach((user) => {
         // console.log(user);
-        if (storydata[i].user_id == user.user_id) newstorys.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
-                                                                    username: user.username, pfp: user.pfp , time: user.ts});
-      })
-    }
+        for (let i = 0; i < storydata.length; i++) {
+        if (storydata[i].user_id == user.user_id) newstories.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
+                                                                    username: user.username, pfp: user.pfp , time: storydata[i].ts});
+      }
+    })
 
     response = await fetch("http://localhost:3000/api/song");
     let songdata = await response.json();
@@ -84,13 +95,20 @@ function Home() {
     let stories = [];
     for (let i = 0; i < songdata.length; i++) {
       newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".png"});
-      newstorys.forEach((user) => {
-        if (songdata[i].song_id == user.song_id) stories.push({
-          id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
-          cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.ts
-        })
-      })
     }
+
+    newstories.forEach((user) => {
+      for (let i = 0; i < songdata.length; i++) {
+        if (songdata[i].song_id == user.song_id) {
+          stories.push({
+            id: user.id, title: songdata[i].songname, artist: songdata[i].artist,
+            cover: newsongs[i].cover, username: user.username, pfp: user.pfp, time: user.time
+          })
+          break;
+        }
+      }
+    })
+
     setSong(newsongs);
     console.log(newsongs);
     setStory(stories);
@@ -109,7 +127,7 @@ function Home() {
     }
     currentStory = storyIndex;
     document.querySelector('.story-user').textContent = story[currentStory].username;
-    document.querySelector('.story-time').textContent = story[currentStory].time; // TODO
+    document.querySelector('.story-time').textContent = moment(story[currentStory].time*1000).calendar(); // TODO
     document.querySelector('.story-cover').src = story[currentStory].cover;
     document.querySelector('.story-title').textContent = story[currentStory].title;
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;
