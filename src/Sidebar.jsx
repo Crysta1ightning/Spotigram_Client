@@ -9,7 +9,7 @@ function Sidebar() {
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <div className="sidebar-container min-vh-100 ">
-      <h1 className="px-0.5 ">Spotigram</h1>
+      <img src='./images/spotigram_title.png' width='150rem' className='mt-3'></img>
       <MDBListGroup className='text-center'>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-items-center' to="/" action noBorders>
           <MDBIcon fas icon='home' />Home
