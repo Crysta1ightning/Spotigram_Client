@@ -194,6 +194,30 @@ function Home(props) {
 
   };
 
+  const toChangeSong = (songIndex) => {
+    // if (storyIndex < 0 || storyIndex >= story.length) {
+    //   // TODO
+    //   console.log(123);
+    //   var modal = bootstrap.Modal.getInstance(document.getElementById('storyModal'));
+    //   modal.hide();
+    //   return;
+    // }
+    let currentSong = songIndex-1;
+    // document.querySelector('.story-user').textContent = story[currentSong].username;
+    // document.querySelector('.story-time').textContent = moment(story[currentStory].time * 1000).calendar(); // TODO
+    document.querySelector('.song-cover').src = song[currentSong].cover;
+    document.querySelector('.song-title').textContent = song[currentSong].title;
+    // document.querySelector('.insong-pfp').src = story[currentSong].pfp;
+    // localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
+    // updateStoryIndicator();
+    let rgb = getAverageRGB(document.getElementById('songcover'));
+    document.querySelector('.song-block').style.background = 'radial-gradient(rgba('+rgb.r+','+rgb.g+','+rgb.b+', 1) 35%,rgba(0,0,0,1) 200%)'
+    // console.log(background);
+    // console.log(rgb);
+
+
+  };
+
   const share = async (song_id) => {
     let this_user_id = JSON.parse(localStorage.getItem('user_id'));
     let response = await (fetch("http://localhost:3000/api/story", {
@@ -231,8 +255,8 @@ function Home(props) {
         <p className="h1 row mt-4 ms-4">推薦歌曲</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
-            <div className="card col-xl-2" key={music.id}>
-              <img type="button" src={music.cover} className="card-img-top" onClick={()=>{
+            <div className="card col-xl-2" type="button" key={music.id} onClick={() => { toChangeSong(music.id) }} data-bs-toggle="modal" data-bs-target="#songModal">
+              <img src={music.cover} className="card-img-top" onClick={()=>{
                 props.global.song_id = music.id;
                 console.log("SET "+music.id)
               }} onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }}></img>
@@ -279,10 +303,32 @@ function Home(props) {
               <div className='d-flex align-items-center justify-content-center'>
                 <div type="button" className="story-prev-btn" onClick={() => { toChangeStory(currentStory - 1) }}></div>
                 <img id="cover" type="button" className="story-cover shadow"></img>
-                <canvas id="canvas" className="story-cover d-none"></canvas>
                 <div type="button" className="story-next-btn" onClick={() => { toChangeStory(currentStory + 1) }}></div>
               </div>
               <p className="story-title"></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div className="modal fade" id="songModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" width="1500px">
+          <div className="container song-block modal-content">
+            <div className='d-flex align-items-center justify-content-start mt-3'>
+              {/* <img type="button" src="" className="song-pfp insong-pfp shadow img-fluid rounded-circle"></img> */}
+              <div className="container pt-3">
+                {/* <p className="song-user"></p> */}
+                {/* <p className="song-time"></p> */}
+              </div>
+            </div>
+            <div className="song-music">
+              <div className='d-flex align-items-center justify-content-center'>
+                {/* <div type="button" className="story-prev-btn" onClick={() => { toChangeStory(currentStory - 1) }}></div> */}
+                <img id="songcover" type="button" className="song-cover shadow"></img>
+                {/* <div type="button" className="story-next-btn" onClick={() => { toChangeStory(currentStory + 1) }}></div> */}
+              </div>
+              <p className="song-title"></p>
             </div>
 
           </div>

@@ -126,6 +126,51 @@
     }
 }
 
+.song-block {
+    // background-color: #1E1E21 !important;
+    border-radius: 15px;
+    height: 30rem;
+
+    .song-pfp {
+        margin-left: 0.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .song-user {
+        line-height: 0.4rem;
+        font-size: 1.2rem;
+    }
+
+    .song-time {
+        line-height: 0.1rem;
+        font-size: 0.8rem;
+    }
+
+    .song-music {
+        text-align: center;
+        .song-cover {
+            width: 20rem;
+            height: 20rem;
+        }
+
+        .song-title {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+        }
+        .song-prev-btn {
+            width: 12rem;
+            height: 20rem;
+            // background-color: green;
+        }
+        .song-next-btn {
+            width: 12rem;
+            height: 20rem;
+            // background-color: green;
+        }
+    }
+}
+
 .share{
     color: rgb(255, 255, 255, 0.8) !important;
     background-color: rgb(255, 255, 255, 0.07) !important;
