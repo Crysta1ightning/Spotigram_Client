@@ -37,18 +37,18 @@ function Home() {
 
   const updateStoryIndicator = async () => {
     for (let i = 0; i < story.length; i++) {
-      let storyStatus = JSON.parse(localStorage.getItem('story-user'+story[i].id));
+      let storyStatus = JSON.parse(localStorage.getItem('story-user' + story[i].id));
       console.log(story[i].id);
       console.log(storyStatus);
-      var element = document.getElementById("story-user"+story[i].id)
+      var element = document.getElementById("story-user" + story[i].id)
       if (storyStatus) element.classList.add('visited');
       else element.classList.remove('visited');
     }
   }
-   
+
   // Fetch each friend's id and username for this_user_id
   const fetchHomeData = async () => {
-    let this_user_id = JSON.parse(localStorage.getItem('user_id')); 
+    let this_user_id = JSON.parse(localStorage.getItem('user_id'));
     // this should be from localstorage, after sign in we should store this
     // before calling the rest, maybe make sure the token is valid for this user
 
@@ -56,12 +56,11 @@ function Home() {
     let response = await (fetch("http://localhost:3000/api/story", {
       method: 'DELETE',
       headers: {
-          'Content-type': 'application/json; charset=UTF-8',
+        'Content-type': 'application/json; charset=UTF-8',
       },
     }))
 
-    response = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id);
-    let friendsdata = await response.json();
+    const friendsdata = await fetch("http://localhost:3000/api/friend?user_id=" + this_user_id).then(r => r.json());
     // console.log(friendsdata);
     let friendsForThisUser = [];
     friendsdata.forEach((friend) => {
@@ -72,7 +71,7 @@ function Home() {
     response = await fetch("http://localhost:3000/api/user");
     let userdata = await response.json();
     // console.log(userdata);
-    let newFriends = [{user_id: this_user_id, username: "", pfp: "./images/user"+this_user_id+".png"}]
+    let newFriends = [{ user_id: this_user_id, username: "", pfp: "./images/user" + this_user_id + ".png" }]
     userdata.forEach((user) => {
       // console.log(user);
       if (user.user_id == this_user_id) {
@@ -81,36 +80,36 @@ function Home() {
         newFriends[0].username = user.username;
       }
       else if (friendsForThisUser.includes(user.user_id)) {
-        newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user"+user.user_id+".png" })
+        newFriends.push({ user_id: user.user_id, username: user.username, pfp: "./images/user" + user.user_id + ".png" })
       }
     })
 
     // console.log(friendsForThisUser);
     // console.log(newFriends);
 
-    response = await fetch("http://localhost:3000/api/story");
-    let storydata = await response.json();
+    const storydata = await fetch("http://localhost:3000/api/story").then(r => r.json());
 
     // console.log(storydata);
 
     let newstories = [];
-    
-      newFriends.forEach((user) => {
-        // console.log(user);
-        for (let i = 0; i < storydata.length; i++) {
-        if (storydata[i].user_id == user.user_id) newstories.push({ id: storydata[i].user_id, song_id: storydata[i].song_id, 
-                                                                    username: user.username, pfp: user.pfp , time: storydata[i].ts});
+
+    newFriends.forEach((user) => {
+      // console.log(user);
+      for (let i = 0; i < storydata.length; i++) {
+        if (storydata[i].user_id == user.user_id) newstories.push({
+          id: storydata[i].user_id, song_id: storydata[i].song_id,
+          username: user.username, pfp: user.pfp, time: storydata[i].ts
+        });
       }
     })
 
-    response = await fetch("http://localhost:3000/api/song");
-    let songdata = await response.json();
+    const songdata = await fetch("http://localhost:3000/api/song").then(r => r.json());
 
     // console.log(data);
     let newsongs = [];
     let stories = [];
     for (let i = 0; i < songdata.length; i++) {
-      newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/"+songdata[i].song_id+".png"});
+      newsongs.push({ id: songdata[i].song_id, title: songdata[i].songname, artist: songdata[i].artist, cover: "./images/" + songdata[i].song_id + ".png" });
     }
 
     newstories.forEach((user) => {
@@ -144,11 +143,11 @@ function Home() {
     }
     currentStory = storyIndex;
     document.querySelector('.story-user').textContent = story[currentStory].username;
-    document.querySelector('.story-time').textContent = moment(story[currentStory].time*1000).calendar(); // TODO
+    document.querySelector('.story-time').textContent = moment(story[currentStory].time * 1000).calendar(); // TODO
     document.querySelector('.story-cover').src = story[currentStory].cover;
     document.querySelector('.story-title').textContent = story[currentStory].title;
     document.querySelector('.instory-pfp').src = story[currentStory].pfp;
-    localStorage.setItem('story-user'+story[storyIndex].id, JSON.stringify(1));
+    localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
     updateStoryIndicator();
   };
 
@@ -157,14 +156,14 @@ function Home() {
     let response = await (fetch("http://localhost:3000/api/story", {
       method: 'POST',
       body: JSON.stringify({
-          user_id: this_user_id,
-          song_id: song_id
+        user_id: this_user_id,
+        song_id: song_id
       }),
       headers: {
-          'Content-type': 'application/json; charset=UTF-8',
+        'Content-type': 'application/json; charset=UTF-8',
       },
     }))
-    localStorage.setItem('story-user'+this_user_id, JSON.stringify(0));
+    localStorage.setItem('story-user' + this_user_id, JSON.stringify(0));
     fetchHomeData();
     updateStoryIndicator();
   }
@@ -175,10 +174,10 @@ function Home() {
         <p className="h1 mx-4 mt-4">Story</p>
         <div className="story-container">
           {story.map((music, index) =>
-            <div className="stories col-xl-1 col-4 text-center">
+            <div className="stories col-xl-1 col-4 text-center" key={index}>
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
-                <img type="button" src={music.pfp} className={"img-container mb-2 story-pfp shadow img-fluid rounded-circle"+(JSON.parse(localStorage.getItem('story-user'+music.id))?" visited" : "")} id={"story-user"+music.id} data-bs-toggle="button"
-                onError={({currentTarget}) => {currentTarget.src = "./images/user0.jpg"}} onClick={() => { toChangeStory(index) }}></img>
+                <img type="button" src={music.pfp} className={"img-container mb-2 story-pfp shadow img-fluid rounded-circle" + (JSON.parse(localStorage.getItem('story-user' + music.id)) ? " visited" : "")} id={"story-user" + music.id} data-bs-toggle="button"
+                  onError={({ currentTarget }) => { currentTarget.src = "./images/user0.jpg" }} onClick={() => { toChangeStory(index) }}></img>
               </span>
               <p className="overflow-hidden">{music.username}</p>
             </div>
@@ -189,11 +188,11 @@ function Home() {
         <p className="h1 row mt-4 ms-4">早安!</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
-            <div className="card col-xl-2">
-              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
+            <div className="card col-xl-2" key={music.song_id}>
+              <img type="button" src={music.cover} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
               <p className="song">{music.title}</p>
               <p className="artist">{music.artist}</p>
-              <button className="btn share" onClick={()=>{share(music.id)}}>Share</button>
+              <button className="btn share" onClick={() => { share(music.id) }}>Share</button>
             </div>
           )}
         </div>
@@ -203,8 +202,8 @@ function Home() {
         <p className="h1 row mt-4 ms-4">美好的明天!</p>
         <div className="scrolling-wrapper ms-3">
           {recommend.map(music =>
-            <div className="card col-x1-2" >
-              <img type="button" src={music.cover} className="card-img-top" onError={({currentTarget}) => {currentTarget.src = "./images/0.jpg"}}></img>
+            <div className="card col-x1-2" key={music.song_id}>
+              <img type="button" src={music.cover} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.jpg" }}></img>
               <p className="card-text song">{music.title}</p>
               <p className="card-text artist">{music.artist}</p>
             </div>
@@ -212,7 +211,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="modal fade" id="storyModal" tabindex="-1" aria-hidden="true">
+      <div className="modal fade" id="storyModal" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" width="1500px">
           <div className="container story-block modal-content">
             <div className='d-flex align-items-center justify-content-start mt-3'>
@@ -224,9 +223,9 @@ function Home() {
             </div>
             <div className="story-music">
               <div className='d-flex align-items-center justify-content-center'>
-                <div type="button" className="story-prev-btn" onClick={() => {toChangeStory(currentStory-1)}}></div>
+                <div type="button" className="story-prev-btn" onClick={() => { toChangeStory(currentStory - 1) }}></div>
                 <img type="button" className="story-cover"></img>
-                <div type="button" className="story-next-btn" onClick={() => {toChangeStory(currentStory+1)}}></div>
+                <div type="button" className="story-next-btn" onClick={() => { toChangeStory(currentStory + 1) }}></div>
               </div>
               <p className="story-title"></p>
             </div>
@@ -240,8 +239,6 @@ function Home() {
         <p className='bind'>u can't see me</p>
         <p className='bind'>u can't see me</p>
       </div>
-
-
 
     </div>
   )
