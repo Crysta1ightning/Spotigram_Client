@@ -1,4 +1,4 @@
-*{overflow-x: hidden;}
+// *{overflow-x: hidden;}
 .song {
     color: #ffffff;
     font-size: 1.5rem;
@@ -32,6 +32,10 @@
         // transform: scale(1.1);
         background-color: #ffffff1a;
     }
+}
+
+.row{
+    overflow-x:hidden;
 }
 
 .story-container {
