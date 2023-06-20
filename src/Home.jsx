@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import {getAverageRGB} from './storybackcolor.jsx';
 
@@ -14,6 +14,7 @@ function Home(props) {
   //   {id: 3, title: "天是空的", artist: "li3li3", cover:"images/song.png"},
   //   {id: 4, title: "A song", artist: "li3li3", cover:"images/song1.png"},
   // ])
+  const triggerItem = useRef(null);
 
   const [song, setSong] = useState([]);
 
@@ -235,6 +236,7 @@ function Home(props) {
     updateStoryIndicator();
   }
 
+
   return (
     <div>
       <div className="row story-row">
@@ -255,13 +257,13 @@ function Home(props) {
         <p className="h1 row mt-4 ms-4">推薦歌曲</p>
         <div className="scrolling-wrapper ms-3">
           {song.map(music =>
-            <div className="card col-xl-2" type="button" key={music.id} onClick={() => { toChangeSong(music.id) }} data-bs-toggle="modal" data-bs-target="#songModal">
+            <div className="card col-xl-2" type="button" key={music.id} onClick={() => { toChangeSong(music.id) }} >
               <img src={music.cover} className="card-img-top" onClick={()=>{
                 props.global.song_id = music.id;
                 console.log("SET "+music.id)
-              }} onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }}></img>
-              <p className="song">{music.title}</p>
-              <p className="artist">{music.artist}</p>
+              }} onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} data-bs-toggle="modal" data-bs-target="#songModal"></img>
+              <p className="song" data-bs-toggle="modal" data-bs-target="#songModal">{music.title}</p>
+              <p className="artist" data-bs-toggle="modal" data-bs-target="#songModal">{music.artist}</p>
               <button className="btn share" onClick={() => { share(music.id) }}>Share</button>
             </div>
           )}
@@ -312,7 +314,7 @@ function Home(props) {
         </div>
       </div>
 
-      <div className="modal fade" id="songModal" tabIndex="-1" aria-hidden="true">
+      <div className="modal fade " id="songModal" tabIndex="-1" aria-hidden="true" data-autohide="true" data-delay="2000" >
         <div className="modal-dialog modal-dialog-centered" width="1500px">
           <div className="container song-block modal-content">
             <div className='d-flex align-items-center justify-content-start mt-3'>
