@@ -119,7 +119,8 @@ function Control(props) {
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <MDBFooter className='text-white fixed-bottom control'>
-      <MDBContainer className='p-3 pb-0'>
+      <MDBRow className='radio-status-bar mb-3'>{props.playlist}</MDBRow>
+      <MDBContainer className='p pb-0'>
         <MDBRow>
           <MDBCol size="3">
             <MDBRow>
@@ -131,7 +132,7 @@ function Control(props) {
                 <p>{song.artist}</p>
               </MDBCol>
             </MDBRow>
-            <MDBRow>{props.playlist}</MDBRow>
+            
           </MDBCol>
           <MDBCol size="1" />
           <MDBCol size="4">
@@ -196,7 +197,7 @@ function Control(props) {
             />
           </MDBCol>
         </MDBRow>
-
+        
       </MDBContainer>
     </MDBFooter>
   )
