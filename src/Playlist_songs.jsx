@@ -4,7 +4,7 @@ import './Playlist_songs.scss'
 
 function Playlistsong(props) {
   const params = new URLSearchParams(window.location.search);
-  const [cur_playlistID] = useState("1"/*params.get("pl")*/);
+  const [cur_playlistID] = useState(location.href.split('?')[1].split('=')[1]);
   const [playlistName, setPlaylistName] = useState([]);
   const [playlistSong, setPlaylistSong] = useState([]);
   const [playlistOwner, setPlaylistOwner] = useState([]);
@@ -53,19 +53,19 @@ function Playlistsong(props) {
       setPlaylistSong(newplaylistsong);
       setPlaylistOwner(newplaylistOwner);
 
-      // let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
+      let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
 
-      // if (cur_playlistID == currentRadio) {
-      //   document.querySelector('.radio-indicator').style.visibility = "visible";
-      //   document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
-      //   document.querySelector('.start-radio-btn').classList.remove('btn-primary');
-      //   document.querySelector('.start-radio-btn').classList.add('btn-secondary');
-      // } else {
-      //   document.querySelector('.radio-indicator').style.visibility = "hidden";
-      //   document.querySelector('.start-radio-btn').innerHTML = "Start Radio";
-      //   document.querySelector('.start-radio-btn').classList.remove('btn-secondary');
-      //   document.querySelector('.start-radio-btn').classList.add('btn-primary');
-      // }
+      if (cur_playlistID == currentRadio) {
+        document.querySelector('.radio-indicator').style.visibility = "visible";
+        document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
+        document.querySelector('.start-radio-btn').classList.remove('btn-primary');
+        document.querySelector('.start-radio-btn').classList.add('btn-secondary');
+      } else {
+        document.querySelector('.radio-indicator').style.visibility = "hidden";
+        document.querySelector('.start-radio-btn').innerHTML = "Start Radio";
+        document.querySelector('.start-radio-btn').classList.remove('btn-secondary');
+        document.querySelector('.start-radio-btn').classList.add('btn-primary');
+      }
     }
 
     fetchPlaylistSongData();
@@ -75,22 +75,16 @@ function Playlistsong(props) {
   const toToggleRadio = (playlistID) => {
     // localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
     // console.log(playlistID);
-    // let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
-    if (playlistID == props.playlist) {
+    let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
+    if (playlistID == currentRadio) {
       props.handlePlaylist("");
+      localStorage.setItem('cur-radio', JSON.stringify(0));
       currentRadio = 0;
     } else {
       props.handlePlaylist(playlistID);
+      localStorage.setItem('cur-radio', JSON.stringify(playlistID));
       currentRadio = playlistID;
     }
-    // if (playlistID == currentRadio) {
-    //   localStorage.setItem('cur-radio', JSON.stringify(0));
-    //   currentRadio = 0;
-    // } else {
-    //   props.handlePlaylist("playlistID");
-    //   localStorage.setItem('cur-radio', JSON.stringify(playlistID));
-    //   currentRadio = playlistID;
-    // }
     if (cur_playlistID == currentRadio) {
       document.querySelector('.radio-indicator').style.visibility = "visible";
       document.querySelector('.start-radio-btn').innerHTML = "Stop Radio";
