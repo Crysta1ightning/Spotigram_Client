@@ -67,7 +67,7 @@ function Playlistsong(props) {
         document.querySelector('.start-radio-btn').classList.add('btn-primary');
       }
     }
-
+    
     fetchPlaylistSongData();
   }, [])
 
@@ -77,13 +77,13 @@ function Playlistsong(props) {
     // console.log(playlistID);
     let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
     if (playlistID == currentRadio) {
-      props.handlePlaylist("");
       localStorage.setItem('cur-radio', JSON.stringify(0));
       currentRadio = 0;
+      props.handlePlaylist("");
     } else {
-      props.handlePlaylist("Playing: " + playlistID);
       localStorage.setItem('cur-radio', JSON.stringify(playlistID));
       currentRadio = playlistID;
+      props.handlePlaylist("♫ Playing: " + playlistName[0]?.name + " Radio");
     }
     if (cur_playlistID == currentRadio) {
       document.querySelector('.radio-indicator').style.visibility = "visible";
@@ -107,7 +107,7 @@ function Playlistsong(props) {
 
           <div>
             <div className='d-flex px-4 mt-2 align-items-center '>
-              <button type="button" className='start-radio-btn btn ' onClick={() => { toToggleRadio(cur_playlistID) }}>Start a Radio</button>
+              <button type="button" className='start-radio-btn btn shadow' onClick={() => { toToggleRadio(cur_playlistID) }}>Start a Radio</button>
               <div className='ps-3'>Created by:</div>
               {
                 playlistOwner.map((user, index) =>
