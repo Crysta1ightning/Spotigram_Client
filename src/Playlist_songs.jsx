@@ -81,7 +81,7 @@ function Playlistsong(props) {
       localStorage.setItem('cur-radio', JSON.stringify(0));
       currentRadio = 0;
     } else {
-      props.handlePlaylist(playlistID);
+      props.handlePlaylist("Playing: " + playlistID);
       localStorage.setItem('cur-radio', JSON.stringify(playlistID));
       currentRadio = playlistID;
     }
