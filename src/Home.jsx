@@ -220,7 +220,7 @@ function Home(props) {
         <p className="h1 mx-4 mt-4">Story</p>
         <div className="story-container">
           {story.map((music, index) =>
-            <div className="stories col-xl-1 col-4 text-center" key={index}>
+            <div className="stories col-xl-1 col-3 col-sm-2 text-center" key={index}>
               <span data-bs-toggle="modal" data-bs-target="#storyModal">
                 <img type="button" src={music.pfp} className={"img-container mb-2 story-pfp shadow img-fluid rounded-circle" + (JSON.parse(localStorage.getItem('story-user' + music.id)) ? " visited" : "")} id={"story-user" + music.id} data-bs-toggle="button"
                   onError={({ currentTarget }) => { currentTarget.src = "./images/user0.png" }} onClick={() => { toChangeStory(index) }}></img>
@@ -232,9 +232,9 @@ function Home(props) {
       </div>
       <div className="row">
         <p className="h1 row mt-4 ms-4">推薦歌曲</p>
-        <div className="scrolling-wrapper ms-3">
+        <div className="scrolling-wrapper ms-3 ">
           {song.map(music =>
-            <div className="card col-xl-2" type="button" key={music.id}  >
+            <div className="card col-xl-2 col-lg-3 col-6 col-sm-5 col-md-4 mt-4 mx-4" type="button" key={music.id}  >
               <img src={music.cover} className="card-img-top" onClick={()=>{
                 props.global.song_id = music.id;
                 console.log("SET "+music.id)
@@ -251,7 +251,7 @@ function Home(props) {
         <p className="h1 row mt-4 ms-4">播放清單</p>
         <div className="scrolling-wrapper">
           {MyplaylistSet.slice(0,5).map(playlist =>
-              <a className="card col-lg-2 col-7 col-md-5 mt-4 mx-4" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
+              <a className="card col-xl-2 col-lg-3 col-6 col-sm-5 col-md-4 mt-4 mx-4" key={playlist.id} type="button" href={"/#/playlistsong?pl=" + playlist.id}>
                 {/* <img  src={playlist.cover[0]} className="card-img-top" onError={({ currentTarget }) => { currentTarget.src = "./images/0.png" }} ></img> */}
                 <div className="" >
                   <div className="row row-cols-2 g-0 card-img-top">
