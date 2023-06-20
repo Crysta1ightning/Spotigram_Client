@@ -89,9 +89,9 @@ function Profile() {
   return (
     <div className='profile'>
       
-      <div className='container'>
+      <div className='row container'>
         <div className='d-flex align-items-end justify-content-start mt-4'>
-          <img src={'./images/user'+default_userid+'.png'} className='rounded-circle mainpfp' ></img> {/*todo*/}
+          <img src={'./images/user'+default_userid+'.png'} className='rounded-circle mainpfp ' ></img> {/*todo*/}
           <div>
             <h1 className='px-4'>{user.username}</h1>
             {/* <h5 className='px-4'>{friend.length} friends</h5> */}
