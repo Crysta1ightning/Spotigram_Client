@@ -63,6 +63,7 @@ function Sidebar(props) {
 const listenFriendRadio = async (friend) => {
   localStorage.setItem('cur-radio', JSON.stringify(0));
   props.handlePlaylist("♫ Now Playing: " + friend + "'s Radio");
+  // location.reload()
 }
 
   // if (localStorage.getItem("user_id") == null) return (<></>)

@@ -47,7 +47,6 @@ function Control(props) {
   const fetchRadioStatus = async (props) => {
     
     let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
-    console.log(currentRadio);
   }
   useEffect(() => {
     fetchRadioStatus();
@@ -128,7 +127,11 @@ function Control(props) {
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <MDBFooter className='text-white fixed-bottom control'>
-      <MDBRow className='radio-status-bar justify-content-center mb-3'>{props.playlist}</MDBRow>
+      
+      <MDBRow className='radio-status-bar justify-content-center mb-3'>
+        <div>{props.playlist}</div>
+        
+      </MDBRow>
       <MDBContainer className='p pb-0'>
         <MDBRow>
           <MDBCol size="3">
