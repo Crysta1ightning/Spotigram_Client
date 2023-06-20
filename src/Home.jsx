@@ -172,24 +172,24 @@ function Home(props) {
   var currentStory = 0;
 
 
-  const toChangeSong = (songIndex) => {
-    // if (storyIndex < 0 || storyIndex >= story.length) {
-    //   // TODO
-    //   console.log(123);
-    //   var modal = bootstrap.Modal.getInstance(document.getElementById('storyModal'));
-    //   modal.hide();
-    //   return;
-    // }
-    let currentSong = songIndex-1;
-    // document.querySelector('.story-user').textContent = story[currentSong].username;
-    // document.querySelector('.story-time').textContent = moment(story[currentStory].time * 1000).calendar(); // TODO
-    document.querySelector('.song-cover').src = song[currentSong].cover;
-    document.querySelector('.song-title').textContent = song[currentSong].title;
-    // document.querySelector('.insong-pfp').src = story[currentSong].pfp;
-    // localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
-    // updateStoryIndicator();
-    let rgb = getAverageRGB(document.getElementById('songcover'));
-    document.querySelector('.song-block').style.background = 'radial-gradient(rgba('+rgb.r+','+rgb.g+','+rgb.b+', 1) 35%,rgba(0,0,0,1) 200%)'
+  const toChangeStory = (storyIndex) => {
+    if (storyIndex < 0 || storyIndex >= story.length) {
+      // TODO
+      console.log(123);
+      var modal = bootstrap.Modal.getInstance(document.getElementById('storyModal'));
+      modal.hide();
+      return;
+    }
+    currentStory = storyIndex;
+    document.querySelector('.story-user').textContent = story[currentStory].username;
+    document.querySelector('.story-time').textContent = moment(story[currentStory].time * 1000).calendar(); // TODO
+    document.querySelector('.story-cover').src = story[currentStory].cover;
+    document.querySelector('.story-title').textContent = story[currentStory].title;
+    document.querySelector('.instory-pfp').src = story[currentStory].pfp;
+    localStorage.setItem('story-user' + story[storyIndex].id, JSON.stringify(1));
+    updateStoryIndicator();
+    let rgb = getAverageRGB(document.getElementById('cover'));
+    document.querySelector('.story-block').style.background = 'radial-gradient(rgba('+rgb.r+','+rgb.g+','+rgb.b+', 1) 35%,rgba(0,0,0,1) 200%)'
     // console.log(background);
     // console.log(rgb);
 

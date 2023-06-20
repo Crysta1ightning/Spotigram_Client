@@ -94,8 +94,8 @@ const listenFriendRadio = async (friend) => {
         {
           friends.map((friend) => 
           <MDBListGroupItem type="button" className='bar text-white d-flex justify-content-between align-content-center' onClick={() => { listenFriendRadio(friend.name) }} noBorders>
-            <img src={friend.pfp} className='img-fluid rounded-circle' width={50} />
-            <div className='col px-3'>
+            <img src={friend.pfp} className='img-fluid ratio rounded-circle' width={50} />
+            <div className=' px-3 d-none d-lg-block'>
               <div className='friend-name text-right'>{friend.name}</div>
               <div className='join-label text-right'>→ Join Now</div>
             </div>
