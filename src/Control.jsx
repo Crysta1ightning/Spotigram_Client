@@ -175,7 +175,7 @@ function Control(props) {
                 <MDBIcon fas icon='repeat' />
               </MDBBtn> */}
             </MDBRow>
-            <MDBRow>
+            <MDBRow className='px-2'>
               <MDBCol size="1">{formatTime(currentTime)}</MDBCol>
               <MDBCol>
                 <MDBRange
@@ -190,7 +190,8 @@ function Control(props) {
               <MDBCol size="1">{formatTime(Math.round(duration))}</MDBCol>
             </MDBRow>
           </MDBCol>
-          <MDBCol size="1" className="text-end">
+          <MDBCol size="1" className='control-divider'/>
+          <MDBCol size="1" className="text-end volume-block">
             {/* <MDBBtn outline color="light" floating className='m-1' role='button'>
               <MDBIcon fas icon="list" />
             </MDBBtn> */}
