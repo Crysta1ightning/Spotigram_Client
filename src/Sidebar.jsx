@@ -82,12 +82,13 @@ function Sidebar() {
         </MDBListGroupItem> */}
       </MDBListGroup>
         <br />
-      <p className="text-center mt-5">Friends' Radio</p>
+      <div className="text-center mt-5 "><MDBIcon fas icon='music' className="pe-3"/><p className="d-none d-lg-inline ">Friends' Radio</p></div>
+      
       <MDBListGroup className='friend-block'>
         {
           friends.map((friend) => 
           <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
-            <img src={friend.pfp} className='img-fluid rounded-circle' width={50} />
+            <img src={friend.pfp} className='col-md-3.5 img-fluid rounded-circle' width={50} />
             <div className='col px-3'>
               <div className='friend-name text-right'>{friend.name}</div>
               <div className='join-label text-right'>→ Join Now</div>
