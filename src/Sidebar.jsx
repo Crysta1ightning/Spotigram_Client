@@ -68,7 +68,8 @@ const listenFriendRadio = async (friend) => {
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <div className="sidebar-container min-vh-100 ">
-      <img src='./images/spotigram_title.png' width='150rem' className='mt-3'></img>
+      <img src='./images/spotigram_title.png' width='150rem' className='mt-3 margin-left d-lg-block d-none img-fluid'></img>
+      <img src='./images/spotigram_icon.png' width='70rem' className='mt-3 margin-left d-block d-lg-none img-fluid'></img>
       <MDBListGroup className='text-center'>
         <MDBListGroupItem tag={NavLink} className='bar text-white d-lg-flex justify-content-between align-items-center' to="/" action noBorders>
           <MDBIcon fas icon='home ' /><span className='d-none d-lg-flex'>Home</span>
