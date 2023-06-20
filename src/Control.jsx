@@ -44,6 +44,15 @@ function Control(props) {
     fetchSongData();
   }, [])
 
+  const fetchRadioStatus = async (props) => {
+    
+    let currentRadio = JSON.parse(localStorage.getItem('cur-radio'));
+    console.log(currentRadio);
+  }
+  useEffect(() => {
+    fetchRadioStatus();
+  }, [])
+
   function formatTime(x) {
     x = Number(x);
     return (x / 60 | 0).toString() + ':' + (x % 60).toString().padStart(2, '0');
