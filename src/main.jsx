@@ -39,7 +39,7 @@ function App() {
     <MDBRow>
       <HashRouter>
         <MDBCol size="2" className="fixed-top sidebar">
-          <Sidebar></Sidebar>
+          <Sidebar global={global} playlist={playlist} handlePlaylist={handlePlaylist} ></Sidebar>
         </MDBCol>
         <MDBCol size="10" className="offset-2">
           <Routes>
@@ -57,7 +57,7 @@ function App() {
       </HashRouter>
     </MDBRow>
     <MDBRow className="fixed-bottom">
-      <Control global={global} playlist={playlist} ></Control>
+      <Control global={global} playlist={playlist} handlePlaylist={handlePlaylist} ></Control>
     </MDBRow>
   </MDBContainer>
   )

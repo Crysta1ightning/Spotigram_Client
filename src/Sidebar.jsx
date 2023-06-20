@@ -18,7 +18,7 @@ import {
   MDBCol
 } from 'mdb-react-ui-kit';
 
-function Sidebar() {
+function Sidebar(props) {
 
   const [users, setUsers] = useState([]);
   const [friends, setFriends] = useState([]);
@@ -60,6 +60,11 @@ function Sidebar() {
     fetchFriendsData();
 }, [])
 
+const listenFriendRadio = async (friend) => {
+  localStorage.setItem('cur-radio', JSON.stringify(0));
+  props.handlePlaylist("♫ Now Playing: " + friend + "'s Radio");
+}
+
   // if (localStorage.getItem("user_id") == null) return (<></>)
   return (
     <div className="sidebar-container min-vh-100 ">
@@ -86,7 +91,7 @@ function Sidebar() {
       <MDBListGroup className='friend-block'>
         {
           friends.map((friend) => 
-          <MDBListGroupItem tag={NavLink} className='bar text-white d-flex justify-content-between align-content-center' noBorders>
+          <MDBListGroupItem  type="button" className=' bar text-white d-flex justify-content-between align-content-center' onClick={() => { listenFriendRadio(friend.name) }} noBorders>
             <img src={friend.pfp} className='img-fluid rounded-circle' width={50} />
             <div className='col px-3'>
               <div className='friend-name text-right'>{friend.name}</div>
