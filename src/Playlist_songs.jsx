@@ -100,8 +100,8 @@ function Playlistsong(props) {
 
 
   return (
-    <div>
-      <div className="d-flex align-items-end">
+    <div className='min-vh-100'>
+      <div className="d-flex">
         <div className='container'>
           <div className="title d-flex align-items-start"><h1 className="inline">{playlistName[0]?.name}</h1></div>
 
@@ -125,7 +125,7 @@ function Playlistsong(props) {
       <div>
         {
           playlistSong.map((song, index) =>
-            <div className='d-flex mt-3'>
+            <div className='d-flex mt-3 '>
               <div className='col-1 song-index px-3'>{index + 1}</div>
               <img className='song-cover' src={song.cover}></img>
               <div className='col'>
